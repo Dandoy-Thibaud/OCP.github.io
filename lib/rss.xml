@@ -1,0 +1,1473 @@
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Takima_notes]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib/media/favicon.png</url><title>Takima_notes</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Tue, 21 May 2024 11:35:06 GMT</lastBuildDate><atom:link href="lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Tue, 21 May 2024 11:35:05 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[Chapter 4]]></title><description><![CDATA[ 
+ <br><br><br>A String is a sequence of characters.<br>
+You can create one in three ways:<br>String a = "A string";
+String b = new String("A string");
+String c = """
+			A string""";
+Copy<br>All of these methods are subtly different, as you'll see later in [[]].<br>Since a String is a sequence of characters, it implements the CharSequence interface. You'll see more about interfaces on <a data-href="CHAPTER 7" href="ocp/chapter-7.html" class="internal-link" target="_self" rel="noopener">CHAPTER 7</a>.<br><br>You can concatenate two String by simply adding them together.<br>
+For example:<br>String a = "1" + "1";
+System.out.println(a);
+Copy<br>The previous code snippet prints 11
+​.<br>Tricks ahead!
+Exam makers like using the + operator to confuse you with what they do.<br>
+You have to remember 3 rules:
+
+<br>If both operands are numeric, + means numeric addition.
+<br>If either operand is a String, + means concatenation.
+<br>The expression is evaluated left to right.<br>
+For example:
+
+System.out.println(1 + 2); // 3
+System.out.println("a" + "b"); // ab
+System.out.println("a" + "b" + 3); // ab3
+System.out.println(1 + 2 + "c"); // 3c
+System.out.println("c" + 1 + 2); // c12
+System.out.println("c" + null); // cnull
+Copy
+Note that null is counted as a String if concatenated with a String.<br>
+A common trick is shown in the following:
+int three = 3;
+String four = "4";
+System.out.println(1 + 2 + three + four); // 64
+Copy
+Remember to check for types.<br>
+Finally, one last thing to remember is the use of the +=operand:
+var a = "1"; // a == "1"
+var a += 2; // a == "12"
+Copy
+<br>Required Knowledge
+All of this knowledge is very important for the exam, make sure you know everything before going in !
+<br><br>String has a lot of methods you can call on it. However, there are just a handful of them, the ones you'll use most commonly, that you need to know about.<br>The first thing you need to know is about indexation of a String: They are indexed from 0, and hold a sequence of characters. For example:<br><br>The table above shows how the word "String"
+​ would be indexed.<br>The second thing you need to know is that a String is immutable, or unchangeable. This means that calling a method on a String object will return a new String, rather than changing the one you initially referenced.<br>To go further...
+You'll see more about immutable objects in <a data-href="CHAPTER 6" href="ocp/chapter-6.html" class="internal-link" target="_self" rel="noopener">CHAPTER 6</a>.
+<br><br>The method length() returns the number of characters in a String. The method signature is as follows:<br>public int length()
+Copy<br>Here is an example on how to use it:<br>String a = "String";
+System.out.println(a.length());
+Copy<br>The previous code outputs 6, as length() will always output the max index + 1, since we start counting at 1.<br>Tricks ahead!
+Be wary that because of this, the following example is one of the exam maker's favorite tricks:
+String a = "String";
+System.out.println(a.charAt(a.length())) // IndexOutOfBoundsException
+Copy
+<br><br>The method chatAt lets you find the character positioned at a certain index.<br>
+The method signature is as follows:<br>public char charAt(int index)
+Copy<br>Here is an example on how to properly use chatAt():<br>String a = "String";
+System.out.println(a.charAt(0)); // S
+System.out.println(a.charAt(5)); // g
+System.out.println(a.charAt(6)); // IndexOutOfBoundsException
+Copy<br>As seen above in <a data-href="#Determining the length" href="about:blank#Determining_the_length" class="internal-link" target="_self" rel="noopener">Determining the length</a>, calling an index that is not defined in our String will result in an IndexOutOfBoundsException
+​, meaning java tried to get an index that was not defined, couldn't, and didn't have a protocol to follow on how to proceed.<br>To go further...
+You'll see more about exceptions on <a data-href="CHAPTER 7" href="ocp/chapter-7.html" class="internal-link" target="_self" rel="noopener">CHAPTER 7</a>.
+<br><br>The method indexOf() looks at the characters in the String and finds the first index that matches the desired value. This method works with a single character as well as with a whole String. It can also start at a required position.<br>The method signatures are as follow:<br>public int indexOf(int ch)
+public int indexOf(int ch, int FromIndex)
+public int indexOf(String st)
+public int indexOf(String st, String FromIndex)
+Copy<br>Here is an example using indexOf() properly:<br>String a = "animal";
+System.out.println('a'); // 0
+System.out.println("al"); // 4
+System.out.println('a', 1); // 4
+System.out.println('b'); // -1
+System.out.println('al', 5); // -1
+Copy<br>Notice how trying to find a character that is not in the String with the requested parameters will return a -1.<br>Be careful!
+Remember that you can pass Character type values to int!
+<br><br>The method substring() also looks for characters in a String. However, rather than returning an index, the method returns a String.<br>The method signatures are as follow:<br>public String substring(int beginIndex)
+public String substring(int beginIndex, int endIndex)
+Copy<br>Tricks ahead!
+This method is a bit tricky:<br>
+endIndex points to the end of the index you want to grab excluded, which means that the following is possible:
+String a = "String";
+System.out.println(a.substring(0, 6));
+Copy
+This will print out "String"
+​ without any issue, even though a only has 5 indexes.
+<br>The following example shows how to use substring() correctly:<br>String a = "String";
+System.out.println(a.substring(3)); // ing
+System.out.println(a.substring(a.indexOf('i'))); // ing
+System.out.println(a.substring(3, 4)); // i
+System.out.println(a.substring(3, 6)); // ing
+Copy<br>Tips
+An easier way to visualize substring() is to pretend that the index is just before the character it points to.<br>
+Another trick to remember is that the number of returned characters is endIndex - beginIndex, so in every case, System.out.println(a.substring(3,5))
+​ will return a String of 2 characters.
+<br>Tricks ahead!
+Finally, here are some tricks that the exam makers like to employ:
+String a = "String";
+System.out.println(a.substring(3, 3)); // empty String
+System.out.println(a.substring(3, 2)); // Exception
+System.out.println(a.substring(3, 7)); // Exception
+Copy
+Notice how a.substring(3,3) returns an empty String. This corroborates the tip section just above.<br>
+Furthermore, choosing an endIndex that is smaller than beginIndex will result in an exception, as will choosing an endIndex that is bigger than the length of the String.
+<br><br>The method toLowerCase() and toUpperCase() both respectively transform all upper case characters into lower case characters, and all lower case characters to upper case characters.<br>The methods signatures are as follow:<br>public String toLowerCase()
+public String toUpperCase()
+Copy<br>Here is an example on how to employ both correctly:<br>String a = "String";
+System.out.println(a.toUpperCase()); // STRING
+System.out.println(a.toLowerCase()); // string
+System.out.println((a + "123").toUpperCase); // STRING123
+System.out.println(a); // String
+Copy<br>Notice how both of these methods leave alone any character that is not a letter.<br>
+Also notice that a stays the same when printed at the end, because String is an immutable object.<br><br>The method equals() checks if the content of two String is strictly the same, meaning that they contain the exact same characters in the same order.<br>The method equalsIgnoreCare checks if the content of two String is strictly the same as well, barring the case of the characters.<br>Here is the methods signatures:<br>public boolean equals(Object obj)
+public boolean equalsIgnoreCase(String str)
+Copy<br>Notice how equals() takes in any Object. For now, remember that if you pass anything other than a String, the method will simply return false.<br>Here is an example on how to use both those methods properly:<br>System.out.println("abc".equals("ABC")); // false
+System.out.println("ABC".equals("ABC")); // true
+System.out.println("abc".equalsIgnoreCase("ABC")); // true
+Copy<br>You don't need to know...
+You used to have to know how to override toString(), equals() and hashCode() for the exam, but it is not the case anymore. If you are curious however, and it will definitely be useful for your job, here are the rules for overriding every of these methods:
+
+<br>
+toString(): The toString() method is called when you try to print an object or concatenate the object with a String. It is commonly overridden with a version that prints a unique description of the instance using its instance fields.
+
+<br>
+equals(Object): The equals(Object) method is used to compare objects, with the default implementation just using the == operator. You should override the equals(Object) method any time you want to conveniently compare elements for equality, especially if this requires checking numerous fields.
+
+<br>
+hashCode(): Any time you override equals(Object), you must override hashCode() to be consistent. This means that for any two objects, if a.equals(b) is true, then a.hashCode() == b.hashCode() must also be true. If they are not consistent, this could lead to invalid data and side effects in hash-­based collections such as HashMap and HashSet.
+
+
+<br><br>The method startsWith() will look if the String starts with the provided prefix, and return true if that is the case.<br>The method endsWith() will look if the String ends with the provided suffix, and return true if that is the case.<br>The method contains() will look if the String contains the provided String anywhere, and return true if that is the case.<br>Here are the methods signatures:<br>public boolean startsWith(String prefix)
+public boolean endsWith(String suffix)
+public boolean contains(CharSequence charSeq)
+Copy<br>Here are example on how to properly use these methods:<br>System.out.println("abc".startsWith("a")); // true
+System.out.println("abc".startsWith("A")); // false
+
+System.out.println("abc".endsWith("c")); // true
+System.out.println("abc".endsWith("a")); // false
+
+System.out.println("abc".contains("b")); // true
+System.out.println("abc".contains("B")); // false
+Copy<br><br>The method replace() simply replaces any match with the provided character or sequence of characters with the target character or sequence of characters.<br>Here are the method signatures:<br>public String replace(char oldChar, char newChar)
+public String replace(CharSequence target, CharSequence replacement)
+Copy<br>Here is a proper way to use these methods:<br>System.out.println("abcabc".replace('a', 'A')); // AbcAbc
+System.out.println("abcabc".replace("ab", "AB")); // ABcABc
+Copy<br><br>The method strip() removes blank space from the beginning and/or the end of a String. This method also supports Unicode, namely \u2000.<br>The method trim() removes blank space from the beginning and/or the end of a String.<br>The method stripLeading() removes blank space from the beginning of a String.<br>The method stripTrailing() removes blank space from the end of a String.<br>You don't need to know...
+Unicode is not on the exam, so don't bother trying to learn unicode whitespaces.
+<br>Required Knowledge
+In this case, whitespace also refers to \t (tab), \n (newline) and \r (carriage return). All of those get trimmed with every method mentioned above.
+<br>Here are the methods signatures:<br>public String strip()
+public String stripLeading()
+public String stripTrailing()
+public String trim()
+Copy<br>The following code shows how to use these methods:<br>System.out.println("abc".strip()); // abc
+System.out.println("\t    a b c\n".strip()); // a b c
+
+String text = " abc\t ";
+System.out.println(text.trim().length()); // 3
+System.out.println(text.strip().length()); // 3
+System.out.println(text.stripLeading().length()); // 5
+System.out.println(text.stripTrailing().length()); // 4
+Copy<br>Be careful!
+Remember that \t, \n and \r are single characters!
+<br><br>The method indent() will add the specified number of whitespace at the beginning of the String. If you pass a negative number to this method, it will instead remove the specified number of whitespaces.<br>
+Furthermore, this method will normalize whitespace, meaning that it will add a line break at the end of a String if it not there. Then, it will convert all line breaks in any format to \n format.<br>The method stripIndent() will remove all leading incidental whitespace. To see more of what is incidental whitespace, refer to <a data-href="CHAPTER 1 - BUILDING BLOCKS" href="ocp/chapter-1-building-blocks.html" class="internal-link" target="_self" rel="noopener">CHAPTER 1 - BUILDING BLOCKS</a>.<br>Be careful!
+indent() with a negative number can be tricky: giving a larger negative number than there are leading whitespaces will not result in an error, instead, it will remove every whitespace it can find.
+<br>Here is a summary of the rules to make it more clear:<br><br>Here are the methods signatures:<br>public String indent(int numberSpaces)
+public String stripIndent()
+Copy<br>And here are some example on how to use these methods:<br>String a = """
+			a
+			 b
+			c""";
+String b = " a\n"
+		 + "  b\n"
+		 + " c";
+System.out.println(a.length()); // 6
+System.out.println(b.length()); // 9
+System.out.println(a.indent(1).length()); // 10
+System.out.println(b.indent(-1).length()); // 7
+System.out.println(b.indent(-4).length()); // 6
+System.out.println(b.stripIndent().length()); // 6
+Copy<br>Let's take a second to explain the difficult lines here;<br>
+<br>Line 8 counts a, b, c, the whitespace before b, and the implied \n after a and b, which is 6 characters in total.
+<br>Line 9 counts:
+
+<br>On line 5: the whitespace + a&nbsp;+ \n, which is 3 characters.
+<br>On line 6: the two whitespaces + b + \n, which is 4 characters.
+<br>On line 7: the whitespace + c, which is 2 characters.
+<br>All of it adds up to 9 characters in total.
+
+
+<br>Line 10 adds a whitespace at the start of line 2, 3 and 4, plus adds a line break at the end of line 4 since it doesn't have one, adding up to 10 characters in total.
+<br>Line 11&nbsp;removes a whitespace from line 5, 6&nbsp;and 7, leaving us with 6 characters. Then, indent() adds a line break at the end of line 7, adding up to 7 characters in total.
+<br>Line 12 does the same as on line 11, but also removes the remaining whitespace character before b, leaving us with 6 characters in total.
+<br>Line 13 counts how many leading whitespaces are common on each line of the block. There is only 1 common whitespace on those three lines, so stripIndent() removes a whitespace from line 5, 6 and 7. As stripIndent() doesn't add line breaks, we're left with 6 characters in total.
+<br><br>The method translateEscapes() translates literal escapes into their equivalent escape characters.<br>The method signature is as follows:<br>public String translateEscapes()
+Copy<br>Here is how to use that method:<br>String str = "1\\t2";
+System.out.println(str); // 1\\t2
+System.out.println(str.translateEscapes()); // 1    2
+Copy<br>As you can see, the "\\t"
+​ got translated to "\t"
+​, which in turn got turned into a tab.<br><br>The method isEmpty() checks if the String has a length of 0.<br>The method isBlank() checks if the String contains strictly and only 0 or more whitespace characters.<br>Here is their method signature:<br>System.out.println(" ".isEmpty()); // false
+System.out.println("".isEmpty());  // true
+System.out.println(" ".isBlank()); // true
+System.out.println("".isBlank());  // true
+Copy<br><br>The method format() takes a String (and optionally, a Locale), and arguments to fit inside formatting flags.<br>The method formatted() only takes the arguments, and instead uses the current instance of the String to format with the formatting flags.<br>To go further...
+You will see more about Locale on <a data-href="CHAPTER 11" href="ocp/chapter-11.html" class="internal-link" target="_self" rel="noopener">CHAPTER 11</a>.
+<br>Here are the methods signatures:<br>public static String format(String format, Object args...)
+public static String format(Locale loc, String format, Object args...)
+public String formatted(Object args...)
+Copy<br>Note
+The trailing three dots (...) means that the function will take as many arguments as you'd like, as long as they're of the required type.
+<br>Here are some examples on how to use these methods:<br>String a = "String";
+int b = 6;
+
+System.out.println("This " + a + " has a length of " + b);
+System.out.println(String.format("This %s has a length of %d", a, b));
+System.out.println("This %s has a length of %d".formatted(a, b));
+Copy<br>The 3 different colored lines are functionally the same, as they all print "This String has a length of 6"
+​.<br>Here are some of the different formatting flags that you will encounter commonly:<br><br>Required Knowledge
+You need to know the different formatting flags inscripted above for the exam.
+<br>Here is an example that uses all 4 flags tabulated above:<br>String a = "Pi";
+int b = 15;
+double c = 3.141592653589793;
+System.out.println("Nasa only needs %d digits of %s to calculate interplanetary travel with a margin of error of less than an inch. Which means they use %s = %n%.15f".formatted(b, a, a, c));
+Copy<br>This fun fact would print out the following:<br>
+"Nasa only needs 15 digits of Pi to calculate interplanetary travel with a margin of error of less than an inch. Which means they use Pi =
+​<br>
+3.141592653589793"
+​<br>Be careful!
+As you might expect by now, java doesn't support mixing types and flags. Which means that, for example, mixing a float with a %d will result in an error.<br>
+For example:
+String a = "%d".formatted(2.0); // IllegalFormatConversionException
+Copy
+<br>Required Knowledge
+As you may have noticed, the previous example contains a %.15f flag. By default, %f will print up to 6 digits after the floating point. You can readjust this precision by specifying the number of decimals you wish to print. Be careful, as it does not truncate the value, but rather rounds the value according to mathematics principles.<br>
+For example:
+double a = 3.141592653589793;
+System.out.println("%f".formatted(a)); // 3.141593
+System.out.println("%.1f".formatted(a)); //3.1
+System.out.println("%.20).formatted(a)); // 3.1415926535897930000
+Copy
+As you can see, going further than the actual given digits will simply put trailing 0s at the end.<br>
+That's not all however:<br>
+You can specify the total length of the desired output by putting a number before the . in the flag. Remember that the . is counted in the length of the output.<br>
+For example;
+double pi = 3.14159265359;
+System.out.format("[%f]",pi); // [3.141593]
+System.out.format("[%12.8f]",pi); // [  3.14159265]
+System.out.format("[%012f]",pi); // [00003.141593]
+System.out.format("[%12.2f]",pi); // [        3.14]
+System.out.format("[%.3f]",pi); // [3.142]
+Copy
+As you can see, the method, by default, will fill the empty space with blank spaces, but you can also fill the empty space with 0s if you place a single 0 before the decimal symbol.
+<br>Note
+Author's note:<br>
+It was not explained well in the book, but after some tests, there are some more hidden rules that I am not sure will be present in the exam. If you are curious, here they are:
+double pi = 3.14;
+System.out.format("[%2f]", pi); // [3,140000]
+System.out.format("[%9f]", pi); // [ 3.140000]
+System.out.format("[%1.1f]", pi); // [3,1]
+System.out.format("[%0.1f]", pi); // MissingFormatWidthException
+Copy
+
+<br>Line 2 showcases that even if the regular %f doesn't show it, the trailing 0s are still here if the passed floating number has less than 6 digits, and trying to show less than the total amount of characters (here, 8 in total) will simply print all 0s.
+<br>As such, Line 3 demonstrates that only numbers above the length of the floating number including the invisible 0s will add spaces.
+<br>Furthermore, Line 4 shows that the number before the floating point in the formatting flag will be ignored if it is smaller than the actual length of the floating number.
+<br>Finally, putting a 0 before the . in the formatting flag will result in a MissingFormatWidthException.
+
+<br>You don't need to know...
+The format() method supports many more flags, but you don't need to know any that we haven't reviewed for the exam. If you still wish to know more, visit <a data-tooltip-position="top" aria-label="https://docs.oracle.com/cd/E17802_01/j2se/j2se/1.5.0/jcp/rc/apidiffs/java/util/Formatter.html" rel="noopener" class="external-link" href="https://docs.oracle.com/cd/E17802_01/j2se/j2se/1.5.0/jcp/rc/apidiffs/java/util/Formatter.html" target="_blank">the official documentation.</a>
+<br><br>You can combine multiple methods by chaining them.<br>Here is an example on how to proceed:<br>String a = "StrIng    ";
+String b = a.trim(); // "StrIng"
+String c = b.toLowerCase(); // "string"
+String d = c.replace('s', 'S'); //"String"
+
+String e = a.trim().toLowerCase().replace('s', 'S'); // "String"
+Copy<br>The pink highlighted code is equivalent to the red highlighted code, but we used method chaining in the red code to make it fit in a single line. Remember that you read method chaining from left to right.<br><br>The StringBuilder class behaves much like a String class, with the modified behavior that it is no longer immutable.<br>To go further...
+If you're curious as to why this class was created, take a look at the following code extract:
+String a = ""; // 1 Object
+for (char b = 'a'; b &lt;= 'z'; b++) {
+	a += b // + 1 Object created PER LOOP
+}
+System.out.println(a);
+Copy
+Since String objects are immutable, every time you call a method to modify them, a new instance is created. This means that the above code will create 27 new objects, all of which are immediately available for garbage collection.<br>
+You will have guessed that this is extremely inneficient.<br>
+Let's take the same code with a StringBuilder instead:
+StringBuilder a = ""; // 1 Object
+for (char b = 'a'; b &lt;= 'z'; b++) {
+	a.append(b); // No new object created
+}
+System.out.println(a);
+Copy
+In this code, you see that there is only a single Object created, since StringBuilder just reassigns itself a new value.
+<br>You don't need to know...
+You used to need to know about StringBuffer, the thread-safe StringBuilder. It is not used anymore, so you don't need to know about it for the exam. However, you will need to know about concurrency, which is further explained in <a data-href="CHAPTER 13" href="ocp/chapter-13.html" class="internal-link" target="_self" rel="noopener">CHAPTER 13</a>.
+<br><br>Unlike String, StringBuilder doesn't create a new instance of itself when modified, it simply reassigns its own value. This means that method chaining and method calling works differently.<br>For example:<br>StringBuilder sb = new StringBuilder("String");
+sb.append("Builder");
+System.out.println(sb);
+
+String s = "String";
+s + "Builder";
+System.out.println(s);
+Copy<br>Line 3 will print out "StringBuilder"
+​, while line 7 will print out "String"
+​, because we didn't reassign the output value of s + "Builder"
+​ to a new String.<br>Tricks ahead!
+The exam will really try to confuse you with String, StringBuilder and their immutability. Pay attention to both!
+<br>Another crucial thing to note is that references to StringBuilder point to the same instance of StringBuilder when they are copied.<br>For example:<br>StringBuilder a = new StringBuilder("abc");
+StringBuilder b = a.append("de");
+b = b.append("f").append("g");
+System.out.println("a=" + a);
+System.out.println("b=" + b);
+Copy<br>Both a and b will print out "abcdefg"
+​. One simple trick to know how many StringBuilder instances are created is to look at how many calls to new StringBuilder()
+​ are made, and here, it is only called once.<br><br>There are three ways to construct a StringBuilder:<br>StringBuilder a = new StringBuilder();
+StringBuilder b = new StringBuilder("StringBuilder");
+StringBuilder c = new StringBuilder(10);
+Copy<br>Line 1 creates an empty StringBuilder.<br>
+Line 2 creates a StringBuilder with the value "StringBuilder"
+​ inside.<br>
+Line 3 creates an empty StringBuilder with a capacity of 10 characters.<br>Be careful!
+Just in case you are curious, you cannot do:<br>
+<img class="code-styler-inline-icon" src="blob://d9af2fa8-3d70-4052-89e4-09764c673bd0">StringBuilder a = "StringBuilder";
+​<br>
+As it will result in an Incompatible Type error.
+<br><br>As with String, there are a few methods you will need to know for the exam. You don't need to know every single one of them, so here is a list of the minimum that you need to know.<br><br>The methods substring(), indexOf(), length() and charAt() behave the same way they do for Strings. In case you need a reminder:<br>
+<br>The page for substring() is <a data-tooltip-position="top" aria-label="Getting a substring" data-href="#Getting a substring" href="about:blank#Getting_a_substring" class="internal-link" target="_self" rel="noopener">here</a>.
+<br>The page for indexOf() is <a data-tooltip-position="top" aria-label="Finding an index" data-href="#Finding an index" href="about:blank#Finding_an_index" class="internal-link" target="_self" rel="noopener">here</a>.
+<br>The page for length() is <a data-tooltip-position="top" aria-label="Determining the length" data-href="#Determining the length" href="about:blank#Determining_the_length" class="internal-link" target="_self" rel="noopener">here</a>.
+<br>The page for charAt() is <a data-tooltip-position="top" aria-label="Getting a single character" data-href="#Getting a single character" href="about:blank#Getting_a_single_character" class="internal-link" target="_self" rel="noopener">here</a>.
+<br>Let us still see how they work on StringBuilder:<br>StringBuilder a = new StringBuilder("String");
+String b = a.substring(a.indexOf("S"), a.indexOf("n"));
+int length = a.length();
+char c = a.charAt(5);
+System.out.println(b + " " + length + " " + c);
+Copy<br>The above code will print out "Stri 6 g"
+​.<br>
+Notice how substring() returns a String rather than a StringBuilder. This means that a remains unchanged when calling substring(), which explains the result at line 5.<br>Make sure to visit any of the aforementioned pages if any of the methods confuse you.<br><br>The method append() adds the requested argument at the end of the StringBuilder.<br>One of the method signatures is as follows:<br>public StringBuilder append(String str)
+Copy<br>Be careful, as there exists a ton of other append() method signatures, each taking different argument types, such as int and char for example.<br>As an example:<br>StringBuilder a = new StringBuilder().append(1).append('c').append(true);
+System.out.println(a); // "1ctrue"
+Copy<br>You don't need to convert anything to String for it to be properly appended to the StringBuilder.<br><br>The method insert() adds the requested argument at the specified index in the StringBuilder.<br>One of the method signatures is as follows:<br>public StringBuilder insert(int offset, String str)
+Copy<br>Just as with append(), there exists more method signatures, each taking different arguments types.<br>As an example on how to use the method:<br>StringBuilder a = new StringBuilder("String");
+a.insert(6, "#"); // a == "String#"
+a.insert(0, "#"); // a == "#String#"
+a.insert(4, "#"); // a == "#Str#ing#"
+Copy<br>As with String's substring(), which you can find <a data-tooltip-position="top" aria-label="Getting a substring" data-href="#Getting a substring" href="about:blank#Getting_a_substring" class="internal-link" target="_self" rel="noopener">here</a>, you need to visualise each index being just before the character they represent, so that it is easier for you to understand what operation is performed.<br>
+Furthermore, inserting at an index equal to the length of the StringBuilder will add your argument at the end of the StringBuilder.<br><br>WIP]]></description><link>ocp/chapter-4-core-apis.html</link><guid isPermaLink="false">OCP/CHAPTER 4 - CORE APIS.md</guid><pubDate>Tue, 21 May 2024 11:34:58 GMT</pubDate><enclosure url="blob:app://obsidian.md/d9af2fa8-3d70-4052-89e4-09764c673bd0" length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="blob:app://obsidian.md/d9af2fa8-3d70-4052-89e4-09764c673bd0"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Introduction]]></title><description><![CDATA[ 
+ <br><br><br>
+<br>The exam does give negative points: check everything !
+<br>Out of scope material means that we don't need to understand it, everything is implicit or given to us.
+<br>words with strong meanings and absolute, such as ought, must or have to means that there is no edge case. Look very closely for one.
+<br><br><br>A main() method has a very specific signature.<br>The very basic main() looks like this:<br>public class example {
+	public static void main(String[] args) {
+		System.out.println("Hello World!");
+	}
+}
+Copy<br><br>We follow the rules below when creating a java class:<br>
+<br>Each file can contain only one public class
+<br>The filename must match the class name, including case, and have a .java extension.
+<br>If the java class is an entry point for the program, it must contain a valid main() method.
+<br>Let's take a look at the main()method:<br>
+<br>publicis an access modifier, meaning that it declares the exposure to other callers in the program. See <a data-href="CHAPTER 5" href="ocp/chapter-5.html" class="internal-link" target="_self" rel="noopener">CHAPTER 5</a>.
+<br>staticmeans it can be called with just the class name. More in <a data-href="CHAPTER 6" href="ocp/chapter-6.html" class="internal-link" target="_self" rel="noopener">CHAPTER 6</a>.
+<br>voidis a return type. This one in particular means it returns control to the caller silently, without returning anything. See <a data-href="CHAPTER 5" href="ocp/chapter-5.html" class="internal-link" target="_self" rel="noopener">CHAPTER 5</a>.
+<br>Any of there different modifiers are accepted:<br>String[] args
+String options[]
+String... friends
+Copy<br>And you can also use the optional final modifiers:<br>public final static void main(final string[] args) {}
+Copy<br><br>In the exam...
+The exam will not try to trick you into giving you wrong package names.
+<br>Java uses imports to look for different methods and symbols in other packages.<br>Wildcards (*) import everything in the package, but not child packages.<br>
+For example, in order to import import java.util.concurrent.atomic:<br>import java.util.* //Doesn't import atomic
+import java.util.concurrent.atomic.* //Imports atomic
+Copy<br>Furthermore, in case of redundant class names in packages, you need to precise which is what. Also remember that precise named packages take precedence over names included in wildcard.<br>
+For example:<br>import java.util.* //Contains method Date
+import java.sql.* //Also contains method Date
+Date a = new Date(); //DOES NOT COMPILE
+Copy<br>Instead, you should do this:<br>import java.util.Date //Takes precedence
+import java.sql.*
+Date a = new Date(); //Uses java.util.Date
+Copy<br>Note
+If you absolutely need to use both Date from different packages, you can explicitly use their fully qualified class name.<br>
+For example:
+public class Conflicts {
+	java.util.Date date;
+	java.sql.Date sqlDate;
+}
+Copy
+<br>You don't need to know...
+You don't need to know about all the package names: if you're not supposed to know one, OCP will give you its name up top.
+<br>Required Knowledge
+The only package you need to know is imported automatically is java.lang, along with all the sub packages coming with it.
+<br>Finally, this is how classes should be declared:<br>package structure; //Package first
+import java.util.*; //Import second
+public class Info { //Class declaration third
+	String description; //Then either methods or fields
+	private getDescription() {
+	}
+}
+Copy<br>Not a constructor!
+In the exam, there can be a method that looks like this:
+public class Chick {
+	public void Chick() { } //not a constructor!
+}
+Copy
+This compiles but is not called in a new instruction.
+<br><br>When setting up a java class, the order of operations goes this way:<br>public class Chick {
+	private String name = "Fluffy";
+	{ System.out.println("Setting Field"); }
+	
+	public Chick() {
+		name = "Tiny";
+		System.out.println("Setting Constructor");
+	}
+	
+	public static void main(String[] args) {
+	Chick chick = new Chick();
+	System.out.println(chick.name);
+	}
+}
+Copy<br>Running this example prints this:<br>
+setting field setting constructor Tiny`<br>The fields are instantiated first (hence the setting field), then the constructor (with the setting constructor) and finally the rest of the main (Tiny).<br>In the exam...
+There will always be an exam question about initialisation order, so be sure to be ready for it.
+<br>You will see more of this in <a data-href="CHAPTER 6" href="ocp/chapter-6.html" class="internal-link" target="_self" rel="noopener">CHAPTER 6</a>.<br><br><br>The exam assumes that you are well versed in the eight primitive types, their sizes, and what's stored in them.<br>
+They are the following:<br><br>But what about String?
+String is considered the ninth primitive because of the built-in java support. Remember however that it is still an object.<br>
+See more on <a data-href="CHAPTER 4 - CORE APIS" href="ocp/chapter-4-core-apis.html" class="internal-link" target="_self" rel="noopener">CHAPTER 4 - CORE APIS</a>.
+<br>What should I remember ?
+byte, short, int, long are integers without decimals. A bigger one is twice as big as the previous.
+floatrequires the letter f or F following a number so JAVA knows it's a float. Otherwise, it's a double.
+long requires an l or L following the number so that JAVA knows it's a long. Otherwise, it's just an int.
+All numeric types are signed and reserve one bit to cover the negative range.
+short and char are closely related. The only difference is that shortis signed, and char is unsigned. You can cast one to the other. You'll see more in <a data-href="CHAPTER 2 - JAVA OPERATORS" href="ocp/chapter-2-java-operators.html" class="internal-link" target="_self" rel="noopener">CHAPTER 2 - JAVA OPERATORS</a>.
+You don't have to remember the max values, the exam will tell you when the code does not<br>
+compile because of it.
+<br>As a tip: you can have underscores for your literals to make reading easier.<br>
+Both of those are valid literal declarations:<br>int million1 = 1000000;
+int million2 = 1_000_000;
+Copy<br>There are a few things you cannot do:<br>double notAtStart = _1000.00; //DOES NOT COMPILE
+double notAtEnd = 1000.00_; //DOES NOT COMPILE
+double notByDecimal = 1000_.00; //DOES NOT COMPILE
+double annoyingButLegal = 1_00_0.0_0; //Ugly, but compiles
+double reallyUgly = 1________2; //Also compiles
+Copy<br>Primitives, methods and nulls
+You cannot assign a method to a primitive, nor can you assign it a null. As such, the following lines won't compile:
+int bad = 1211.length(); // DOES NOT COMPILE
+int value = null; // DOES NOT COMPILE
+Copy
+<br><br>There are wrapper classes that you can create to assign methods to the int. Their equivalency is described as followed:<br><br>Those all include helpful methods.<br>What should I remember ?
+In the exam, you don't have to know the methods associated with the wrapper classes. Simply look at their names, and assume they exist and are working as presented.
+<br><br>Text blocks are like regular String such as :<br>String example = "Hello world!"
+Copy<br>However, they allow for the use of characters not present in regular strings without escape codes:<br>String example = """ Hellowo World!
+  *
+ * *
+* * *
+""";
+Copy<br>Note
+The line at the end of the code block leaves an empty line when the String is printed.<br>
+A \ at the end of a line means that we do not want a new line to be added.
+<br>Be careful!
+The following block of code does not compile:
+String incorrect: """compiler"""
+Copy
+Because text blocks need a line break.
+<br>Tricks ahead!
+Be careful, as incidental whitespace is not counted in text blocks. For example:
+String textBlock = """
+	java
+	   &lt;- some white space
+	 """
+Copy
+This will be rendered with java, and &lt;- some white space.
+<br><br>Identifiers are the names of variables. There are some nuances as to what you can name and cannot name a variable.<br>
+<br>Names have to start with a letter, a currency symbol (€, $, £, etc...), or a _.
+<br>Identifiers can include numbers but never start with them.
+<br>A single _ is not allowed.
+<br>You cannot use reserved words.
+<br>In the exam...
+You don't need to know all reserved words. The exam will only ask for the very common ones, such as class, for, etc...<br>
+However, you will be tested on the validity of some identifiers. See more in <a data-href="CHAPTER 12" href="ocp/chapter-12.html" class="internal-link" target="_self" rel="noopener">CHAPTER 12</a>
+<br>There are also ways to declare many variables on the same line, showcased in the following example:<br>String s1, s2;
+String s3 = "yes", s4 = "no";
+Copy<br>Four variables were declared, s1, s2, s3 and s4.<br>
+This works as long as all the variables are of the same type. Example:<br>String s1, int s2 = 2; // DOES NOT COMPILE
+String s3, String s4; // DOES NOT COMPILE
+Copy<br>This does not compile, because the inline declaration has to be only for variables reference of the same type.<br><br>Variables need to be initialized to be used. However, there are some rules to what you can do to certain variables.<br><br><br>A local variable is a variable that is defined in a constructor, method or initializer block.<br><br>staticvariables are called class variables. They are common across all instances of a class, and can be accessed without initializing them. They are the opposite of an instance variable, that remains specific to each declaration of an object. You can find examples of both class and instance variables in the <a data-href="#Instance variables" href="about:blank#Instance_variables" class="internal-link" target="_self" rel="noopener">Instance variables</a> sub chapter.<br>Default values
+You don't need to instantiate static variables. They are given the common default value on startup.
+static int value;
+Copy
+Will be able to be accessed from anywhere, as the compiler gave it the default 0value. To see which values are a default for each variable type, head over to <a data-href="#Data Types" href="about:blank#Data_Types" class="internal-link" target="_self" rel="noopener">Data Types</a>.
+<br><br>Instance variables are the opposite of class variables, as they are unique and isolated for every instance of a class created.<br>public class Example() {
+	static int a; // class variable
+	int b; // instance variable
+	
+	public Example(int a, int b) {
+	a = a;
+	this.b = b;
+	}
+}
+
+public class Test() {
+	Example example1 = new Example(1, 1);
+	Example example2 = new Example(2, 2);
+}
+Copy<br>At the end of the above example, example1 will have a = 2 because it has been reassigned globally through example2, but b = 1 because it is unique to example1. However, example2 will have a = 2 and b = 2, for the same aforementioned reasons.<br><br>Final variables are variables that have the keyword final attributed to them. These variables are unable to be modified, other than at initialization.<br>final int x = 10;
+x = 20; // DOES NOT COMPILE
+Copy<br>This does not compile, as you are trying to reassign a value to a finalvariable.<br>Caveat
+Be careful, as only the value of the variable remains unchanged. For example:
+final int[] numbers = new int[10];
+numbers[0] = 1;
+numbers = null; //DOES NOT COMPILE
+Copy
+Does not work, but only because we tried to reassign the value of the variable, not their pointers.
+<br><br>Variables can be uninitialized. The compiler does not mind as long as you don't try to manipulate them. For example:<br>int number; // This is fine
+System.out.println(number); // DOES NOT COMPILE
+Copy<br>Trying to print out number fails compilation, but it would have been fine if you never used it.<br>In the exam...
+There will be tricks about initialization. Be very wary of late initialisations, as there is reportedly at least one question that tricks you this way.
+<br><br>As per the previous sub chapter, we saw that uninitialized variables are often the cause of Compile errors. However, there is a subtlety when those variables are passed in functions:<br>public void findAnswer(boolean check) {
+	System.out.println(check); // COMPILES
+}
+
+public void checkAnswer() {
+	boolean value;
+	findAnswer(value); // DOES NOT COMPILE
+}
+Copy<br>The compilation error only happens at findAnswer(value), as the inside of a function assumes that every passed parameter has been initialized.<br><br>The var type is a wildcard type, formally named local variable type inference. You can use it instead of a value type for any local variable.<br>Be careful!
+In the exam, they will try to trick you with var not assigned to local variables. For example:
+public class VarKeyword {
+	var tricky = "Hello"; // DOES NOT COMPILE
+}
+Copy
+This does not work because tricky is not a local variable, but rather an instance variable. See what a <a data-href="#Local variables" href="about:blank#Local_variables" class="internal-link" target="_self" rel="noopener">Local variables</a> is here.
+<br>var does not mean that the type of the variable can change at any time. It saves you the hassle of determining it, but the compiler will simply replace the var type with the true type that was inferred at the beginning.<br>Tricks ahead!
+var HAS TO BE INSTANTIATED ON THE SAME LINE. It will NOT work if you try to apply a var without assigning it anything.<br>
+For example:
+var a = 1; // That's fine
+var b; // DOES NOT COMPILE
+int c = 1, var d = 1; // DOES NOT COMPILE
+var e = null; // DOES NOT COMPILE
+var f = 1, g = 1; // DOES NOT COMPILE
+Copy
+Do note that assigning it a null also doesn't work, as null could be attributed to any type of object. You can, however, assign a null to a var variable later on, once it has been assigned an object.
+A second trick is to pass var in a method or constructor parameter. This does not, and will never work.
+public int addition(var a, var b) { // DOES NOT COMPILE
+	return a + b;
+}
+Copy
+Finally, var's underlying type can and will be a primitive if possible. Be careful!
+<br>Reserved words
+var is not a reserved word, and can be used as an identifier. You can also use Var as a class name, since java is case sensitive.<br>
+Exam people usually use this fact to write tricky code.
+<br>To go further...
+You can read more about var and its practical uses <a data-tooltip-position="top" aria-label="https://openjdk.java.net/projects/amber/LVTIstyle.html" rel="noopener" class="external-link" href="https://openjdk.java.net/projects/amber/LVTIstyle.html" target="_blank">here</a>
+<br><br>A variable always has a defined scope. The scope keyword simply means everywhere that variable is able to be used.<br>The scope of a local variable is defined in the statement block it has been created, and every children statement thereafter.<br>
+For example:<br>public void example(boolean test) {
+	if (test) {
+		boolean answer = true;
+		//...
+	} else {
+		boolean notAnswer = true;
+	}
+}
+Copy<br>In this code example, test is able to be used anywhere, as it has been declared as a method parameter. However, answer and notAnswer are only able to be used in the if ... else statement they have be instantiated in, and every children statement (if any). <br>Tricks ahead!
+In the exam, they will try to trick you into thinking a question is about something complex, when in reality, the code doesn't compile because a variable is out of scope. Always make sure every variable is correctly used in its assigned scope first!
+<br>The scope of the other two types of variables, instance and class variables, is easier to determine. Remember these rules:<br>
+<br>local variables are in scope from declaration to end of the block.
+<br>Method parameters are in scope for the duration of the method.
+<br>Instance variables are in scope from declaration until eligible for garbage collection (when not referenced for example). For more about this, look into <a data-href="#Garbage collection" href="about:blank#Garbage_collection" class="internal-link" target="_self" rel="noopener">Garbage collection</a>.
+<br>Class variables are in scope from declaration until the program ends.
+<br><br>Java removes automatically the objects that can be deleted from your program. It uses algorithms that you don't need to know for the exam, but you need to be able to tell when an object is able to be collected for deletion.<br>Java stores every object and instance in the heap memory, or free store. When an object in the heap memory is not being referenced by anything in your program, it is able to be deleted.<br>You can call the garbage collector to do something with System.gc(), but it is not guaranteed to do anything.<br>Note
+When a program end, not everything will picked up by the garbage collector. If there is still any data in the heap when the program end, the garbage collector will not pick it up.
+<br><br>Object and References are two completely different notions. An object is something stored in the heap, and is what gets removed. It is the content. A reference is the pointer to that object, and is the same size, whatever the object it points to.<br>
+For example:<br>String pointer = "object";
+Copy<br>pointer is the reference to the object object. When the garbage collector comes, it will get rid of "object", not pointer.<br>As an example, we have this program:<br>public class scope {
+	public static void main(String args[]) {
+	String one, two;
+	one = new String("a");
+	two = new String("b");
+	one = two; // GB gets rid of "a" since nothing references it.
+	String three = one;
+	one = null; // GB doesn't get rid of anything since three and two still point to "b"
+	} // "b" goes out of scope, so GB gets rid of it.
+}
+Copy<br>You can see the two garbage collector rules here:<br>
+<br>An object is collected if no reference points to it.
+<br>An object is collected if it gets out of scope.
+<br>In the exam...
+Imports usually don't matter. if:
+
+<br>The code begins with a class name
+<br>The code begins with a method declaration
+<br>The code begins with a code snippet
+<br>The code begins with a line other than 1
+
+Then assume the boilerplate code is written correctly.
+<br><br>In the exam, you have to be able to:<br>
+<br>Write code using a main() method. See more in <a data-href="#Main" href="about:blank#Main" class="internal-link" target="_self" rel="noopener">Main</a>.
+<br>Understand Packages and Imports. See more in <a data-href="#Packages" href="about:blank#Packages" class="internal-link" target="_self" rel="noopener">Packages</a>.
+<br>Recognize a constructor.
+<br>Be able to recognize legal and illegal declarations and initialization. See more in <a data-href="#Initializing variables" href="about:blank#Initializing_variables" class="internal-link" target="_self" rel="noopener">Initializing variables</a> and <a data-href="#Uninitialized variables" href="about:blank#Uninitialized_variables" class="internal-link" target="_self" rel="noopener">Uninitialized variables</a>.
+<br>Understand how to create text blocks. See more in <a data-href="#Text blocks" href="about:blank#Text_blocks" class="internal-link" target="_self" rel="noopener">Text blocks</a>.
+<br>Determine when variables go in and out of scope. See more in <a data-href="#Variable scope" href="about:blank#Variable_scope" class="internal-link" target="_self" rel="noopener">Variable scope</a>.
+<br>Determine when an object is eligible for garbage collection. See more in <a data-href="#Garbage collection" href="about:blank#Garbage_collection" class="internal-link" target="_self" rel="noopener">Garbage collection</a>.
+<br>]]></description><link>ocp/chapter-1-building-blocks.html</link><guid isPermaLink="false">OCP/CHAPTER 1 - BUILDING BLOCKS.md</guid><pubDate>Tue, 21 May 2024 11:08:37 GMT</pubDate></item><item><title><![CDATA[Chapter 2]]></title><description><![CDATA[ 
+ <br><br><br><br>In the following snippet, there are three names you should know:<br>var c = a + b;
+Copy<br>There are:<br>
+<br>Operands, which are a and b.
+<br>Operators, which is the +.
+<br>Results, which is the c.
+<br><br>Like in mathematics, some operators take precedence over others, below is a table the list the priority of operations (from top to bottom):<br><br>What should I remember ?
+You need to remember all of this. However, you will not be tested on some of them, like the shift operator, but it is handy to keep them close to know what they are.
+<br>See also...
+The arrow operator -&gt; is called the arrow function or lambda operator. You will see more of it in <a data-href="CHAPTER 3 - MAKING DECISIONS" href="ocp/chapter-3-making-decisions.html" class="internal-link" target="_self" rel="noopener">CHAPTER 3 - MAKING DECISIONS</a> and <a data-href="CHAPTER 8" href="ocp/chapter-8.html" class="internal-link" target="_self" rel="noopener">CHAPTER 8</a>.
+<br><br>An unary operator is an operator that require exactly one operand or variable.<br>
+Here is an exhaustive list of them:<br><br>You will see more casting down in <a data-href="#Assigning values" href="about:blank#Assigning_values" class="internal-link" target="_self" rel="noopener">Assigning values</a>.<br><br>The logical complement operator flips the value of a boolean.<br>
+For example:<br>boolean example = false; // example = false
+example = !example;
+System.out.println(example); // example = true
+Copy<br>The bitwise complement operator flips all the 0s and 1s of a number.<br>
+For example:<br>int value = 3; // 0011
+value = ~value; // 1100
+System.out.println(value); // -4
+Copy<br>You don't need to know...
+You don't need to know the binary arithmetic associated with a bitwise complement. You however need to know that it transforms a number following this rule:
+int value = 3;
+value = ~value;
+// IS EQUAL TO
+value = -1 * value - 1
+Copy
+<br>The negation operator reverses the sign of an expression.<br>
+For example:<br>int value = 3; // 3
+value = -value;
+System.out.println(value); // -3
+Copy<br>Tricks ahead!
+You cannot apply every operator to every type.<br>
+For example:
+int a = !5; // DOES NOT COMPILE
+boolean b = -true // DOES NOT COMPILE
+boolean c = !0 // DOES NOT COMPILE
+Copy
+This does not work because:
+
+<br>You cannot logically revert a numerical value
+<br>You cannot numerically revert a logical value
+<br>You cannot assign a numerical value to a boolean value.
+
+The exam will try to trick you into believing that you can assign a 1 to true and a 0 to false, but that isn't possible.
+<br><br>There are 4 increment and decrement operators. The following table showcases them all:<br><br>As an example:<br>int example = 0;
+example++; // 1
+example--; // 0
+++example; // 0
+--example; // 1
+System.out.println(example); // 0
+Copy<br>Required Knowledge
+You need to know the difference between ++a and a++. There will be multiple questions about this in the exam.
+<br><br>The opposite of <a data-href="#Unary operators" href="about:blank#Unary_operators" class="internal-link" target="_self" rel="noopener">Unary operators</a>, as those need two operands to function.<br><br>There are 5 arithmetic operators. Here is a list of them:<br><br>But what about String ?
+Only the addition, + and += may be applied to String, resulting in String concatenation.
+<br>Parentheses rules
+Parentheses are allowed and follow the same principles as in mathematics.<br>
+However, you need to be wary of unmatched parentheses:
+int a = 1 + (3 * 5; // DOES NOT COMPILE
+int b = 2 + 3) * (4; // DOES NOT COMPILE
+int c = [1 + 2] // DOES NOT COMPILE
+Copy
+The first two examples don't have matching parenthesis, which makes the code fail.<br>
+The third line also makes the compiler fail, because java doesn't allow brackets to be used in place of parentheses.
+<br>Division rules
+Division of integer values return the floor value of the division.
+<br>You don't need to know...
+Modulus operations (%) can also be applied to negative and floating point numbers. However, you don't need to know how to do that for the exam, just know that it's possible.
+<br><br>When applying operators to data types, some rules and protocols apply:<br>
+<br>If two values have different data types, Java will automatically promote one of the value to the larger of the two data types.
+<br>If one of the values is integral and the other is floating-point, java will automatically promote the integral value to the floating point data type.
+<br>Smaller data types, such as byte, short, char are promoted to int any time they're used with a java binary arithmetic operator with a variable (not a value!).
+<br>After all promotions have occurred and all operands have the same data type, the resulting value will have the same data type as its promoted operands.
+<br>Be careful!
+The third rule doesn't apply to <a data-tooltip-position="top" aria-label="Unary operators" data-href="#Unary operators" href="about:blank#Unary_operators" class="internal-link" target="_self" rel="noopener">unary operators</a>.
+<br>For example:<br>int x = 1;
+long y = 33; // larger than int
+var z = x * y; // int * long = long
+
+double x = 39.21; // larger than float
+float y = 2.1f;
+var z = x * y; // double * float = double
+
+short x = 10; // promoted to int
+short y = 3; // promoted to int
+var z = x * y; // short * short = int
+
+short w = 14; // promoted to int
+float x = 13;
+double y = 30; // larger than double
+var z = w * x / z; // short * float / double = double
+Copy<br>Tricks ahead!
+Be careful: automatic promotion does not apply when trying to convert to a smaller data type. If you try to do so anyways, a compilation error will occur.
+<br><br>Tricks ahead!
+Compilation errors from assignment operators (=) are often overlooked, make sure to pay attention to them!
+<br><br>The assignment operator, commonly referred to as =, applies the result of the operation on the right side to the left side. A simple example is int example = 1.<br>We will see more in <a data-href="#Compound assignment operators" href="about:blank#Compound_assignment_operators" class="internal-link" target="_self" rel="noopener">Compound assignment operators</a>.<br><br>Casting values is performed as follows:<br>int a = (int) 5; // unnecessary
+int b = (short) 2; // int -&gt; short
+String c = (String) "bird"; // unnecessary
+short d = (short)(4 + 10); // see below
+Copy<br>Line 4 is a bit special, as it reminds you of the fact that casting is an <a data-tooltip-position="top" aria-label="Unary operators" data-href="#Unary operators" href="about:blank#Unary_operators" class="internal-link" target="_self" rel="noopener">unary operator</a>. Which means that if there weren't any parentheses, only the 4 would be converted to short.<br>Casting is not only for numeric values, but also for objects. However, no real conversion is done, only the reference to the object is changed.<br>Here are some examples of non-compiling code:<br>int e = 1.0; // DOES NOT COMPILE
+short f = 1921222; // DOES NOT COMPILE
+int g = 9f; // DOES NOT COMPILE
+long h = 192_301_398_193_810_323; // DOES NOT COMPILE
+Copy<br>All of these are incorrect declarations, for the good reason that we are not casting any of the values to the right type. int cannot receive decimals, short cannot receive large numbers, int cannot receive float values, and long cannot receive such big numbers.<br>You can fix the previous code by applying casting correctly:<br>int e = (int)1.0;
+short f = (short)1921222; // Overflow: stored as 20678
+int g = (int)9f;
+long h = 192_301_398_193_810_323L;
+Copy<br>Be careful!
+Pay attention to line 4, as we are not actually casting anything. If he tried:
+long h = (long) 192_301_398_193_810_323; // DOES NOT COMPILE
+Copy
+The program would not compile, because the number is first interpreted as an int by the compiler, and is then out of range.
+<br>Tricks ahead!
+Exam makers have a trick question they like to pose.<br>
+The following operation will not work:
+short a = (short) 5 + (short) 6;
+Copy
+Because both values will be promoted to int as soon as they are added. The only way to make this code work would be to cast the whole operation, like so:
+short a = (short) (5 + 6);
+Copy
+<br>You don't need to know...
+Overflow and Underflow are out of scope for the exam.
+<br><br>Casting variables is a very delicate operation, which often results in compiler errors.<br>
+Here is an example:<br>byte a = 1;
+byte b = 100;
+short c = 5;
+short d = 2 + 1;
+short e = 2 + b; // DOES NOT COMPILE
+byte f = 7 * 100; // DOES NOT COMPILE
+Copy<br>Line 5 does not compile because b is not a value, and the compiler doesn't know if it should promote the variable to an int or not.<br>
+Line 6 does not compile because 700 is way too big for a byte, which has a maximum limit of 127.<br><br>There are more assignment operators, which are described in the table below. (Beware as the plain assignment [=] is here as a reminder).<br><br>Compound assignment operators are more than a save of time, they also remove explicit casting.<br>
+Here is an example:<br>long a = 10;
+int b = 5;
+b = b * a; // DOES NOT COMPILE (needs casting to int)
+b *= a;
+Copy<br>Line 4 is okay, as what it does is casting b to long, multiplying both, and casting the result to b's type, which is an int.<br>
+The compiler will automatically cast the result of a compound assignment to the type on the left side of the operator.<br><br>The assignment operator is an operation in and of itself. It can be used multiple times in a single line. The main thing to remember is that *assignment operators are read from right to left*.<br>
+For example:<br>long a = 5; // a == 5
+long b = (a = 3); // b == a == 3;
+Copy<br>This code compiles correctly, and a is assigned the value 3, before being sent to b.<br>Tricks ahead!
+The exam makers are fond of tricking people with assignment operators. The main trick they use is the following one:
+boolean a = false;
+if (a = true) {
+	System.out.println("Good!");
+}
+Copy
+The code not only compiles, but it also prints out Good!, because inside the if statement, a is assigned the value true, making the if statement true, thus entering the statement.
+<br><br>Aside from operations, another set of operators allows you to compare values.<br><br>The first set of operators are the equal operator and not equal operator.<br>
+Here is a table of them:<br><br>These operators can be applied to numeric values, boolean values and objects (including String andnull).<br>
+You cannot mix two different types in an equality operation.<br>
+For example:<br>boolean a = true == 3; // DOES NOT COMPILE
+boolean b = false != "a String"; // DOES NOT COMPILE
+boolean c = 10.2 == "another String"; // DOES NOT COMPILE
+Copy<br>These assertions do not work, because we try to mix different types when checking for them.<br>Be careful!
+For object equality, the rule is slightly changed. The equality operator returns true only if the references to the object point to the same object or null. For example:
+var a = new File("file.txt");
+var b = new File("file.txt");
+var c = b;
+System.out.println(a == b); // false
+System.out.println(b == c); // true
+Copy
+a and b both point to objects that have the same content, but in the end, they are different objects. Only b and c point to the same object, because c was copied from b.
+<br>Seealso
+You will see more about object equality and String equality in <a data-href="CHAPTER 4 - CORE APIS" href="ocp/chapter-4-core-apis.html" class="internal-link" target="_self" rel="noopener">CHAPTER 4 - CORE APIS</a>.
+<br><br>Relational operators compare two expressions and either return a true or false booleanvalue.<br>
+Here are all the boolean values you need to know for the exam:<br><br><br>The first four operators in the <a data-tooltip-position="top" aria-label="Relational operators" data-href="#Relational operators" href="about:blank#Relational_operators" class="internal-link" target="_self" rel="noopener">table above</a> only apply to numeric values. If the two numeric operands are not of the same data type, standard <a data-href="#Numeric Promotion" href="about:blank#Numeric_Promotion" class="internal-link" target="_self" rel="noopener">Numeric Promotion</a> occurs.<br>For example:<br>int a = 2, b = 4, c = 2;
+System.out.println(a &lt; b); // true
+System.out.println(a &lt;= b); // true
+System.out.println(a &gt;= c); // true
+System.out.println(a &gt; c); //false
+Copy<br>Notice how the last line is false: this is because the operator is strictly greater than, and a is strictly equal to c.<br><br>The last relational operator shown in the <a data-tooltip-position="top" aria-label="Relational operators" data-href="#Relational operators" href="about:blank#Relational_operators" class="internal-link" target="_self" rel="noopener">table above</a> is the instanceof operator. It is useful to know if an object is of a certain custom type. This is especially important in the cases of polymorphism, as discussed further in <a data-href="CHAPTER 6" href="ocp/chapter-6.html" class="internal-link" target="_self" rel="noopener">CHAPTER 6</a>.<br>For example:<br>Integer a = Integer.valueOf(9);
+Number b = a;
+Object c = a;
+System.out.println(a instanceof Integer); // true
+System.out.println(a instanceof Number); // true
+System.out.println(a instanceof Object); // true
+Copy<br>As shown above, an object can be instances of multiple objects, as long as it inherits from them. This is why a is an instance of Integer, Number and Object at the same time.<br>To go further...
+A good practice for later is to call instanceof before casting. For example:
+if (a instanceof Integer) {
+	Integer b = (Integer) a;
+}
+Copy
+<br>Tricks ahead!
+The exam might try to trip you up with incompatible instanceof calls. For example:
+Integer a = 0;
+if (a instanceof String) { // DOES NOT COMPILE
+	System.out.println("Good!");
+}
+Copy
+If the compiler can determine that a variable cannot possibly be cast into another specific class, such as Number to String, it reports an error.
+<br>But what about null ?
+instanceof on a null variable always returns false. For example:
+System.out.println(null instanceof Object); // false
+Object a = null;
+System.out.println(a instanceof String); // false
+Copy
+However, having a null on the right side of the instanceof does not compile.<br>
+For example:
+System.out.println(null instanceof null); // DOES NOT COMPILE
+Copy
+<br>Seealso
+There's a lot more coming on the instanceof operator. You can see more on <a data-href="CHAPTER 3 - MAKING DECISIONS" href="ocp/chapter-3-making-decisions.html" class="internal-link" target="_self" rel="noopener">CHAPTER 3 - MAKING DECISIONS</a>.
+<br><br>Logical operators can be applied to both boolean and numeric values. They're referred as logical operators when applied to the former, and bitwise operators to the latter, as they perform logical operations to the bits the compose the number.<br>Here is a table containing all the logical operators:<br><br><br>The Conditional operators are also called short circuit operators, and are nearly identical to the <a data-href="#Logical operators" href="about:blank#Logical_operators" class="internal-link" target="_self" rel="noopener">Logical operators</a>, with the one difference that the program only evaluates the left value if the operation in guaranteed to return a value.<br>
+Here is a table of them:<br><br>For example:<br>int a = 10;
+boolean b = true || (a &lt; 4);
+System.out.println(b); // true
+Copy<br>The left side of true || (a &lt; 4) is always true, so the right side of the operator will not be evaluated.<br><br>Conditional operators are used to check for null values too.<br>
+For example:<br>if(a != null &amp; a.getNum() &lt; 5) { // This could throw a NullPointerException
+	//...
+}
+if(a != null &amp;&amp; a.getNum() &lt; 5) { // If a is null, the right side will not be evaluated
+	//...
+}
+Copy<br>Using the conditional operators are a good way to check for null when trying to access a value, as they will not try to access it if the check is true.<br><br>Tricks ahead!
+Be wary of conditional operators as they are often used to trick you into thinking an operation is being executed, when in reality, it is not. For example:
+int a = 6;
+boolean b = (a &gt;= 6) || (++a &lt;= 7);
+System.out.println(a); // a == 6
+Copy
+Because (a &gt;= 6), the right side is never evaluated, so the result will be 6.
+<br><br>The final operator that is required to know for the exam is the ternary operator, otherwise called conditional operator.<br>
+It is written as booleanExpression ? IfTrue : IfFalse.<br>
+The booleanExpression must be a boolean expression, while IfTrue and IfFalse have to be expressions that return any value. We will see more about if/else statements later in <a data-href="CHAPTER 3 - MAKING DECISIONS" href="ocp/chapter-3-making-decisions.html" class="internal-link" target="_self" rel="noopener">CHAPTER 3 - MAKING DECISIONS</a>.<br>For example of how a ternary operator works, it usually goes like this:<br>// With standard if / else
+int a = 5;
+int b;
+if (a &lt; 2) {
+	b = 3;
+} else {
+	b = 4;
+}
+// With a ternary operator
+int a = 5;
+int b = a &lt; 2 ? 3 : 4;
+Copy<br>The two pieces of code are equivalent, but the second one is definitely shorter and easy to read.<br>
+Multiple ternary operators can be used together. For example:<br>int a = 5;
+int b = a &lt; 4 ? a &gt; 2 ? 3 : 4 : 5;
+// It is recommended to use parentheses to separate ternary operators:
+int b = (a &lt; 4 ? ((a &gt; 2) ? 3 : 4) : 5);
+Copy<br>In the exam...
+There is no requirement that the return values of a ternary operator have to be of the same type. For example:
+int a = 7;
+System.out.print((a &gt; 5) ? 21 : "a string");
+int b = (a &lt; 5) ? 3 : "a string"; // DOES NOT COMPILE
+Copy
+Both expressions return int or String, but the first one is in a println statement that can convert any object into a String, while the second expression tries to assign a String to an int, which the compiler knows that's not possible.
+<br><br>In the exam, you have to be able to:<br>
+<br>Be able to write code that uses java operators. See more in <a data-href="#Operators" href="about:blank#Operators" class="internal-link" target="_self" rel="noopener">Operators</a>.
+<br>Be able to recognize which operators are associated with which data types. See more in <a data-href="#Operators" href="about:blank#Operators" class="internal-link" target="_self" rel="noopener">Operators</a>, <a data-href="#Assigning values" href="about:blank#Assigning_values" class="internal-link" target="_self" rel="noopener">Assigning values</a>, <a data-href="#Comparing values" href="about:blank#Comparing_values" class="internal-link" target="_self" rel="noopener">Comparing values</a> and <a data-href="#Ternary operator" href="about:blank#Ternary_operator" class="internal-link" target="_self" rel="noopener">Ternary operator</a>.
+<br>Understand when casting is required or numeric promotion occurs. See more in <a data-href="#Casting values" href="about:blank#Casting_values" class="internal-link" target="_self" rel="noopener">Casting values</a>, <a data-href="#Casting variables" href="about:blank#Casting_variables" class="internal-link" target="_self" rel="noopener">Casting variables</a> and <a data-href="#Numeric Promotion" href="about:blank#Numeric_Promotion" class="internal-link" target="_self" rel="noopener">Numeric Promotion</a>.
+<br>Be able to write code that uses parentheses to override operator precedence. See more in <a data-href="#Operator Precedence" href="about:blank#Operator_Precedence" class="internal-link" target="_self" rel="noopener">Operator Precedence</a> and <a data-href="#Arithmetic operators" href="about:blank#Arithmetic_operators" class="internal-link" target="_self" rel="noopener">Arithmetic operators</a>.
+<br>]]></description><link>ocp/chapter-2-java-operators.html</link><guid isPermaLink="false">OCP/CHAPTER 2 - JAVA OPERATORS.md</guid><pubDate>Tue, 21 May 2024 11:08:53 GMT</pubDate></item><item><title><![CDATA[Chapter 3]]></title><description><![CDATA[ 
+ <br><br><br><br>Control flow statements break up the flow of execution by using decision-making, looping and branching. This allows the code to execute selective and particular segments of code.<br>Note
+These statements can be applied to either a single line of code, or a block of java code, delimited by balanced braced: {}.<br>
+For example:
+// Single statement
+if (b)
+	a++;
+//Statement inside a block
+if (b) {
+	a++;
+}
+Copy
+<br>Tricks ahead!
+Be careful, as in this block:
+if (b)
+	a++;
+	c++; // This line is not in the if statement!
+Copy
+<br><br>The if statement is useful to execute a block under certain circumstances.<br>
+For example:<br>if (a &lt; 11) {
+	System.out.println("a is less than 11.");
+}
+Copy<br>The program will only print out a is less than 11. if a is indeed strictly under 11.<br>Tips
+In java, indentation and white space is not part of the program, it will be ignored by the java compiler.
+<br><br>The else statement is only used whenever an if statement is present. If the if statement is not used, then the else block will always be executed.<br>
+For example:<br>if (a &lt; 11) {
+	System.out.println("a is less than 11.");
+} else {
+	System.out.println("a is more or equal than 11.");
+}
+Copy<br>If the if statement is not entered, aka a is more or equal than 11, then the else block will be triggered, thus printing "a is more or equal than 11.".<br>You can also use else statements followed by if statements for chained if/else statements.<br>
+For example:<br>if (a &lt; 11) {
+	System.out.println("a is less than 11.");
+} else if (a &gt;= 11 &amp; a &lt;= 15) {
+	System.out.println("a is between 11 and 15 included.");
+} else {
+	System.out.println("a is more than 15.");
+}
+Copy<br>This means that if the if statement is not triggered, then Java switches to the else if statement and evaluates it, and if this one also fails, then it switches to the final else statement, executing it.<br>Tricks ahead!
+if statements need a boolean expression inside the evaluation block. And remember: 0 and 1 are not considered boolean values.<br>
+For example:
+int a = 1;
+if (a) { // DOES NOT COMPILE
+	//...
+}
+Copy
+<br><br>To go further...
+Pattern matching is also the name of the java Pattern class, along with regular expressions regex. This is not covered in this exam, but they are still good to know about !
+<br>Pattern matching, from the java version 16, is a technique of controlling program flow that executes a section of code that meets a certain criteria. It is used in conjunction with if statements for greater program control.<br>
+For example:<br>void compareIntegers(Number a) {
+	if (a instanceof Integer)  {
+		Integer b = (Integer) a;
+		System.out.println(b.compareTo(5))
+	}
+}
+Copy<br>This above code takes a lot of lines to:<br>
+<br>Check if a is an instance of Integer
+<br>Cast a into an Integer into variable b.
+<br>Pattern matching lets you do this more efficiently:<br>void compareIntegers(Number a) {
+	if (a instanceOf Integer b) {
+		System.out.println(b.compareTo(5));
+	}
+}
+Copy<br>The inside of the if statement automatically assigns a's value to b as an Integer if it's possible. This does not trigger a ClassCastException, as the casting only happens if it is possible.<br>
+Here, b is called a pattern variable.<br>Good practice !
+It is good practice to not reassign a pattern variable. Reassigning it can lead to ambiguity as to what is in or outside the scope.<br>
+For example:
+if (a instanceof Integer b) {
+	b = 10;
+}
+Copy
+Should not happen. If possible, use the final variable modifier, as shown in the following:
+if (a instanceof final Integer b) {
+	b = 10; // DOES NOT COMPILE
+}
+Copy
+<br><br>Pattern matching includes expressions that can be used to filter data out.<br>
+For example:<br>void printIntegerGreaterThan5(Number a) {
+	if (a instanceof Integer b &amp;&amp; b.compareTo(5) &gt; 0) {
+		System.out.print(b)
+	}
+}
+Copy<br>This means that b will not be assigned, and the if statement will not be executed if b &gt; 5.<br>Note
+Author's note: it is unclear if Integer.compareTo(int a) will be on the test, but just in case, Integer.compareTo(int a):
+
+<br>returns a value greater than 0 if the supplied value a is smaller than the integer we are comparing it to.
+<br>returns a value smaller than 0 if the supplied value a is greater than the integer we are comparing it to.
+<br>returns 0 if the supplied value a is equal than the integer we are comparing it to.
+
+<br><br>The type of the pattern variable must be a subtype of the variable on the left side of the expression. It also cannot be the same type.<br>Be careful!
+This rule does not exist for traditional instanceof operators.
+<br>For example:<br>Integer a = 1;
+if (a instanceof Integer) {}
+if (a instanceof Integer b) {} // DOES NOT COMPILE
+Copy<br>This does not work because pattern matching requires the second integer to be a strict subtype of Integer, and not just an Integer.<br>To go further...
+Things will get a lot more complicated later. In <a data-href="CHAPTER 7" href="ocp/chapter-7.html" class="internal-link" target="_self" rel="noopener">CHAPTER 7</a>, you will see that java can get pretty confused about subtypes.<br>
+Don't get too stressed, but this will work, for example:
+Number a = 1;
+if (value instanceof List) {}
+if (value instanceof List b) {}
+Copy
+Even though List is not really a subtype of Integer.
+<br><br>Flow scoping means a variable is only in scope when the compiler can definitely determine its type. The compiler uses flow scoping with pattern matching.<br>
+It is an entirely different kind of scoping than the one seen previously in <a data-href="CHAPTER 1 - BUILDING BLOCKS" href="ocp/chapter-1-building-blocks.html" class="internal-link" target="_self" rel="noopener">CHAPTER 1 - BUILDING BLOCKS</a>.<br>For example:<br>void example(Number a) {
+	if (a instanceof Integer b || b.compareTo(5) &gt; 0) { // DOES NOT COMPILE
+		System.out.println(b);
+	}
+}
+Copy<br>In the above example, if a instanceof Integer b is false, then b is undefined, and since we are comparing using a OR operator, the second hand of the expression is triggered, leading to a compilation error since b is undefined.<br>Another example:<br>void example(Number a) {
+	if (a instanceof Integer b) {
+		System.out.println(b.intValue());
+	}
+	System.out.println(b.intValue()); // DOES NOT COMPILE
+}
+Copy<br>This example doesn't compile either, because a might not have inherited the Integer type, and b then wouldn't be instantiated.<br>Finally, one last example:<br>void example(Number a) {
+	if (!(a instanceof Integer b)) {
+		return;
+	}
+	System.out.println(b.intValue());
+}
+Copy<br>This code does compile. Let's take a look at an equivalent code that might be easier to understand:<br>void example(Number a) {
+	if (a instanceof Integer b) {
+		System.out.println(b.intValue());
+	} else {
+		return;
+	}
+}
+Copy<br>We see here that only if b is instantiated, we end up using it. If it is not, we don't use it out of scope.<br>Required Knowledge
+It is very important to understand how flow scoping works. If you understand that pattern variables might be used outside of an if statement, but only if the compiler can assuredly determine its type, then you understand everything!
+<br><br>Stacking if / else statements is not the cleanest way to do multiple choice code. We use switch statements for this.<br><br>The switch statement is basically a large if / else statement. Here are the rules of the statement:<br>
+<br>A single value will be evaluated on entry.
+<br>The first branch that matches such value will be entered. Such a branch is called a case statement.
+<br>If no such case statement is found that matches the value, the optional default statement will be called.
+<br>If no such default statement is found, the entire switch statement will be skipped.
+<br>For example, switch statements can be constructed like this:<br>switch (a) {
+	case 1:
+		// Code...
+		break;
+
+	case 2, 4:
+		// Code...
+		break;
+
+	case 5: case 6:
+		// Code...
+		break;
+
+	default:
+		// Code...
+}
+Copy<br>Notice how you can combine values to look for on line 6. Also know that the break statements are optional, as seen in the default branch. Furthermore, said break statement may appear anywhere in the switch statement, not just at the end.<br>
+Finally, line 10 is also weirdly written, but does indeed compile, and means that both case 5 and case 6 output the same code.<br>In the exam...
+The exam will try to present you with invalid switch statements. Since switch statements can be longer than others, it is a good idea to check for their validity, to see if you're paying attention.
+<br>For non-compiling examples, see below:<br>switch a { // DOES NOT COMPILE (needs parentheses)
+	case 1 : System.out.println("a String");
+}
+
+switch (b) // DOES NOT COMPILE (needs curly braces)
+	case 2 : System.out.println("a String");
+
+switch (c) {
+	case 3: 4: System.out.println("a String"); // DOES NOT COMPILE (needs comma after the 3)
+}
+Copy<br>The last example's correct notation would have been, on line 9, case 3, 4:.<br>Be careful!
+During the exam, you might encounter such a statement:
+switch (a) {}
+Copy
+This is a perfectly valid switch statement.
+<br>Good practice !
+default branches in switch statement are commonly used to throw exceptions. You'll see more of those in <a data-href="CHAPTER 11" href="ocp/chapter-11.html" class="internal-link" target="_self" rel="noopener">CHAPTER 11</a>
+<br><br>break statements in switch statements are optional. Without them, any branch following the entered case statement will be executed, including any default branch found along the path.<br>For example:<br>switch (a) {
+	case 1, 2, 3:
+		System.out.println("String 1");
+	case 4:
+		System.out.println("String 2");
+	case 5:
+		System.out.println("String 3");
+	default:
+		System.out.println("Default");
+	case 6:
+		System.out.println("String 4");
+}
+Copy<br>If a equals 4 in the example above, then the output of such a program will be<br>
+<img class="code-styler-inline-icon" src="blob://d9af2fa8-3d70-4052-89e4-09764c673bd0">String 2 String 3 Default String 4
+​.<br>Tricks ahead!
+Exam makers are fond of switch statements, and they will try to give you a lot of those without the break statement at the end.
+<br><br>Only a select list of data types and their wrapper classes are allowed to be compared on a switch statement.<br>
+Here is an exhaustive list of them:<br>
+<br>int and Integer
+<br>byte and Byte
+<br>short and Short
+<br>char and Char
+<br>String
+<br>enum values
+<br>var
+<br>Note
+You will see what enum values are later in <a data-href="CHAPTER 7" href="ocp/chapter-7.html" class="internal-link" target="_self" rel="noopener">CHAPTER 7</a>, for now, just know they are a list of fixed constants.
+<br>Required Knowledge
+var types are allowed, as long as their underlying type are one of the listed primitive types.<br>
+Furthermore, know that boolean, long, float and&nbsp;double, along with their wrapper classes, are excluded from switch statements' allowed data types.
+<br><br>case values can only accept literals, final and declared variables, and enum constants.<br>
+For example:<br>final int getNumber() {return 1;}
+void example() {
+	final int a = 2;
+	int b = 3;
+	int c = 4
+	final int d = getNumber();
+	switch(b) {
+		case a:
+		case c: // DOES NOT COMPILE
+		case d: // DOES NOT COMPILE
+		case getNumber(): // DOES NOT COMPILE
+		case 2 * 3:
+	}
+}
+Copy<br>The variable a is final, so it is known at compile time, meaning the associated case statement is valid.<br>b is not final, so it's not a valid case statement.<br>
+d is not final and its value is not known at compile time, so the case statement is not valid.<br>
+getNumber() is the same case.<br>
+Finally, 2 * 3 is a correct statement, as expressions are allowed, as long as they are resolvable.<br>Be careful!
+Values must be able to fit in the data type without any explicit casting. This means numerical promotion is permitted. See more about numerical promotion in <a data-href="CHAPTER 2 - JAVA OPERATORS" href="ocp/chapter-2-java-operators.html" class="internal-link" target="_self" rel="noopener">CHAPTER 2 - JAVA OPERATORS</a>.<br>
+Furthermore, the final variable used in the switch statement must be a local variable. Otherwise, the code does not compile.<br>
+For example:
+void example(final int a, int b) {
+	switch(b) {
+		case a : ; // DOES NOT COMPILE
+		default : ;
+	}
+}
+Copy
+<br><br>The switch expression is a switch statement that can be stored in a variable, capable of returning a value.<br>
+For the statement to be stored into a variable, we need to make sure every case has a compatible type with the variable.<br>
+The switch expression supports two types of branches: expressions and blocks.<br>For example:<br>int result = switch(a) {
+	case constantExpression -&gt; 5;
+	case constantExpression², constantExpression³ -&gt; {
+		yield 10;
+	}
+	default -&gt; 15;
+}
+Copy<br>In red, we have a case expression, that returns a simple value.<br>
+In orange, we have a case block, that yields a value at the end of a code block.<br>
+In yellow, we have the default block, required if no other branch is reached.<br>Note
+There is an arrow operator (-&gt;) in the switch expression, but it is not a lambda expression.
+<br>Here is an example that doesn't compile:<br>var a = switch(b) {
+	case 10 -&gt; "a String"
+	default -&gt; "another String"
+}
+Copy<br>This doesn't compile, because we're missing the semicolons required. For the code to compile, the following correction is required:<br>var a = switch(b) {
+	case 10 -&gt; "a String";
+	default -&gt; "another String";
+};
+Copy<br>The assignment itself needs the semicolon to correctly work.<br>Tips
+The break statements aren't required in switch expressions, only the triggered line will be executed.
+<br>Tricks ahead!
+The switch expression can return a void value.<br>
+For example:
+var a = switch(b) {
+	case 10 -&gt; System.out.println("A string");
+	default -&gt; 10;
+};
+Copy
+case 10 returns a void, which cannot be assigned to a variable, however.
+<br>switch expressions come with additional new rules, discussed below:<br>
+<br>All of the branches of a switch expression that do not throw an exception must return a consistent data type (if the switch expression returns a value).
+<br>If the switch expression returns a value, then every branch that isn't an expression must yield a value.
+<br>A default branch is required unless all cases are covered or no value is returned.
+<br><br>You need to return a compatible data type to a variable for the switch statement to work.<br>
+For example:<br>int a = 2;
+int b = switch(a) {
+	case 1 -&gt; 1;
+	case 2 -&gt; (short)2;
+	default -&gt; 3;
+	case 3 -&gt; "4"; // DOES NOT COMPILE
+	case 4 -&gt; 5L; // DOES NOT COMPILE
+	case 5 -&gt; null; // DOES NOT COMPILE
+};
+Copy<br>All the cases that don't compile are because you cannot assign their type to an int without explicit casting.<br><br>A switch expression supports both expressions and a block in the case statement.<br>
+It can return a value with a yield statement.<br>For example:<br>int a = 1;
+int b = 2;
+var c = switch(a) {
+	case 1 -&gt; "a String";
+	case 2 -&gt; {yield "another String";}
+	case 3 -&gt; {
+		if (b &gt; 2) yield "yet another String";
+		else yield "String UWU";
+	}
+	default -&gt; "You won't believe this";
+};
+Copy<br>Be careful!
+return breaks the switch statement, while yield returns the value correctly.
+<br>For an example that doesn't compile:<br>int a = 1;
+int b = 2;
+var c = switch(a) {
+	case 1 -&gt; "a String";
+	case 2 -&gt; {} // DOES NOT COMPILE
+	case 3 -&gt; {
+		if (b &gt; 2) yield "yet another String";
+		// DOES NOT COMPILE
+	}
+	default -&gt; "You won't believe this";
+};
+Copy<br>This does not work, because case 2 doesn't yield anything when it has to, and case 3 does not necessarily return anything (for example, if b &lt;= 2).<br>Tricks ahead!
+One thing exam makers love trapping you with are semicolons in switch statements. Case expressions need a semicolon, while case blocks must not have one, and the end of the switch statement (after the brace) also needs one.
+<br><br>This is the rule that will be tested the most on the exam. If all values are not covered by the switch statement and it has a return type, then the switch must contain a default branch.<br>For example:<br>String a = switch(b) { // DOES NOT COMPILE
+	case 1 -&gt; "a String";
+	case 2 -&gt; "another String";
+};
+Copy<br>Since this switch statement has a return value, it needs to cover all possible values (an infinity of them) or have a default statement.<br>Good practice !
+If a switch statement takes in enum values, it might be tempting to not include a default branch since every permutation of the enum is easily covered. However, if someone adds a value to the enum, every switch will subsequently not compile. That is why you should always add a default branch, even if you know you have covered all permutations.
+<br><br>Loops are pieces of code that run multiple times.<br><br>The simplest loop to write in java is the while loop.<br>
+As long as the expression attached to the while loop is true, the while will keep executing the code inside its brackets.<br>Here's an example of how while loops are written:<br>while (boolExp) {
+	// Code...
+}
+Copy<br>The boolExp is reevaluated every time the while executes the last statement in its body. When the while has executed the last statement, it reevaluates boolExp, and if it is false, then it exits the loop.<br>Note
+As with <a data-tooltip-position="top" aria-label="The *if* statement" data-href="#The *if* statement" href="about:blank#The_*if*_statement" class="internal-link" target="_self" rel="noopener">if</a> statements, you only need curly braces if you have two or more lines to execute in your code.
+<br>For example:<br>int a = 0;
+while (a != 3) {
+	System.out.println("+1");
+	a++;
+}
+Copy<br>This code will print "+1" exactly 3 times, then a will be equal to 3, which will exit the loop.<br><br>A while loop can take another form, called the do/while loop. It behaves similarly as a while loop, with the exception that there is a guarantee that the loop will be executed at least once.<br>Here is how you write a do/while loop:<br>do {
+	// Code executed at least once...
+} while (boolExp)
+Copy<br>For example:<br>int a = 3;
+do {
+	System.out.println("+1");
+	a++
+} while (a != 3)
+Copy<br>Here, "+1" will only be printed out once, because the do/while loop executes the code once, sees that a is already equal to 3 which exits the loop.<br>Tricks ahead!
+The boolExp is subject to scope problems as well: you cannot evaluate a variable if it is defined inside de while or do/while loop!<br>
+For example:
+while (a != 0) { // DOES NOT COMPILE
+	int a = 0;
+}
+do {
+	int a = 0;
+} while (a != 0) // DOES NOT COMPILE
+Copy
+To see more about scope, please visit <a data-href="CHAPTER 1 - BUILDING BLOCKS" href="ocp/chapter-1-building-blocks.html" class="internal-link" target="_self" rel="noopener">CHAPTER 1 - BUILDING BLOCKS</a>.
+<br><br>A while loop can be infinite, in that it will never end. This does not get picked up by the compiler, so it will never throw a compiler error, but it will almost always result in a stack overflow error, memory leaks, slow performance or bad data.<br>Here is an example of the simplest infinite loop:<br>while (true) {
+	// Code...
+}
+Copy<br>Since the boolean expression is always true, then the while will never exit.<br>
+Be sure to always check the boolean condition is updated anywhere in the code, so that the while loop terminates correctly in all cases.<br>You will also learn later about break statements, which can stop a loop as well.<br><br>There are two types of for loops, the basic for loop, and the enhanced for loop, which both iterate over a code a specific number of times.<br><br>The for loop has two more new sections than the while loop. Besides the boolExp, there is an initialization with an updateStatement.<br>Here is how you initialize a for loop:<br>for (init; boolExp; updateStmnt) {
+	// Code...
+}
+Copy<br>The flow of a for loop goes like this:<br>
+<br>init statement executes
+<br>If boolExp is true, continue, else, exit the loop
+<br>Body executes
+<br>Execute updateStmnt
+<br>Return to step 2
+<br>Be careful!
+Also take a look at the following code snippet, placed on line 4 of the above code:
+System.out.println(init);
+Copy
+If we try to read the init outside of the for loop, the variable is out of scope, and the code doesn't compile.
+<br>Here is an concrete example of a for loop:<br>for (int i = 0; i &lt; 5; i++) {
+	System.out.println(i + " ");
+}
+Copy<br>Here, we will get a result that looks like this: "0 1 2 3 4"
+​.<br>Good practice !
+Use the variable name i for loop iterations, it's a convention.
+<br>Tips
+You can put anything in the updateStmnt that updates the init variable. For example, to go in reverse, you write the following for loop:
+for (int i = 4; i &gt;= 0; i--) {
+	System.out.println(i + " ");
+}
+Copy
+This will print "4 3 2 1 0".
+<br>Required Knowledge
+You need to know how to read forward and backwards for loops.  Pay attention when there is a backward for loop, as the exam makers are trying to test your knowledge of loop operations.
+<br>Tricks ahead!
+It doesn't matter how the updateStmnt is updated, it produces the same results.<br>
+For example:
+for (int i = 0, j = 0; i &lt; 5 || j &lt; 5; ++i, j++) {
+}
+Copy
+Both i and j will be updated and have the same value inside the for loop.
+<br><br>There are 5 iconic for loops that you need to familiarize yourself with for the exam.<br><br>The infinite for loop is a for loop that iterates infinitely. You build it like this:<br>for ( ; ; ) {
+	System.out.println("Hellowo World");
+}
+Copy<br>This for loop not only does compile correctly, it also.<br>
+This shows that each of the statements in a for loop are optional.<br><br>You can initialize multiple variables inside the init part of a for loop. For example:<br>int k = 0;
+for (int i = 0, j = 0; i &lt; 5 &amp;&amp; j &gt;= -5 &amp;&amp; k != 5; i++, j--, k++) {
+	System.out.println(i + " ");
+}
+System.out.println(k + " ");
+Copy<br>You can see here that you can use outside variables in a for&nbsp;loop, initialize multiple variables inside the for&nbsp;loop, etc...<br><br>You cannot re-declare a variable that is already in scope in the init block in a for loop.<br>
+For example:<br>int i = 0;
+for (int i = 1; i &lt; 5; i++) { // DOES NOT COMPILE
+	System.out.println(i + " ");
+}
+Copy<br>We are trying to redefine i inside the for&nbsp;loop, when it is already in scope.<br>
+You can fix it by simply reassigning the variable instead of re-declaring it, like so:<br>int i = 0;
+for (i = 1; i &lt; 5; i++) {
+	System.out.println(i + " ");
+}
+Copy<br>We just reuse the variable.<br><br>The following example will not compile:<br>for (long i = 0, int j = 0; i &lt; 5 &amp;&amp; j &lt; 6; i++, j++) { // DOES NOT COMPILE
+	System.out.println(i + " ");
+}
+Copy<br>The first line doesn't compile, because as seen in <a data-href="CHAPTER 1 - BUILDING BLOCKS" href="ocp/chapter-1-building-blocks.html" class="internal-link" target="_self" rel="noopener">CHAPTER 1 - BUILDING BLOCKS</a>, we cannot initialize variables on a single line if they're not of the same type.<br><br>As seen previously, variables defined inside the loop cannot be used outside of it.<br>
+For example:<br>for (int i = 0; i &lt; 0; i++) {
+	System.out.println(i + " ");
+}
+System.out.println(i); // DOES NOT COMPILE
+Copy<br>This is because i is out of scope when getting out of the loop. See <a data-href="CHAPTER 1 - BUILDING BLOCKS" href="ocp/chapter-1-building-blocks.html" class="internal-link" target="_self" rel="noopener">CHAPTER 1 - BUILDING BLOCKS</a> for more about scope.<br>Good practice !
+It is a good practice to not modify loop variables inside of the loop.<br>
+For example:
+for(int i = 0, j = 0; i &lt; 10 &amp;&amp; j &lt; 10; i++, j++) {
+	i = 0; // Bad :(
+	j++; // No :(
+}
+Copy
+<br><br>A for-each loop is a specialized tool that is designed to iterate over arrays and collections.<br>Here is how you build it:<br>for (datatype instance: collection) {
+	// Code...
+}
+Copy<br>The for-each loop declaration is composed of an init section and the object to be iterated over.<br>The right side must be either:<br>
+<br>A built-in Java array
+<br>An object whose type implements java.lang.Iterable.
+<br>To go further...
+We'll see what implement means later in <a data-href="CHAPTER 7" href="ocp/chapter-7.html" class="internal-link" target="_self" rel="noopener">CHAPTER 7</a>.
+<br>In the exam...
+You need to know that the right side of a for-each is a List, a Set, an array or a Collection of items that implements the Collection&nbsp;interface.<br>
+For example, Map is not supported in a for-each loop, although Map does indeed include methods that return Collection instances.
+<br>For example:<br>public void example(List&lt;String&gt; as) {
+	for(var a : as) {
+		System.out.println(a);
+	}
+}
+Copy<br>Because List&lt;T&gt; implements Iterable, it can be used inside of a for-each loop.<br>
+Here, the var takes the type of the individual object in the List, so here, String.<br>Here are some examples that don't compile:<br>String as = "a String";
+for (String a : as) { // DOES NOT COMPILE
+	System.out.println(a);
+}
+
+String[] bs = new String[3];
+for (int b : bs) { // DOES NOT COMPILE
+	System.out.println(b);
+}
+Copy<br>The blue code doesn't compile because you cannot use a String as an Iterable.<br>
+The indigo code doesn't compile because the type on the left side of the loop is an int, and therefore incompatible with the String[] type.<br><br>There are other ways to end the flow of a loop/statement than stopping it with a false value.<br><br>A nested loop is a loop that contains another loop.<br>For example:<br>int[][] ass = {{1,2,3},{4,5,6},{7,8,9}};
+
+for(int[] as : ass) {
+	for(int i=0; i&lt;as.length; i++) {
+		System.out.println(as[i] + "\t");
+	}
+	System.out.println();
+}
+Copy<br>This is a nested for loop, because there is a first for loop, containing a second for loop.<br>To go further...
+The int[][] is a multidimensional array, or an array that contains another set of arrays. We'll see more of this in <a data-href="CHAPTER 4 - CORE APIS" href="ocp/chapter-4-core-apis.html" class="internal-link" target="_self" rel="noopener">CHAPTER 4 - CORE APIS</a>.
+<br>Nested loops can also contain do/while loops, while loops, for and for-each loops...<br>In the exam...
+There will be some nested loops on the exam, make sure you know what they are and have some experience dealing with them!
+<br><br>Labels are an optional pointer to the head of a loop. It is a single identifier followed by a colon (:).<br>For example:<br>int[][] ass = {{1,2,3},{4,5,6},{7,8,9}};
+
+OUTER_LOOP: for(int[] as : ass) {
+	INNER_LOOP: for(int i=0; i&lt;as.length; i++) {
+		System.out.println(as[i] + "\t");
+	}
+	System.out.println();
+}
+Copy<br>Labels follow the same rules for formatting as identifiers. See more of those in <a data-href="CHAPTER 1 - BUILDING BLOCKS" href="ocp/chapter-1-building-blocks.html" class="internal-link" target="_self" rel="noopener">CHAPTER 1 - BUILDING BLOCKS</a>. <br>Good practice !
+Usually, identifiers are expressed as ALL_UPPERCASE mixed with snake_case, with underscores (_) in the middle of words.
+<br>You don't need to know...
+You don't need to know about labels applied to control and block statements. While it is possible, it's not on the exam's menu.<br>
+If you're curious still, know that the following is possible:
+int a = 15;
+BAD_IDEA: if(a&gt;10)
+EVEN_WORSE_IDEA: {
+	a++;
+}
+Copy
+<br><br>The break statement exits the current statement and gives control to the enclosing statement.<br>
+It basically ends the current loop early.<br>For example:<br>LABEL: while(boolExp) {
+	// Code...
+	break LABEL;
+}
+Copy<br>Here, we use an optional label to break the loop, but know that the break statement also works without labels. If no label is present on the break statement, then it will exit the nearest inner loop it is executing.<br>
+Otherwise, if the label is present, it will exit the loop having the corresponding label.<br>For example:<br>public class example{
+	public static void main(String[] args) {
+		int[][] list = {{1,2},{2,2}};
+		int search = 1;
+		int X = -1;
+		int Y = -1;
+		PARENT_LOOP: for(int i=0; i&lt;list.length; i++) {
+			for(int j=0; j&lt;list[i].length; j++) {
+				if(list[i][j]==search) {
+					X = i;
+					Y = j;
+					break PARENT_LOOP;
+				}
+			}
+		}
+		System.out.println("Value " + search + " found at " + X + ", " + Y);
+	}
+}
+Copy<br>The above code will print out "Value 2 found at 0, 1"
+​.<br>Be careful!
+Remember that Lists begin with the index 0!
+<br>This is because the break contains a label, and thus terminates the annotated loop. However, if it was like this instead:<br>if(list[i][j]==search) {
+	X = i;
+	Y = j;
+	break;
+}
+Copy<br>Then the result would be "Value 2 found at 1, 0"
+​, because the break wouldn't terminate the for on line 7, but would terminate the for on line 8, skipping the increment of j.<br>Finally, if the function was like this:<br>if(list[i][j]==search) {
+	X = i;
+	Y = j;
+	//break;
+}
+Copy<br>Then, the result would be "Value 2 found at 1, 1"
+​, because the break wouldn't terminate either the for on line 7 and on line 8, since it's not there. It would go through the entire list.<br><br>The continue&nbsp;statement is similar to the break statement, but rather than ending the flow of the current loop, it will transfer control to the boolExp that determine if the loop should continue. In other words, anything that is after the continue statement will be ignored at runtime.<br>
+Just like break, continue can take optional labels to end a specific loop rather than the nearest loop.<br>For example:<br>LABEL: while(boolExp) {
+	// Code...
+	continue LABEL;
+}
+Copy<br>Here is an example of how it works:<br>public class Example {
+	public static void main(String[] args) {
+		LABEL: for(char a = 'a'; a &lt;= 'b'; a++) {
+			for(int b = 1; b &lt; 4; b++) {
+				if(a == 'b' || b == 2) {
+					continue LABEL;
+				}
+				System.out.println("Done: " + a + ", " + b);
+			}
+		}
+	}
+}
+Copy<br>In the above code, only when a == 'b'
+​ or/and b == 2
+​ will the continue statement be called.<br>
+This means that we will get the following output:<br>
+"Done: a, 1"
+​<br>
+"Done: c, 1"
+​<br>
+"Done: d, 1"
+​<br>
+This is because we reevaluate the loop LABEL, thus skipping the loop on line 4.<br>Now, if we did this:<br>if(a == 'b' || b == 2) {
+	continue LABEL;
+}
+Copy<br>Then we'd get the following output:<br>
+"Done: a, 1"
+​<br>
+"Done: a, 3"
+​<br>
+"Done: c, 1"
+​<br>
+"Done: c, 3"
+​<br>
+"Done: d, 1"
+​<br>
+"Done: d, 3"
+​<br>
+This is because we reevaluate the loop on line 4, thus skipping printing the letter b and the number 2.<br>If we removed the continue altogether, then everything would be printed.<br>Tricks ahead!
+You cannot break or continue statements you haven't entered yet!<br>
+For example:
+int i = 0;
+INNER: while(i &lt; 5) {
+	i++;
+	break OUTER; // DOES NOT COMPILE
+	OUTER: while(i &lt; 3) {
+		i++;
+	}
+}
+Copy
+<br><br>return statements can be used as a break to break out of an entire m̀ethod, but are also used to return a value between loops and statements.<br>For example:<br>public void example() {
+	for(int i = 0; i &lt; 5; i++) {
+		for(int j = 0; j &lt; 7; j++) {
+			if (i == 2 &amp;&amp; j == 3) {
+				return;
+			}
+		}
+	}
+}
+Copy<br>In the code above, the method example will be exited whenever i and j are equal, respectively, to 2 and 3.<br><br>Any code that is directly after break, continue and return (meaning in the same block) is considered unreachable code, and will throw a compilation error.<br>For example:<br>int a = 1;
+while (a &lt; 3) {
+	a++;
+	break;
+	a++; // DOES NOT COMPILE
+}
+Copy<br>Tricks ahead!
+It doesn't matter if the loop or decision structure actually visits the line of code, the compiler only sees that the code is not reachable statically. 
+<br><br>As a summary, we can see what control statement is usable with what loop.<br><br>In the exam...
+It is recommended to skip nested loop questions in the exam, unless you spot an obvious compilation error. Come back to those later when you finished everything else!
+<br><br>In the exam, you have to be able to:<br>
+<br>Understand if and else decision control statements. See more in <a data-href="#The *if* statement" href="about:blank#The_*if*_statement" class="internal-link" target="_self" rel="noopener">The *if* statement</a> and <a data-href="#The *else* statement" href="about:blank#The_*else*_statement" class="internal-link" target="_self" rel="noopener">The *else* statement</a>.
+<br>Apply pattern matching and flow scoping. See more in <a data-href="#Shortening code with pattern matching" href="about:blank#Shortening_code_with_pattern_matching" class="internal-link" target="_self" rel="noopener">Shortening code with pattern matching</a>.
+<br>Understand switch statements and their proper usage. See more in <a data-href="#The *switch* statement" href="about:blank#The_*switch*_statement" class="internal-link" target="_self" rel="noopener">The *switch* statement</a>.
+<br>Use switch expressions correctly. See more in <a data-href="#The *switch* expression" href="about:blank#The_*switch*_expression" class="internal-link" target="_self" rel="noopener">The *switch* expression</a>.
+<br>Write while loops. See more in <a data-href="#The *while* statement" href="about:blank#The_*while*_statement" class="internal-link" target="_self" rel="noopener">The *while* statement</a> and <a data-href="#The do/while statement" href="about:blank#The_do/while_statement" class="internal-link" target="_self" rel="noopener">The do/while statement</a>.
+<br>Be able to use for loops. See more in <a data-href="#The *for* loop" href="about:blank#The_*for*_loop" class="internal-link" target="_self" rel="noopener">The *for* loop</a> and <a data-href="#The *for-each* loop" href="about:blank#The_*for-each*_loop" class="internal-link" target="_self" rel="noopener">The *for-each* loop</a>.
+<br>Understand how break, continue and return can change flow control. See more in <a data-href="#The *break* statement" href="about:blank#The_*break*_statement" class="internal-link" target="_self" rel="noopener">The *break* statement</a>, <a data-href="#The *continue* statement" href="about:blank#The_*continue*_statement" class="internal-link" target="_self" rel="noopener">The *continue* statement</a> and <a data-href="#The *return* statement" href="about:blank#The_*return*_statement" class="internal-link" target="_self" rel="noopener">The *return* statement</a>.
+<br>]]></description><link>ocp/chapter-3-making-decisions.html</link><guid isPermaLink="false">OCP/CHAPTER 3 - MAKING DECISIONS.md</guid><pubDate>Tue, 21 May 2024 11:09:17 GMT</pubDate><enclosure url="blob:app://obsidian.md/d9af2fa8-3d70-4052-89e4-09764c673bd0" length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="blob:app://obsidian.md/d9af2fa8-3d70-4052-89e4-09764c673bd0"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[CHAPTER 5]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-5.html</link><guid isPermaLink="false">OCP/CHAPTER 5.md</guid><pubDate>Tue, 23 Apr 2024 15:48:01 GMT</pubDate></item><item><title><![CDATA[CHAPTER 6]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-6.html</link><guid isPermaLink="false">OCP/CHAPTER 6.md</guid><pubDate>Tue, 23 Apr 2024 15:51:25 GMT</pubDate></item><item><title><![CDATA[CHAPTER 7]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-7.html</link><guid isPermaLink="false">OCP/CHAPTER 7.md</guid><pubDate>Mon, 06 May 2024 09:26:16 GMT</pubDate></item><item><title><![CDATA[CHAPTER 8]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-8.html</link><guid isPermaLink="false">OCP/CHAPTER 8.md</guid><pubDate>Mon, 29 Apr 2024 08:22:51 GMT</pubDate></item><item><title><![CDATA[CHAPTER 9]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-9.html</link><guid isPermaLink="false">OCP/CHAPTER 9.md</guid><pubDate>Tue, 21 May 2024 11:05:30 GMT</pubDate></item><item><title><![CDATA[CHAPTER 10]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-10.html</link><guid isPermaLink="false">OCP/CHAPTER 10.md</guid><pubDate>Tue, 21 May 2024 11:05:39 GMT</pubDate></item><item><title><![CDATA[CHAPTER 11]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-11.html</link><guid isPermaLink="false">OCP/CHAPTER 11.md</guid><pubDate>Tue, 14 May 2024 07:22:38 GMT</pubDate></item><item><title><![CDATA[CHAPTER 12]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-12.html</link><guid isPermaLink="false">OCP/CHAPTER 12.md</guid><pubDate>Sat, 27 Apr 2024 13:50:13 GMT</pubDate></item><item><title><![CDATA[CHAPTER 13]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-13.html</link><guid isPermaLink="false">OCP/CHAPTER 13.md</guid><pubDate>Mon, 20 May 2024 14:43:30 GMT</pubDate></item><item><title><![CDATA[CHAPTER 14]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-14.html</link><guid isPermaLink="false">OCP/CHAPTER 14.md</guid><pubDate>Tue, 21 May 2024 11:05:44 GMT</pubDate></item><item><title><![CDATA[CHAPTER 15]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-15.html</link><guid isPermaLink="false">OCP/CHAPTER 15.md</guid><pubDate>Tue, 21 May 2024 11:05:50 GMT</pubDate></item><item><title><![CDATA[Welcome]]></title><description><![CDATA[ 
+ <br><br>Welcome to your OCP CHEAT SHEET !<br>
+I have taken many, many notes from the OCP book, and tightened them into this (work in progress) little website.<br>I hope it will make the learning experience a bit more enjoyable and colorful!<br>You can navigate to the table of content on the right, or simply click one of the links below:<br>Note
+If the Chapter name does not have its qualifier yet, it means I haven't gotten to it yet. It'll be there eventually!
+<br>
+<br><a data-href="CHAPTER 1 - BUILDING BLOCKS" href="ocp/chapter-1-building-blocks.html" class="internal-link" target="_self" rel="noopener">CHAPTER 1 - BUILDING BLOCKS</a>
+<br><a data-href="CHAPTER 2 - JAVA OPERATORS" href="ocp/chapter-2-java-operators.html" class="internal-link" target="_self" rel="noopener">CHAPTER 2 - JAVA OPERATORS</a>
+<br><a data-href="CHAPTER 3 - MAKING DECISIONS" href="ocp/chapter-3-making-decisions.html" class="internal-link" target="_self" rel="noopener">CHAPTER 3 - MAKING DECISIONS</a>
+<br><a data-href="CHAPTER 4 - CORE APIS" href="ocp/chapter-4-core-apis.html" class="internal-link" target="_self" rel="noopener">CHAPTER 4 - CORE APIS</a>
+<br><a data-href="CHAPTER 5" href="ocp/chapter-5.html" class="internal-link" target="_self" rel="noopener">CHAPTER 5</a>
+<br><a data-href="CHAPTER 6" href="ocp/chapter-6.html" class="internal-link" target="_self" rel="noopener">CHAPTER 6</a>
+<br><a data-href="CHAPTER 7" href="ocp/chapter-7.html" class="internal-link" target="_self" rel="noopener">CHAPTER 7</a>
+<br><a data-href="CHAPTER 8" href="ocp/chapter-8.html" class="internal-link" target="_self" rel="noopener">CHAPTER 8</a>
+<br><a data-href="CHAPTER 9" href="ocp/chapter-9.html" class="internal-link" target="_self" rel="noopener">CHAPTER 9</a>
+<br><a data-href="CHAPTER 10" href="ocp/chapter-10.html" class="internal-link" target="_self" rel="noopener">CHAPTER 10</a>
+<br><a data-href="CHAPTER 11" href="ocp/chapter-11.html" class="internal-link" target="_self" rel="noopener">CHAPTER 11</a>
+<br><a data-href="CHAPTER 12" href="ocp/chapter-12.html" class="internal-link" target="_self" rel="noopener">CHAPTER 12</a>
+<br><a data-href="CHAPTER 13" href="ocp/chapter-13.html" class="internal-link" target="_self" rel="noopener">CHAPTER 13</a>
+<br><a data-href="CHAPTER 14" href="ocp/chapter-14.html" class="internal-link" target="_self" rel="noopener">CHAPTER 14</a>
+<br><a data-href="CHAPTER 15" href="ocp/chapter-15.html" class="internal-link" target="_self" rel="noopener">CHAPTER 15</a>
+<br>]]></description><link>index.html</link><guid isPermaLink="false">index.md</guid><pubDate>Tue, 21 May 2024 11:07:25 GMT</pubDate></item></channel></rss>
