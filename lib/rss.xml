@@ -1,10 +1,10 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Takima_notes]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib/media/favicon.png</url><title>Takima_notes</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Tue, 21 May 2024 11:35:06 GMT</lastBuildDate><atom:link href="lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Tue, 21 May 2024 11:35:05 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[Chapter 4]]></title><description><![CDATA[ 
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[OCP_vault]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib/media/favicon.png</url><title>OCP_vault</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Fri, 31 May 2024 09:06:32 GMT</lastBuildDate><atom:link href="lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Fri, 31 May 2024 09:06:30 GMT</pubDate><copyright><![CDATA[Thibaud DANDOY]]></copyright><ttl>60</ttl><dc:creator>Thibaud DANDOY</dc:creator><item><title><![CDATA[Chapter 4]]></title><description><![CDATA[ 
  <br><br><br>A String is a sequence of characters.<br>
 You can create one in three ways:<br>String a = "A string";
 String b = new String("A string");
 String c = """
 			A string""";
-Copy<br>All of these methods are subtly different, as you'll see later in [[]].<br>Since a String is a sequence of characters, it implements the CharSequence interface. You'll see more about interfaces on <a data-href="CHAPTER 7" href="ocp/chapter-7.html" class="internal-link" target="_self" rel="noopener">CHAPTER 7</a>.<br><br>You can concatenate two String by simply adding them together.<br>
+Copy<br>Methods at line 1 and 2 are subtly different, as you'll see later in <a data-tooltip-position="top" aria-label="The *String* pool" data-href="#The *String* pool" href="about:blank#The_*String*_pool" class="internal-link" target="_self" rel="noopener">The String Pool</a>.<br>Since a String is a sequence of characters, it implements the CharSequence interface. You'll see more about interfaces on <a data-href="CHAPTER 7" href="ocp/chapter-7.html" class="internal-link" target="_self" rel="noopener">CHAPTER 7</a>.<br><br>You can concatenate two String by simply adding them together.<br>
 For example:<br>String a = "1" + "1";
 System.out.println(a);
 Copy<br>The previous code snippet prints 11
@@ -204,7 +204,7 @@ You will see more about Locale on <a data-href="CHAPTER 11" href="ocp/chapter-11
 public static String format(Locale loc, String format, Object args...)
 public String formatted(Object args...)
 Copy<br>Note
-The trailing three dots (...) means that the function will take as many arguments as you'd like, as long as they're of the required type.
+The trailing three dots (...) are called Varargs. it means that the function will take as many arguments as you'd like, as long as they're of the required type. You'll learn more about them in <a data-tooltip-position="top" aria-label="Using methods with *VarArgs*" data-href="#Using methods with *VarArgs*" href="about:blank#Using_methods_with_*VarArgs*" class="internal-link" target="_self" rel="noopener">Using methods with Varargs</a> and in <a data-href="CHAPTER 5" href="ocp/chapter-5.html" class="internal-link" target="_self" rel="noopener">CHAPTER 5</a>. 
 <br>Here are some examples on how to use these methods:<br>String a = "String";
 int b = 6;
 
@@ -317,7 +317,7 @@ Line 2 creates a StringBuilder with the value "StringBuilder"
 ​ inside.<br>
 Line 3 creates an empty StringBuilder with a capacity of 10 characters.<br>Be careful!
 Just in case you are curious, you cannot do:<br>
-<img class="code-styler-inline-icon" src="blob://d9af2fa8-3d70-4052-89e4-09764c673bd0">StringBuilder a = "StringBuilder";
+<img class="code-styler-inline-icon" src="blob://5d05f55c-8351-484b-b44b-8062cbfdca45">StringBuilder a = "StringBuilder";
 ​<br>
 As it will result in an Incompatible Type error.
 <br><br>As with String, there are a few methods you will need to know for the exam. You don't need to know every single one of them, so here is a list of the minimum that you need to know.<br><br>The methods substring(), indexOf(), length() and charAt() behave the same way they do for Strings. In case you need a reminder:<br>
@@ -341,7 +341,549 @@ a.insert(6, "#"); // a == "String#"
 a.insert(0, "#"); // a == "#String#"
 a.insert(4, "#"); // a == "#Str#ing#"
 Copy<br>As with String's substring(), which you can find <a data-tooltip-position="top" aria-label="Getting a substring" data-href="#Getting a substring" href="about:blank#Getting_a_substring" class="internal-link" target="_self" rel="noopener">here</a>, you need to visualise each index being just before the character they represent, so that it is easier for you to understand what operation is performed.<br>
-Furthermore, inserting at an index equal to the length of the StringBuilder will add your argument at the end of the StringBuilder.<br><br>WIP]]></description><link>ocp/chapter-4-core-apis.html</link><guid isPermaLink="false">OCP/CHAPTER 4 - CORE APIS.md</guid><pubDate>Tue, 21 May 2024 11:34:58 GMT</pubDate><enclosure url="blob:app://obsidian.md/d9af2fa8-3d70-4052-89e4-09764c673bd0" length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="blob:app://obsidian.md/d9af2fa8-3d70-4052-89e4-09764c673bd0"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Introduction]]></title><description><![CDATA[ 
+Furthermore, inserting at an index equal to the length of the StringBuilder will add your argument at the end of the StringBuilder.<br><br>The method delete() removes characters from the StringBuilder, and returns a reference to the current StringBuilder.<br>The method deleteCharAt() removes a single character from the StringBuilder and returns the reference to the current StringBuilder.<br>Here are the methods signatures:<br>public StringBuilder delete(int startIndex, int endIndex)
+public StringBuilder deleteCharAt(int index)
+Copy<br>Here is an example on how to use these methods:<br>StringBuilder a = new StringBuilder("String");
+StringBuilder b = new StringBuilder("Builder");
+a.delete(1, 3); // a == Sng
+b.deleteCharAt(2); // b == Bulder
+b.delete(1,100); // b == B
+a.deleteCharAt(5); // exception
+Copy<br>Notice how, on Line 5, using a delete() with an endIndex bigger than the length of the StringBuilder does not throw an exception, but simply deletes everything after the startIndex.<br>
+Furthermore, make sure deleteCharAt() has a correct index as a parameter, or it will give a StringOutOfBoundsException.<br><br>The method replace() replaces with the specified sequence of characters by the specified String.<br>Here is the method signature:<br>public StringBuilder replace(int startIndex, int endIndex, String newString)
+Copy<br>And here is how to properly use the method:<br>StringBuilder a = new StringBuilder("String Builder");
+a.replace(4, 9, "wi");
+System.out.println(a); // a == Striwilder
+
+StringBuilder b = new StringBuilder("String Builder");
+b.replace(4, 100, "");
+System.out.println(b); // a == Stri
+Copy<br>As with <a data-tooltip-position="top" aria-label="Deleting content" data-href="#Deleting content" href="about:blank#Deleting_content" class="internal-link" target="_self" rel="noopener">delete</a>, you can put endIndex as an index that is bigger than the length of the StringBuilder. replace() will understand that you want the whole StringBuilder starting with beginIndex to be replaced.<br>Be careful!
+You need to know how replace() works:
+
+<br>First, it performs a delete() on the specified sequence of characters.
+<br>Only then, it inserts the newString at the startIndex.
+
+<br><br>The method reverse() reverses the order of the sequence of characters.<br>Here is the method signature:<br>public StringBuilder reverse()
+Copy<br>Here is how to use this method:<br>StringBuilder a = new StringBuilder("String");
+a.reverse();
+System.out.println(a); // "gnirtS"
+Copy<br><br>Every Object contains a toString(), including StringBuilder.<br>
+The method toString() returns a String.<br>Here is how you use this method:<br>StringBuilder a = new StringBuilder("String");
+String b = a.toString();
+Copy<br><br>We saw what the operator == means in <a data-href="CHAPTER 2 - JAVA OPERATORS" href="ocp/chapter-2-java-operators.html" class="internal-link" target="_self" rel="noopener">CHAPTER 2 - JAVA OPERATORS</a>.<br>
+As a reminder, it helps you compare two references to the same object and String objects.<br><br>Consider the following code:<br>StringBuilder a = new StringBuilder();
+StringBuilder b = new StringBuilder();
+StringBuilder c = a.append("a");
+System.out.println(a == b); // false
+System.out.println(a == c); // true
+Copy<br>As we are comparing references, a and b are two completely different objects, meaning that a != b, even if they are both functionally the same object. However, since c receives the instance contained in a, they both point to the same object, hence why a==c is true.<br>On the other hand, take a look at this code:<br>String d = "Hello world";
+String e = " Hello world".trim();
+System.out.println(d.equals(e)); // true
+Copy<br>This only works because String implements the equals() method. As such, since the String objects have the same content, d.equals(e) evaluates to true.<br>However, StringBuilder does not implement equals(), meaning that calling that method on StringBuilder instances will check for reference equality.<br>Tricks ahead!
+The exam makers will try to trick you with the == operator.<br>
+For example:
+String a = "String";
+StringBuilder b = new StringBuilder("b");
+System.out.println(a == b); // DOES NOT COMPILE
+Copy
+This does not work, because you cannot check for reference equality on two different types.
+<br><br>String objects can use a lot of memory, simply because they are passed around everywhere.<br>Java knows this, and reuses common used String objects to reduce the memory usage. These reused String are put into the String pool, also known as intern pool.<br>This String pool contains literal values and constants that appear in the program.<br>
+For example, a literal "literal"
+​ will be stored into the String pool. However, the method toString() returns a String object, so not a literal.<br>Take a look at the following code snippet:<br>String a = "Hellowo World";
+String b = "Hellowo World";
+System.out.println(a == b); // true
+b = " Hellowo World".trim();
+System.out.println(a == b); // false
+Copy<br>When creating those String objects, you access the literal Hellowo World. Since those references a and b point to the same object in memory, then the expression a == b evaluates to true.<br>However, line 5 showcases something else: we try to compare two different objects in memory who happen to have the same value.<br>
+Let's take a closer look: Line 4 creates a literal that is Hellowo World, so it has a different memory address. What is important is that the String computed at Line 4 is computed at runtime. This means that if two objects are different at compile-time, then they cannot be equal at runtime.<br>
+We will see a very specific exception to this rule in a second.<br>Be careful!
+Remember that concatenation on the same line counts as it being a complete literal. For example:
+String a = "Hellowo " + "World";
+String b = "Hellowo World";
+System.out.println(a == b); // true
+Copy
+<br>Here is another example:<br>String a = "Hellowo World";
+String b = "Hellowo ";
+b += "world";
+System.out.println(a == b); // false
+Copy<br>As with the rule we just saw, concatenating does not make an object equal to another.<br>Do you remember that we said that String a = "String";
+​ and String a = new String("String");
+​ are subtly different ?<br>
+This is why:<br>String a = "Hellowo World";
+String b = new String("Hellowo World");
+System.out.println(a == b); // false
+Copy<br>Line 3 would have printed true if we didn't use the new String()
+​. We basically tell JAVA that we want to create a new object rather than refer to the String Pool.<br>Finally, there is an exception to the rule we defined up there, with the following method:<br>public String intern()
+Copy<br>If the litera is not in the String pool, java will add it at the method's call.<br>This means that you can make two String with the same content equal. For example:<br>String a = "Hellowo World";
+String b = new String("Hellowo World").intern();
+System.out.println(a == b); // true
+Copy<br>Even if the String at line 2 is a new object, we integrate it in the String pool with intern(), and since the literal already exists, then JAVA understands that both of these String point to the same object.<br>
+This is why a == b equates to true.<br>String a = "String" + "Builder";
+String b = "Str" + "ing" + "Builder";
+String c = "String" + "Bui" + new String("lder");
+System.out.prinlnt(a == b); // true
+System.out.println(a == b.intern()); // true
+System.out.println(a == c); // false
+System.out.println(a == c.intern()); // true
+Copy<br>As we saw earlier, a and b will point to the same literal in the String pool, since they are the same object at compile time.<br>
+This means that Line 4 and 5 will return true.<br>
+However, since we insert a new literal "lder"
+​ at line 3, then Line 6 will equate to false.<br>
+Finally, since we call the intern() method on c on line 7, we force java to realize that the value of variable c is the same that the one found in the String pool for a, thus line 7 returns true.<br>Good practice !
+Don't actually create a String of a String or use the intern() method in real life. Doing so usually means that something else is wrong in your code. You should use equals() to check for String equality. Despite this, the exam still requires you to know how to do it.
+<br><br>String and StringBuilder are a sequence of characters. That is because they are implemented using an array of characters.<br>An array is an area of memory on the <a data-tooltip-position="top" aria-label="CHAPTER 1 - BUILDING BLOCKS" data-href="CHAPTER 1 - BUILDING BLOCKS" href="ocp/chapter-1-building-blocks.html" class="internal-link" target="_self" rel="noopener">heap</a> with space for a designated number of elements.<br>String is implemented as an immutable array of characters, which length and content cannot be changed. It however implements helpful methods to return a new, modified String Object.<br>StringBuilder is implemented as a mutable array of characters, which can be replaced with a new array within the same object when it runs out of space to store new characters.<br>However, an array can be of any Java type. For example, if you didn't want to use a String, you could do the following:<br>char[] a;
+Copy<br>Note
+Keep in mind that in this example,  the reference a is not a primitive, but rather an array of primitives.
+<br>What should I remember ?
+Remember that an array is an ordered list that can contain duplicates.
+<br><br>There are two ways of creating an array.<br>Here is an example of how to properly create a default array:<br>int[] a = new int[5];
+Copy<br>The nomenclature is as follow:<br>
+<br>The first int
+​ is the type of the array.
+<br>The first []
+​ is the required array symbol.
+<br>The [5]
+​ is the size of the array.
+<br>Be careful!
+When instantiating anarray, all of the indexes will be filled with their default values. With the above example, this means the following:
+int[] a = new int[5]; // a == [0,0,0,0,0]
+Copy
+If you need a reminder for default values, take a look at <a data-href="CHAPTER 1 - BUILDING BLOCKS" href="ocp/chapter-1-building-blocks.html" class="internal-link" target="_self" rel="noopener">CHAPTER 1 - BUILDING BLOCKS</a>.
+Furthermore, same as with String, indexes count up from 0.
+<br>Another way of creating an array is to initialize it with content.<br>
+For example:<br>int[] a = new int[] {1,2,3}; // a == [1,2,3]
+Copy<br>It is however redundant, so java lets you write the following:<br>int[] a =  {1,2,3}; // a == [1,2,3]
+Copy<br>This is called an anonymous array, as you don't specify the type and size of it.<br>Finally, you can also type the [] anywhere after the type of the array, meaning the following approaches are also valid:<br>int[] a;
+int [] a;
+int []a;
+int a[];
+int a [];
+Copy<br>Tricks ahead!
+Be wary of the placement of brackets ([]), as their position influence the type declaration in multi-line declarations. For a refresher on what multi-line declaration is, take a look at <a data-href="CHAPTER 1 - BUILDING BLOCKS" href="ocp/chapter-1-building-blocks.html" class="internal-link" target="_self" rel="noopener">CHAPTER 1 - BUILDING BLOCKS</a>.<br>
+For example:
+int[] a, b;
+int c[], d;
+Copy
+The variable types for the code above are the following:
+
+<br>a is of type int[]
+<br>b is of type int[]
+<br>c is of type int[]
+<br>d is of type int<br>
+d is only of type int because the brackets were placed after c, meaning they only apply to c. Be wary for this during the exam!
+
+Goodpractice
+It should go without saying, but don't ever write a multi-line declaration that looks like int c[], d;
+​, it is unnecessarily confusing.
+
+<br><br>You can create an array with any type of Java type, including the ones you create yourself.<br>
+For example:<br>String[] a = {"String", "Object", "Array"};
+String[] b = a;
+System.out.println(b.equals(a)); // true
+System.out.println(b.toString()); // [Ljava.lang.String;@120bc7c0
+Copy<br>Be careful!
+Calling equals() on an array does not look inside the array, it looks at the array object.<br>
+This is why you can call equals() in the example above, because array is an object, and it returns true because of the reference equality.
+<br>You don't need to know...
+Line 4 of the code above is not on the exam, but in case you're curious, the return of the toString() looks like this because it have not been overridden.<br>
+By default, toString() prints information on the object without looking at the content. In this case:
+
+<br>[L means the object is an array.
+<br>java.lang.String is the reference type.
+<br>160bc7c0 is the hash code.<br>
+You'll get a different code each time you run the snippet because it is a reference.
+
+<br>Tips
+Java does however provide nice ways of printing array objects, with Arrays.toString(a)
+​ for example.
+<br>Here are some more examples that should prove to be useful:<br>String a[]; // a == null
+String b[] = new String[2]; // b == [null, null]
+Copy<br>As shown here, be careful of what is instantiated, as line 1 does not specify anything, therefore making the array a equal to null.<br>
+Line 2 does instantiate the array, but as seen before, if you do not specify the content of an array, it gets instantiated with the default value for the type, which is null in the case of String, an object.<br><br>array objects also provide a way of casting. If you need a refresher on what casting is, please visit <a data-href="CHAPTER 2 - JAVA OPERATORS" href="ocp/chapter-2-java-operators.html" class="internal-link" target="_self" rel="noopener">CHAPTER 2 - JAVA OPERATORS</a>.<br>Take a look at the following example:<br>String[] a = { "String" };
+Object[] b = a;
+String[] c = (String[]) b;
+c[0] = new StringBuilder(); // DOES NOT COMPILE
+b[0] = new StringBuilder(); // ArrayStoreException
+Copy<br>Let's take a second to explain what is happening in the code above.<br>
+<br>Line 1 creates an array of String named a.
+<br>Line 2 stores this String[] into an Object[], which is possible because String is a subset of the type Object, so it doesn't require any type of casting.
+<br>Line 3 casts Object[] back to String[] with an explicit cast.
+<br>Line 4 tries to store a StringBuilder into an array of String, which is not possible, because StringBuilder is not a String.
+<br>Line 5 tries to store a StringBuilder into an array of Object.
+
+<br>This example does compile because StringBuilder is indeed an Object.
+<br>This example doesn't run, however, because the underlying type of the Object is still a String, which means you cannot store a StringBuilder into it. This throws an ArrayStoreException.
+
+
+<br>You don't need to know...
+You don't need to know the exact name of the exception, ArrayStoreException, but you do need to know that it throws an exception.
+<br><br>Getting the content of an array is how you use them. This is called accessing an array.<br>For example:<br>String[] a = {"b", "c", "d"};
+System.out.println(a.length); // 3
+System.out.println(a[0]); // "b"
+System.out.println(a[1]); // "c"
+System.out.println(a[2]); // "d"
+
+String[] e = new String[5];
+System.out.println(e.length); // 5
+Copy<br>Make sure you understand that length prints out the number of allocated slots in the array, even if everything is null inside, as demonstrated by line 7 and 8.<br>Tricks ahead!
+Do be careful with length in the exam. You do not need parentheses to length in an array, because it is not a method, but rather an attribute of the array.<br>
+As such, be careful for code like this:
+String[] a = {"String", "Object", "Array"};
+System.out.println(a.length()); // DOES NOT COMPILE
+Copy
+Additionally, remember that accessing an array with array.length will always return an IndexOutOfBoundsException.<br>
+For example:
+String[] a = new String[5];
+System.out.println(a[a.length]); // IndexOutOfBoundsException
+Copy
+This is a tactic very commonly used in loops. Whenever a loop is used to print out an array, pay close attention to the number of iterations and the length of the array. To see an example of a proper loop through an array. take a look at <a data-href="#Sorting" href="about:blank#Sorting" class="internal-link" target="_self" rel="noopener">Sorting</a>.
+<br><br>The method Arrays.sort() will sort almost any array.<br>In order to use this method, you can use any of the following ways:<br>import java.util.*;
+import java.util.Arrays;
+Copy<br>Remember that if the imports aren't specified, you can assume they are correctly imported.<br>You don't need to know...
+There is a third way of using sort(), but it doesn't come up in the exam.<br>
+Here it is:
+int[] a = {2,1,3};
+java.util.Arrays.sort(a);
+Copy
+<br>Here is an example using the method, as well as a proper way to iterate through a loop to print every number in an array:<br>int[] a = {2,1,3};
+Arrays.sort(a);
+for (int i = 0; i &lt; a.length; i++) {
+	System.out.println(a[i] + " ");
+}
+Copy<br>The result will be "1 2 3"
+​.<br>Here is another example, with String instead:<br>String[] a = {"10", "9", "100"};
+Arrays.sort(a);
+System.out.println(Arrays.toString(a));
+Copy<br>The result will be, however, "[10, 100, 9]"
+​.<br>
+This is because String sorts in alphabetical order, and 1 comes before 9 in the alphabet.<br>Required Knowledge
+You should also know, in order of priority:
+
+<br>numbers come before letters
+<br>uppercase come before lowercase
+<br>shorter words come before longer words
+
+Here is an example illustrating the notions above:
+String[] a = {"string", "String", "1string", "9string", "str"}
+Arrays.sort(a);
+System.out.println(Arrays.toString(a)); // [1string, 9string, String, str, string]
+Copy
+<br><br>The method Arrays.binarySearch() will search for the index of the specified value, but only in sorted arrays.<br>Here are the different case scenario:<br><br>Here is an example showcasing all of the scenario:<br>int[] a = {2,4,6,8};
+System.out.println(Arrays.binarySearch(a, 2)); // 0
+System.out.println(Arrays.binarySearch(a, 4)); // 1
+System.out.println(Arrays.binarySearch(a, 1)); // -1
+System.out.println(Arrays.binarySearch(a, 3)); // -2
+System.out.println(Arrays.binarySearch(a, 9)); // -5
+Copy<br>Notice that a is a sorted array. <br>
+<br>Lines 2 and 3 return the index we expect.
+<br>Line 4 returns -1. This means that 1 should be inserted at position 0 to keep the array sorted. (0 == ~-1)
+<br>Line 5 returns -2, the bitwise of 1. (1 == ~-2).
+<br>Line 6 returns -5, the bitwise of 4. (4 == ~-5).
+<br>Note
+If you need a refresher on bitwise operators (~), please visit <a data-href="CHAPTER 2 - JAVA OPERATORS" href="ocp/chapter-2-java-operators.html" class="internal-link" target="_self" rel="noopener">CHAPTER 2 - JAVA OPERATORS</a>.
+<br>In the exam...
+While there are some rules to predict the output of the undefined output when the array isn't sorted, the exam creators don't expect you to learn it.<br>
+For example:
+int[] a = {3,2,1};
+System.out.println(Arrays.binarySearch(numbers, 3)); // UNDEFINED
+Copy
+While there will be an output, you don't have to calculate it. In the exam, when an array is unsorted, simply look for an answer that reads something similar to unpredictable output.
+<br>To go further...
+While you don't need to know how Arrays.binarySearch() operates, if you are curious, the method will split the array in half, and look to see which half the target is in. It repeats this process until there is one element left.
+<br><br>There are two ways of comparing two arrays.<br><br>The method compare() returns a number depending on the compared arrays, following a set of rules.<br>
+The rules are explained below.<br>Here is a table that reviews every rule first:<br><br>Here is a flowchart to determine the value returned by compareTo().<br><br>If you are wondering what smaller value means, take a look at the list below, ordered from smallest to largest:<br>
+<br>null is smaller than any other type
+<br>Numbers follow the same numeric order, 1 &lt; 2, 2 &lt; 3, etc...
+<br>String objects:
+
+<br>A String is smaller if it is a prefix of another.
+<br>A String is smaller if it is uppercase.
+
+
+<br><br>The method mismatch() returns -1 if the two arrays are equal, or the first index where they differ.<br>For example:<br>System.out.println(Arrays.mismatch(new int[] {1}, new init[] {1})); // -1
+System.out.println(Arrays.mismatch(new String[] {"a"}, new String[] {"A"})); // 0
+System.out.println(Arrays.mismatch(new int[] {1,2}, new int[] {1})); // 1
+Copy<br>
+<br>Line 1 possesses two identical arrays, so it returns -1.
+<br>Line 2 differs at the first index, so it returns 0.
+<br>Line 3 differs at the second index, so it returns 1.
+<br>Here is a table summing up both methods to make sure you understood correctly:<br><br><br>Here is an example of Varargs first:<br>public static void main(String... args) {} // varargs
+Copy<br>The three dots (...) are the Varargs arguments, or called variable arguments. You'll see more in <a data-href="CHAPTER 5" href="ocp/chapter-5.html" class="internal-link" target="_self" rel="noopener">CHAPTER 5</a>, but for now, you simply need to know that the variable defined using Varargs are like a normal array.<br>For example:<br>args.length;
+args[0];
+Copy<br>Are both valid expressions.<br><br>Arrays can hold multiple arrays, thus making them multidimensional arrays.<br><br>You only need another set of brackets ([]) to create a multidimensional array.<br>
+For example:<br>int[] a; // 1D array - a == []
+int[][] b; // 2D array - b == [[]]
+int[] c[]; // 2D array - c == [[]]
+int d[][]; // 2D array - d == [[]]
+int[] e[], f[]; // 2D array - e == [[]] + 3D array - f == [ [ [] ] ]
+Copy<br>As you can see, there are multiple ways of creating a multidimensional array, although only the Line 2 should ever be used in real life, the rest is here only to confuse you.<br>You can also declare the space allocated for each sub-array, like so:<br>int[][] a = new int[3][2];
+// a == [[0,0][0,0][0,0]]
+// Or, another way of visualizing it:
+// a == [[0,0]    // a[0] == [0,0]; a[0][0] == 0; a[0][1] == 0
+//       [0,0]    // a[1] == [0,0]; a[1][0] == 0; a[1][1] == 0
+//       [0,0]]   // a[2] == [0,0], a[2][0] == 0; a[2][1] == 0
+Copy<br>In the example above, Line 4 corresponds to a[0], Line 5 corresponds to a[1], and Line 6 corresponds to a[2]. The first 0 corresponds to a[0][0], the second 0 corresponds to a[0][1], and so on.<br>The above example was a perfect rectangle, but you can also make irregular multidimensional arrays:<br>int[][] a = {{1,4}, {3}, {9,8,7}};
+// a == [[1,4][3][9,8,7]]
+// Or another way of visualizing it:
+// a == [[1,4]     // a[0] == [1,4]; a[0][1] == 1, etc...
+//       [3]
+//       [9,8,7]]
+Copy<br>Another way of doing it without instantiating everything with values is with the following method:<br>int[][] a = new int[4][]; // a == [[0][0][0][0]]
+a[0] = new int[2]; // a == [[0,0][0][0][0]]
+a[1] = new int[3]; // a == [[0,0][0,0,0][0][0]]
+Copy<br><br>Using a multidimensional array means accessing its contents.<br>
+You usually do this with a loop.<br>For example:<br>var a = new int[3][2];
+for (int i = 0; i &lt; a.length; i++) {
+	for (int j = 0; j &lt; a.length; j++) {
+		System.out.print(a[i][j] + " "); // print element
+	}
+	System.out.println(); // prints out a new row
+}
+Copy<br>You will have recognized that this is a loop inside a loop. Be wary of the spot each variable occupies and learn to spot out of place variables so that you don't get tricked on the exam.<br>You can also use an enhanced for loop:<br>for (int[] i : a) {
+	for (int j : i) {
+		System.out.print(j);
+	}
+	System.out.println();
+}
+Copy<br><br>Java has a Math class that comes with helpful methods to help you compute numbers.<br>Tricks ahead!
+Be wary, in general, of the return type of these methods, as they are the main source of trick questions on the exam.
+<br><br>The methods min() and max() compare two values and return one of them.<br>Here are the method signatures for min() and max():<br>public static double min(double a, double b)
+public static float min(float a, float b)
+public static int min(int a, int b)
+public static long min(long a, long b)
+
+public static double max(double a, double b)
+public static float max(float a, float b)
+public static int max(int a, int b)
+public static long max(long a, long b)
+Copy<br>Understand that the method signatures for min() and max() are the exact same, they are simply all displayed here for exhaustiveness' sake*.<br>The min() method will return the smaller value of the two, while the max() method will return the bigger value of the two.<br>Here is an example using these methods:<br>int a = Math.max(3, 7); // 7
+int b = Math.min(7, -9); // -9
+Copy<br><br>The method round() gets rid of the decimal portion of the value, rounding up or down according to the usual mathematics rule set of rounding numbers.<br>Tips
+As a reminder, rounding values follows one simple rule, if the number after the decimal is equal to or bigger than 5, then round up the integer part of the number.
+<br>Here are the method signatures for round():<br>public static long round(double num)
+public static int round(float num)
+Copy<br>There is enough room in the first method to store a rounded double if needed.<br>Here are some examples showcasing the round() method:<br>long a = Math.round(123.45); // 123
+long b = Math.round(123.50); // 124
+int c = Math.round(123.45f); //123
+Copy<br>Be careful!
+You can see here that the 3rd method takes in a float because of the f flag. The return value of such method is always an int! It can, of course, be stored in a bigger type, but be careful to not get tricked.
+<br><br>The method ceil() takes a double. If the double is a round number, it returns the original value, otherwise, it returns the rounded up value.<br>The method floor() takes a double, then discards any decimal value.<br>Here are the method signatures:<br>public static double ceil(double num)
+public static double floor(double num)
+Copy<br>Here are some example using both methods:<br>double a = Math.ceil(3.14); //4.0
+double b = Math.ceil(3.0); // 3.0
+double c = Math.floor(3.14); // 3.0
+Copy<br><br>The method pow() computes exponents.<br>Tips
+As a reminder, exponents work like demonstrated in the following:
+
+The exponent, or the 3 in the example above, indicates how many times the exposed number is multiplied by itself.
+<br>Here is the method signature:<br>public static double pow(double number, double exponent)
+Copy<br>And here is how to use this method:<br>double a = Math.pow(5,2); // 25.0
+Copy<br>You don't need to know...
+While you can use fractional exponents with pow(), it is not on the exam.
+Readmore
+However, if you're curious, fractional exponents are the equivalent of square root powers.<br>
+The most famous one is the 0.5 exponent:
+
+Which is simply the square root of the exposed number.
+
+<br><br>The method random() returns a value greater than&nbsp;0 and less than 1.<br>Here is the method signature:<br>public static double random()
+Copy<br>And here is a proper way to use it:<br>double a = Math.random();
+Copy<br>To go further...
+While not on the exam, you can also use random() to generate numbers following other mathematical rules, like following a normal distribution for example, or simply to generate numbers bounded by numbers larger than 1.
+<br><br>To work with Java's API dealing with dates and times, you need the following import: import java.time.*;
+​.<br><br>There are four different ways of creating a Date/Time object depending on the amount of information you need for the exam.<br>Here is a table displaying them:<br><br>Note
+Of course, you only need a select amount of information each time. Here are some example on why you'd need each of them:
+
+<br>LocalDate is commonly used for birthdays, as you usually don't need the exact time of your birthday to celebrate it.
+<br>LocalTime is commonly used for special hours in the day, like midnight, as it happens every day.
+<br>LocalDateTime is commonly used for special events in the calendar, like new year's eve for example, as it happens at a certain date and certain time.
+<br>ZonedDateTime is commonly used for international meetings, as you need very specific instruction to all connect at the same time if you're all strewn about on the planet.
+
+<br>Here is how you'd use each of these static methods:<br>System.out.println(LocalDate.now()); // 2024-05-26
+System.out.println(LocalTime.now()); // 16:17:40.190448143
+System.out.println(LocalDateTime.now()); // 2024-05-26T16:17:40.190504675
+System.out.println(ZonedDateTime.now()); // 2024-05-26T16:17:40.190847860+02:00[Europe/Paris]
+Copy<br>The ZoneDateTime features a converter showing the time different from the UTC timezone, otherwise known as GMT timezone.<br>
+To get this timezone, simply subtract the difference shown in the result. In the example above, that would be 16:17:40 - 2:00:00 = 14:17:40 UTC.<br>In the exam...
+There are multiple way of displaying the different time zones, and the exam might use three of them: "+2:00"
+​, "GMT+2"
+​ or "UTC+2"
+​, make sure you familiarize with them.<br>
+Furthermore, java uses the format YYYY-MM-DD, as well as a 24H clock.
+<br>We can also create a LocalDate, LocalTime, LocalDateTime and ZonedDateTime ourselves.<br>Here are the methods signatures:<br>public static LocalDate of(int year, int mont, int dayOfMonth)
+public static LocalDate of(int year, Month month, int dayOfMonth)
+
+public static LocalTime of(int hour, int minute)
+public static LocalTime of(int hour, int minute, int second)
+public static LocalTime of(int hour, int minute, int second, int nanos)
+
+// The following is simply the above two combined
+public static LocalDateTime of(int year, int month,
+int dayOfMonth, int hour, int minute)
+public static LocalDateTime of(int year, int month,
+int dayOfMonth, int hour, int minute, int second)
+public static LocalDateTime of(int year, int month,
+int dayOfMonth, int hour, int minute, int second, int nanos)
+
+public static LocalDateTime of(int year, Month month,
+int dayOfMonth, int hour, int minute)
+public static LocalDateTime of(int year, Month month,
+int dayOfMonth, int hour, int minute, int second)
+public static LocalDateTime of(int year, Month month,
+int dayOfMonth, int hour, int minute, int second, int nanos)
+
+// And this method takes a LocalDate and LocalTime to combine them
+public static LocalDateTime of(LocalDate date, LocalTime time)
+
+public static ZonedDateTime of(int year, int month,
+int dayOfMonth, int hour, int minute, int second,
+int nanos, ZoneId zone)
+public static ZonedDateTime of(LocalDate date, LocalTime time,
+ZoneId zone)
+public static ZonedDateTime of(LocalDateTime dateTime, ZoneId zone)
+Copy<br>Required Knowledge
+Remember that int month counts up from 1, meaning January is 1, February is 2, etc...
+Inexam
+While there also are other ways of creating a ZonedDateTime, you only need to know these 3 ways for the exam.
+
+Careful
+Notice how there aren't any ZonedDateTime methods that allow the Month enum.
+
+<br>Here are some examples on how to create instances of the aforementioned objects:<br>LocalDate a = LocalDate.of(2024, Month.JANUARY, 20);
+LocalDate b = LocalDate.of(2024, 1, 20);
+
+LocalTime c = LocalTime.of(6, 15); // 6 hours 15 minutes
+LocalTime d = LocalTime.of(6, 15, 30); // + 30 seconds
+LocalTime e = LocalTime.of(6, 15, 30, 200); // + 200 nanoseconds
+
+LocalDateTime f = LocalDateTime.of(2024, Month.JANUARY, 20, 6, 15, 30);
+LocalDateTime g = LocalDateTime.of(a, c)
+
+ZoneId zone = ZoneId.of("Europe/Paris");
+ZonedDateTime h = ZonedDateTime.of(2024, 1, 20, 6, 15, 30, 200, zone);
+ZonedDateTime i = ZonedDateTime.of(a, c, zone);
+ZonedDateTime j = ZonedDateTime.of(f, zone);
+Copy<br>Tricks ahead!
+While there are a lot of signatures to remember, the most common tricks the exam makers try to throw at you are the following:
+LocalDate a = new LocalDate(); // DOES NOT COMPILE
+LocalDate b = LocalDate.of(2024, Month.JANUARY, 32) // DateTimeException
+Copy
+In the first example, we show that there are no constructors for any of the classes we saw above.<br>
+In the second example, we show that we cannot just pass anything in the parameters of the methods. If you try to pass an invalid month or day, you will be met with a DateTimeException.
+Noknowledge
+You don't need to know about the exact exception that is passed.
+
+<br><br><br>The method plusDays() adds the specified number of days to the date.<br>
+The method minusDays() subtracts the specified number of days to the date.<br>The method plusWeeks() adds the specified number of weeks to the date.<br>
+The method minusWeeks() subtracts the specified number of weeks to the date.<br>The method plusMonths() adds the specified number of months to the date.<br>
+The method minusMonths() subtracts the specified number of months to the date.<br>The method plusYears() adds to the specified number of years to the date.<br>
+The method minusYears() subtracts to the specified number of years to the date.<br>They all take an int and return a new instance of LocalDate, as the LocalDate class is immutable.<br>Here are some examples on how to use each of the plus methods:<br>LocalDate a = LocalDate.of(2022, Month.JANUARY, 20); // 2022-01-20
+a = date.plusDays(2); // 2022-01-22
+a = date.plusWeeks(1); // 2022-01-29
+a = date.plusMonths(1); // 2022-02-28
+a = date.plusYears(1); //2023-02-28
+Copy<br>You'll remark that Line 6 didn't add exactly one month. That is because 2022 is not a leap year, meaning that February 29th does not exist, so Java will subtract a day.<br>You'll see the minus methods in action in <a data-href="#Summary" href="about:blank#Summary" class="internal-link" target="_self" rel="noopener">Summary</a> below.<br><br>The method plusHours() adds the specified number of hours to the time.<br>
+The method minusHours() subtracts the specified number of hours to the time.<br>The method plusMinutes() adds the specified number of minutes to the time.<br>
+The method minusMinutes() subtracts the specified number of minutes to the time.<br>The method plusSeconds() adds the specified number of seconds to the time.<br>
+The method minusSeconds() subtracts the specified number of seconds to the time.<br>The method plusNanos() adds the specified number of nanoseconds to the time.<br>
+The method minusNanos() subtracts the specified number of nanoseconds to the time.<br>You'll see these methods in action in <a data-href="#Summary" href="about:blank#Summary" class="internal-link" target="_self" rel="noopener">Summary</a> below.<br><br>Here are some examples using both time and dates methods seen above.<br>LocalDate a = LocalDate.of(2024, Month.JANUARY, 20);
+LocalTime b = LocalDate.of(5, 15);
+LocalDateTime c = LocalDateTime.of(a, b); // 2024-01-20T05:15
+c = dateTime.minusDays(1); // 2024-01-19T05:15
+c = dateTime.minusHours(10); // 2024-01-18T19:15
+c = dateTime.minusSeconds(30); // 2024-01-18T19:14:30
+Copy<br>Do notice that Line 5 subtracts 10 hours from 05:15, making the day regress.<br>
+Additionally, notice that Line 6 subtracts 30 seconds from 15 minutes, making the seconds appear. Understand that Java hides seconds and nanoseconds until we use them.<br>The previous example can be rewritten in the following, through method chaining:<br>var a = LocalDate.of(2024, Month.JANUARY, 20);
+var b = LocalTime.of(5, 15);
+var c = LocalDateTime.of(a, b)
+.minusDays(1).minusHours(10).minusSeconds(30);
+Copy<br>Tricks ahead!
+The exam makers like to confuse you with immutable objects such as Date and Time Objects.<br>
+For example:
+LocalDate a = LocalDate.of(2024, Month.JANUARY, 20); // 2024-01-20
+a.plusDays(10);
+System.out.println(a); // 2024-01-20
+Copy
+The result stays the same, because we ignore the return value of plusDays(), because Date and Time are immutable and calling the method above does not change their assigned values.
+Furthermore, calling the wrong method on the wrong class will result in a compiler error.<br>
+For example:
+LocalDate a = LocalDate.of(2024, Month.JANUARY, 20);
+a = a.plusMinutes(1); // DOES NOT COMPILE
+Copy
+This is because you try to call the plusMinutes() method to a class that does not implement this method, because LocalDate has no notion of Time.
+<br>Here is a recap on what method can be used with which class:<br><br><br>The class period contains a period of time. It is commonly used to add or subtract to Dates or Times, or to checkpoint when a certain period of time has passed.<br>For example:<br>LocalDate a = new LocalDate.of(2024, 1, 1);
+a = a.plusMonth(1);
+
+LocalDate b = new LocalDate.of(2024, 1, 1);
+Period period = Period.ofMonths(1);
+b = b.plus(period);
+Copy<br>Both yellow and green highlighted code snippet do the same thing. While the use of period is not readily apparent, it is used when you're not sure about the amount of time you need to add.<br>For example, the yellow code can only add a month at Line 2, while the green code can add any kind of period of time at Line 6.<br>Here are the 5 method signatures that allow you to create a period:<br>public static Period ofYears(int years);
+public static Period ofMonths(int months);
+public static Period ofWeeks(int weeks);
+public static Period ofDays(int days);
+public static Period of(int years, int months, int days);
+Copy<br>Here are some examples showing how to use these methods:<br>Period a = Period.ofYears(1); // every 1 year
+Period b = Period.ofMonths(3); // every 3 months
+Period c = Period.ofWeeks(3); // every 3 weeks
+Period d = Period.ofDays(2); // every 2 days
+Period e = Period.of(1, 0, 7); // every year and 7 days
+Copy<br>Be careful!
+You cannot chain those methods, as they are static methods. Trying to apply method chaining to these methods will result in only the last method being used.<br>
+For example:
+Period a = Period.ofYears(1).ofMonths(1);
+Period b = Period.ofMonths(1);
+System.out.println(a.equals(b)); // true
+Copy
+In the above code, we see that a and b are functionally equal, as they hold the exact same information, a period of 1 month.
+<br><br>The String output of a Period is the following:<br>Period.toString() = "P" + "#years" + "Y" + "#months" + "M" + "#days" + "D
+​<br>Be careful, as if any of the # is 0, the corresponding period will be omitted.<br>For example:<br>System.out.println(Period.ofYears(1)); // P1Y
+System.out.println(Period.ofMonths(3)); // P3M
+System.out.println(Period.ofDays(5)); // P5D
+System.out.println(Period.of(9,0,2)); // P9Y2D
+System.out.println(Period.of(9,3,2)); // P9Y3M2D
+Copy<br>Tricks ahead!
+As you'd expect, trying to add a Period to an unsupported type will throw an exception.<br>
+For example:
+LocalTime a = LocalTime.of(6, 15):
+Period b = Period.ofMonths(1);
+a = a.plus(b); // UnsupportedTemporalTypeException
+Copy
+Trying to add a Date period to a Time-only class will result in an UnsupportedTemporalTypeException at runtime.
+Noknowledge
+As usual, you don't have to know the exact type of the exception, only that the code will throw one.
+
+<br><br>The class Duration contains a duration of time. The difference with <a data-tooltip-position="top" aria-label="Working with periods" data-href="#Working with periods" href="about:blank#Working_with_periods" class="internal-link" target="_self" rel="noopener">periods</a> is that while Period is only for Date periods, Duration is only for Time periods.<br>Here are the methods signatures in Duration:<br>public static Duration ofDays(int days);
+public static Duration ofHours(int hours);
+public static Duration ofMinutes(int minutes);
+public static Duration ofSeconds(int seconds);
+public static Duration ofMillis(int milliseconds);
+public static Duration ofNanos(int nanoseconds);
+public static Duration of(int duration, ChronoUnit durationType);
+Copy<br>You can see that the first 6 methods are very straightforward.<br>
+The last one takes in a ChronoUnit, an implementation of TemporalUnit.<br>
+Chronounit is an enum that allows for fine-grained durations.<br>Here are some examples displaying the use of the aforementioned methods:<br>Duration a = Duration.ofDays(1); // PT24H
+Duration b = Duration.ofHours(1); // PT1H
+Duration c = Duration.ofMinutes(1); // PT1M
+Duration d = Duration.ofSeconds(10); // PT10S
+Duration e = Duration.ofMillis(1); // PT0.001S
+Duration f = Duration.ofNanos(1); // PT0.000000001S
+Copy<br>And here is the same code snippet, but with Duration.of() to display its functions:<br>Duration a = Duration.of(1, ChronoUnit.DAYS);
+Duration b = Duration.of(1, ChronoUnit.HOURS);
+Duration c = Duration.of(1, ChronoUnit.MINUTES);
+Duration d = Duration.of(10, ChronoUnit.SECONDS);
+Duration e = Duration.of(1, ChronoUnit.MILLIS);
+Duration f = Duration.of(1, ChronoUnit.NANOS);
+Copy<br>Note
+ChronoUnit also includes some other convenient units such as ChronoUnit.HALF_DAYS for example, to represent 12 hours.
+<br><br>While ChronoUnit can be used in the Duration.of() method, it's not the only use we have for it. It can be great o determine how far apart two Temporal values are.<br>
+Temporal are all the classes that deal with Time and Date, such as LocalDate, LocalTime, etc.<br>Remember that ChronoUnit is on the java.time.temporal package.<br>For example:<br>LocalTime a = LocalTime.of(5, 15);
+LocalTime b = LocalTime.of(6, 30);
+LocalDate c = LocalDate.of(2016, 1, 20);
+System.out.println(ChronoUnit.HOURS.between(a, b)); // 1
+System.out.println(ChronoUnit.MINUTES.between(a, b)); // 75
+System.out.println(ChronoUnit.MINUTES.between(a, c)); // DateTimeException
+Copy]]></description><link>ocp/chapter-4-core-apis.html</link><guid isPermaLink="false">OCP/CHAPTER 4 - CORE APIS.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Tue, 28 May 2024 11:57:21 GMT</pubDate><enclosure url="blob:app://obsidian.md/5d05f55c-8351-484b-b44b-8062cbfdca45" length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="blob:app://obsidian.md/5d05f55c-8351-484b-b44b-8062cbfdca45"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Introduction]]></title><description><![CDATA[ 
  <br><br><br>
 <br>The exam does give negative points: check everything !
 <br>Out of scope material means that we don't need to understand it, everything is implicit or given to us.
@@ -425,7 +967,7 @@ See more on <a data-href="CHAPTER 4 - CORE APIS" href="ocp/chapter-4-core-apis.h
 <br>What should I remember ?
 byte, short, int, long are integers without decimals. A bigger one is twice as big as the previous.
 floatrequires the letter f or F following a number so JAVA knows it's a float. Otherwise, it's a double.
-long requires an l or L following the number so that JAVA knows it's a long. Otherwise, it's just an int.
+long requires an l or L following the number so that JAVA knows it's a long. Otherwise, java will interpret a number without a decimal point as an int in most scenarios. It is then cast into a long if possible.
 All numeric types are signed and reserve one bit to cover the negative range.
 short and char are closely related. The only difference is that shortis signed, and char is unsigned. You can cast one to the other. You'll see more in <a data-href="CHAPTER 2 - JAVA OPERATORS" href="ocp/chapter-2-java-operators.html" class="internal-link" target="_self" rel="noopener">CHAPTER 2 - JAVA OPERATORS</a>.
 You don't have to remember the max values, the exam will tell you when the code does not<br>
@@ -598,7 +1140,7 @@ Then assume the boilerplate code is written correctly.
 <br>Understand how to create text blocks. See more in <a data-href="#Text blocks" href="about:blank#Text_blocks" class="internal-link" target="_self" rel="noopener">Text blocks</a>.
 <br>Determine when variables go in and out of scope. See more in <a data-href="#Variable scope" href="about:blank#Variable_scope" class="internal-link" target="_self" rel="noopener">Variable scope</a>.
 <br>Determine when an object is eligible for garbage collection. See more in <a data-href="#Garbage collection" href="about:blank#Garbage_collection" class="internal-link" target="_self" rel="noopener">Garbage collection</a>.
-<br>]]></description><link>ocp/chapter-1-building-blocks.html</link><guid isPermaLink="false">OCP/CHAPTER 1 - BUILDING BLOCKS.md</guid><pubDate>Tue, 21 May 2024 11:08:37 GMT</pubDate></item><item><title><![CDATA[Chapter 2]]></title><description><![CDATA[ 
+<br>]]></description><link>ocp/chapter-1-building-blocks.html</link><guid isPermaLink="false">OCP/CHAPTER 1 - BUILDING BLOCKS.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Fri, 24 May 2024 13:18:08 GMT</pubDate></item><item><title><![CDATA[Chapter 2]]></title><description><![CDATA[ 
  <br><br><br><br>In the following snippet, there are three names you should know:<br>var c = a + b;
 Copy<br>There are:<br>
 <br>Operands, which are a and b.
@@ -650,6 +1192,13 @@ example--; // 0
 System.out.println(example); // 0
 Copy<br>Required Knowledge
 You need to know the difference between ++a and a++. There will be multiple questions about this in the exam.
+<br>Tricks ahead!
+It may be a bit confusing, but you need to know what the following code does:
+int a = 0;
+a = a++;
+System.out.println(a); // 0
+Copy
+The result may seem counter intuitive, but the operation a++ is completely ignored. This means that a is 0 after the value assignment.
 <br><br>The opposite of <a data-href="#Unary operators" href="about:blank#Unary_operators" class="internal-link" target="_self" rel="noopener">Unary operators</a>, as those need two operands to function.<br><br>There are 5 arithmetic operators. Here is a list of them:<br><br>But what about String ?
 Only the addition, + and += may be applied to String, resulting in String concatenation.
 <br>Parentheses rules
@@ -847,7 +1396,7 @@ Both expressions return int or String, but the first one is in a println stateme
 <br>Be able to recognize which operators are associated with which data types. See more in <a data-href="#Operators" href="about:blank#Operators" class="internal-link" target="_self" rel="noopener">Operators</a>, <a data-href="#Assigning values" href="about:blank#Assigning_values" class="internal-link" target="_self" rel="noopener">Assigning values</a>, <a data-href="#Comparing values" href="about:blank#Comparing_values" class="internal-link" target="_self" rel="noopener">Comparing values</a> and <a data-href="#Ternary operator" href="about:blank#Ternary_operator" class="internal-link" target="_self" rel="noopener">Ternary operator</a>.
 <br>Understand when casting is required or numeric promotion occurs. See more in <a data-href="#Casting values" href="about:blank#Casting_values" class="internal-link" target="_self" rel="noopener">Casting values</a>, <a data-href="#Casting variables" href="about:blank#Casting_variables" class="internal-link" target="_self" rel="noopener">Casting variables</a> and <a data-href="#Numeric Promotion" href="about:blank#Numeric_Promotion" class="internal-link" target="_self" rel="noopener">Numeric Promotion</a>.
 <br>Be able to write code that uses parentheses to override operator precedence. See more in <a data-href="#Operator Precedence" href="about:blank#Operator_Precedence" class="internal-link" target="_self" rel="noopener">Operator Precedence</a> and <a data-href="#Arithmetic operators" href="about:blank#Arithmetic_operators" class="internal-link" target="_self" rel="noopener">Arithmetic operators</a>.
-<br>]]></description><link>ocp/chapter-2-java-operators.html</link><guid isPermaLink="false">OCP/CHAPTER 2 - JAVA OPERATORS.md</guid><pubDate>Tue, 21 May 2024 11:08:53 GMT</pubDate></item><item><title><![CDATA[Chapter 3]]></title><description><![CDATA[ 
+<br>]]></description><link>ocp/chapter-2-java-operators.html</link><guid isPermaLink="false">OCP/CHAPTER 2 - JAVA OPERATORS.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Fri, 24 May 2024 13:08:45 GMT</pubDate></item><item><title><![CDATA[Chapter 3]]></title><description><![CDATA[ 
  <br><br><br><br>Control flow statements break up the flow of execution by using decision-making, looping and branching. This allows the code to execute selective and particular segments of code.<br>Note
 These statements can be applied to either a single line of code, or a block of java code, delimited by balanced braced: {}.<br>
 For example:
@@ -929,8 +1478,9 @@ For example:<br>void printIntegerGreaterThan5(Number a) {
 		System.out.print(b)
 	}
 }
-Copy<br>This means that b will not be assigned, and the if statement will not be executed if b &gt; 5.<br>Note
-Author's note: it is unclear if Integer.compareTo(int a) will be on the test, but just in case, Integer.compareTo(int a):
+Copy<br>This means that b will not be assigned, and the if statement will not be executed if b &gt; 5.<br>To go further...
+You will see more about compareTo() on <a data-href="CHAPTER 4 - CORE APIS" href="ocp/chapter-4-core-apis.html" class="internal-link" target="_self" rel="noopener">CHAPTER 4 - CORE APIS</a> and <a data-href="CHAPTER 9" href="ocp/chapter-9.html" class="internal-link" target="_self" rel="noopener">CHAPTER 9</a>.<br>
+But for now, just know that Integer.compareTo(int a):
 
 <br>returns a value greater than 0 if the supplied value a is smaller than the integer we are comparing it to.
 <br>returns a value smaller than 0 if the supplied value a is greater than the integer we are comparing it to.
@@ -1030,7 +1580,7 @@ default branches in switch statement are commonly used to throw exceptions. You'
 		System.out.println("String 4");
 }
 Copy<br>If a equals 4 in the example above, then the output of such a program will be<br>
-<img class="code-styler-inline-icon" src="blob://d9af2fa8-3d70-4052-89e4-09764c673bd0">String 2 String 3 Default String 4
+<img class="code-styler-inline-icon" src="blob://9a8af005-b289-4437-b243-be82058972ca">String 2 String 3 Default String 4
 ​.<br>Tricks ahead!
 Exam makers are fond of switch statements, and they will try to give you a lot of those without the break statement at the end.
 <br><br>Only a select list of data types and their wrapper classes are allowed to be compared on a switch statement.<br>
@@ -1439,18 +1989,18 @@ It is recommended to skip nested loop questions in the exam, unless you spot an 
 <br>Write while loops. See more in <a data-href="#The *while* statement" href="about:blank#The_*while*_statement" class="internal-link" target="_self" rel="noopener">The *while* statement</a> and <a data-href="#The do/while statement" href="about:blank#The_do/while_statement" class="internal-link" target="_self" rel="noopener">The do/while statement</a>.
 <br>Be able to use for loops. See more in <a data-href="#The *for* loop" href="about:blank#The_*for*_loop" class="internal-link" target="_self" rel="noopener">The *for* loop</a> and <a data-href="#The *for-each* loop" href="about:blank#The_*for-each*_loop" class="internal-link" target="_self" rel="noopener">The *for-each* loop</a>.
 <br>Understand how break, continue and return can change flow control. See more in <a data-href="#The *break* statement" href="about:blank#The_*break*_statement" class="internal-link" target="_self" rel="noopener">The *break* statement</a>, <a data-href="#The *continue* statement" href="about:blank#The_*continue*_statement" class="internal-link" target="_self" rel="noopener">The *continue* statement</a> and <a data-href="#The *return* statement" href="about:blank#The_*return*_statement" class="internal-link" target="_self" rel="noopener">The *return* statement</a>.
-<br>]]></description><link>ocp/chapter-3-making-decisions.html</link><guid isPermaLink="false">OCP/CHAPTER 3 - MAKING DECISIONS.md</guid><pubDate>Tue, 21 May 2024 11:09:17 GMT</pubDate><enclosure url="blob:app://obsidian.md/d9af2fa8-3d70-4052-89e4-09764c673bd0" length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="blob:app://obsidian.md/d9af2fa8-3d70-4052-89e4-09764c673bd0"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[CHAPTER 5]]></title><description><![CDATA[ 
- ]]></description><link>ocp/chapter-5.html</link><guid isPermaLink="false">OCP/CHAPTER 5.md</guid><pubDate>Tue, 23 Apr 2024 15:48:01 GMT</pubDate></item><item><title><![CDATA[CHAPTER 6]]></title><description><![CDATA[ 
- ]]></description><link>ocp/chapter-6.html</link><guid isPermaLink="false">OCP/CHAPTER 6.md</guid><pubDate>Tue, 23 Apr 2024 15:51:25 GMT</pubDate></item><item><title><![CDATA[CHAPTER 7]]></title><description><![CDATA[ 
- ]]></description><link>ocp/chapter-7.html</link><guid isPermaLink="false">OCP/CHAPTER 7.md</guid><pubDate>Mon, 06 May 2024 09:26:16 GMT</pubDate></item><item><title><![CDATA[CHAPTER 8]]></title><description><![CDATA[ 
- ]]></description><link>ocp/chapter-8.html</link><guid isPermaLink="false">OCP/CHAPTER 8.md</guid><pubDate>Mon, 29 Apr 2024 08:22:51 GMT</pubDate></item><item><title><![CDATA[CHAPTER 9]]></title><description><![CDATA[ 
- ]]></description><link>ocp/chapter-9.html</link><guid isPermaLink="false">OCP/CHAPTER 9.md</guid><pubDate>Tue, 21 May 2024 11:05:30 GMT</pubDate></item><item><title><![CDATA[CHAPTER 10]]></title><description><![CDATA[ 
- ]]></description><link>ocp/chapter-10.html</link><guid isPermaLink="false">OCP/CHAPTER 10.md</guid><pubDate>Tue, 21 May 2024 11:05:39 GMT</pubDate></item><item><title><![CDATA[CHAPTER 11]]></title><description><![CDATA[ 
- ]]></description><link>ocp/chapter-11.html</link><guid isPermaLink="false">OCP/CHAPTER 11.md</guid><pubDate>Tue, 14 May 2024 07:22:38 GMT</pubDate></item><item><title><![CDATA[CHAPTER 12]]></title><description><![CDATA[ 
- ]]></description><link>ocp/chapter-12.html</link><guid isPermaLink="false">OCP/CHAPTER 12.md</guid><pubDate>Sat, 27 Apr 2024 13:50:13 GMT</pubDate></item><item><title><![CDATA[CHAPTER 13]]></title><description><![CDATA[ 
- ]]></description><link>ocp/chapter-13.html</link><guid isPermaLink="false">OCP/CHAPTER 13.md</guid><pubDate>Mon, 20 May 2024 14:43:30 GMT</pubDate></item><item><title><![CDATA[CHAPTER 14]]></title><description><![CDATA[ 
- ]]></description><link>ocp/chapter-14.html</link><guid isPermaLink="false">OCP/CHAPTER 14.md</guid><pubDate>Tue, 21 May 2024 11:05:44 GMT</pubDate></item><item><title><![CDATA[CHAPTER 15]]></title><description><![CDATA[ 
- ]]></description><link>ocp/chapter-15.html</link><guid isPermaLink="false">OCP/CHAPTER 15.md</guid><pubDate>Tue, 21 May 2024 11:05:50 GMT</pubDate></item><item><title><![CDATA[Welcome]]></title><description><![CDATA[ 
+<br>]]></description><link>ocp/chapter-3-making-decisions.html</link><guid isPermaLink="false">OCP/CHAPTER 3 - MAKING DECISIONS.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Sat, 25 May 2024 14:51:53 GMT</pubDate><enclosure url="blob:app://obsidian.md/9a8af005-b289-4437-b243-be82058972ca" length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="blob:app://obsidian.md/9a8af005-b289-4437-b243-be82058972ca"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[CHAPTER 5]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-5.html</link><guid isPermaLink="false">OCP/CHAPTER 5.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Tue, 23 Apr 2024 15:48:01 GMT</pubDate></item><item><title><![CDATA[CHAPTER 6]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-6.html</link><guid isPermaLink="false">OCP/CHAPTER 6.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Tue, 23 Apr 2024 15:51:25 GMT</pubDate></item><item><title><![CDATA[CHAPTER 7]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-7.html</link><guid isPermaLink="false">OCP/CHAPTER 7.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Mon, 06 May 2024 09:26:16 GMT</pubDate></item><item><title><![CDATA[CHAPTER 8]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-8.html</link><guid isPermaLink="false">OCP/CHAPTER 8.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Mon, 29 Apr 2024 08:22:51 GMT</pubDate></item><item><title><![CDATA[CHAPTER 9]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-9.html</link><guid isPermaLink="false">OCP/CHAPTER 9.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Tue, 21 May 2024 11:05:30 GMT</pubDate></item><item><title><![CDATA[CHAPTER 10]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-10.html</link><guid isPermaLink="false">OCP/CHAPTER 10.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Tue, 21 May 2024 11:05:39 GMT</pubDate></item><item><title><![CDATA[CHAPTER 11]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-11.html</link><guid isPermaLink="false">OCP/CHAPTER 11.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Tue, 14 May 2024 07:22:38 GMT</pubDate></item><item><title><![CDATA[CHAPTER 12]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-12.html</link><guid isPermaLink="false">OCP/CHAPTER 12.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Sat, 27 Apr 2024 13:50:13 GMT</pubDate></item><item><title><![CDATA[CHAPTER 13]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-13.html</link><guid isPermaLink="false">OCP/CHAPTER 13.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Mon, 20 May 2024 14:43:30 GMT</pubDate></item><item><title><![CDATA[CHAPTER 14]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-14.html</link><guid isPermaLink="false">OCP/CHAPTER 14.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Tue, 21 May 2024 11:05:44 GMT</pubDate></item><item><title><![CDATA[CHAPTER 15]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-15.html</link><guid isPermaLink="false">OCP/CHAPTER 15.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Tue, 21 May 2024 11:05:50 GMT</pubDate></item><item><title><![CDATA[Welcome]]></title><description><![CDATA[ 
  <br><br>Welcome to your OCP CHEAT SHEET !<br>
 I have taken many, many notes from the OCP book, and tightened them into this (work in progress) little website.<br>I hope it will make the learning experience a bit more enjoyable and colorful!<br>You can navigate to the table of content on the right, or simply click one of the links below:<br>Note
 If the Chapter name does not have its qualifier yet, it means I haven't gotten to it yet. It'll be there eventually!
@@ -1470,4 +2020,4 @@ If the Chapter name does not have its qualifier yet, it means I haven't gotten t
 <br><a data-href="CHAPTER 13" href="ocp/chapter-13.html" class="internal-link" target="_self" rel="noopener">CHAPTER 13</a>
 <br><a data-href="CHAPTER 14" href="ocp/chapter-14.html" class="internal-link" target="_self" rel="noopener">CHAPTER 14</a>
 <br><a data-href="CHAPTER 15" href="ocp/chapter-15.html" class="internal-link" target="_self" rel="noopener">CHAPTER 15</a>
-<br>]]></description><link>index.html</link><guid isPermaLink="false">index.md</guid><pubDate>Tue, 21 May 2024 11:07:25 GMT</pubDate></item></channel></rss>
+<br>]]></description><link>index.html</link><guid isPermaLink="false">index.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Tue, 21 May 2024 11:07:25 GMT</pubDate></item></channel></rss>
