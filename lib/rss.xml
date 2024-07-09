@@ -1,4 +1,4 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[OCP_vault]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib/media/favicon.png</url><title>OCP_vault</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Tue, 09 Jul 2024 08:59:28 GMT</lastBuildDate><atom:link href="lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Tue, 09 Jul 2024 08:59:22 GMT</pubDate><copyright><![CDATA[Thibaud DANDOY]]></copyright><ttl>60</ttl><dc:creator>Thibaud DANDOY</dc:creator><item><title><![CDATA[Introduction]]></title><description><![CDATA[ 
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[OCP_vault]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib/media/favicon.png</url><title>OCP_vault</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Tue, 09 Jul 2024 10:03:56 GMT</lastBuildDate><atom:link href="lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Tue, 09 Jul 2024 10:03:56 GMT</pubDate><copyright><![CDATA[Thibaud DANDOY]]></copyright><ttl>60</ttl><dc:creator>Thibaud DANDOY</dc:creator><item><title><![CDATA[Introduction]]></title><description><![CDATA[ 
  <br><br><br>
 <br>The exam does give negative points: check everything !
 <br>Out of scope material means that we don't need to understand it, everything is implicit or given to us.
@@ -1837,99 +1837,7 @@ Copy<br>The declaration above has the following components:<br>
 <br>throws ExampleException is an optional Exception.
 <br>To go further...
 If you need a reminder of what an access modifier, the types of return and the naming convention of methods and variables, head over to <a data-href="CHAPTER 1 - BUILDING BLOCKS" href="ocp/chapter-1-building-blocks.html" class="internal-link" target="_self" rel="noopener">CHAPTER 1 - BUILDING BLOCKS</a>.
-<br>Here is a quick recap of the optional and required parts of a method declaration.<br>]]></description><link>ocp/chapter-5-methods.html</link><guid isPermaLink="false">OCP/CHAPTER 5 - METHODS.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Wed, 03 Jul 2024 14:27:24 GMT</pubDate></item><item><title><![CDATA[Backend]]></title><description><![CDATA[ 
- <br><br><br>Définition: Language orienté objet.<br>
-Exécuté sur une JVM[¹] qui peut être tournée sur n'importe quelle machine.<br>
-La gestion de la mémoire est gérée par la JVM, dans la memory heap.<br>
-JVM's configuration is done with Xmx and Xms.<br><br><br>
-<br>Set
-
-<br><a data-tooltip-position="top" aria-label="https://www.w3schools.com/java/java_hashset.asp" rel="noopener" class="external-link" href="https://www.w3schools.com/java/java_hashset.asp" target="_blank">HashSet</a>
-<br><a data-tooltip-position="top" aria-label="https://www.baeldung.com/java-tree-set" rel="noopener" class="external-link" href="https://www.baeldung.com/java-tree-set" target="_blank">TreeSet</a>
-
-
-<br>List
-
-<br><a data-tooltip-position="top" aria-label="https://www.w3schools.com/java/java_arraylist.asp" rel="noopener" class="external-link" href="https://www.w3schools.com/java/java_arraylist.asp" target="_blank">ArrayList</a>
-<br><a data-tooltip-position="top" aria-label="https://www.w3schools.com/java/java_linkedlist.asp" rel="noopener" class="external-link" href="https://www.w3schools.com/java/java_linkedlist.asp" target="_blank">LinkedList</a>
-
-
-<br>Queue
-<br><br>HashMap + TreeMap<br><br>Streams are a data flow. There are two types of operations: intermediary and terminal.<br><br>By default, checks the reference of an object. The common override of an equals is by checking the contents of the object.<br><br>Hashcode is a integer code that is the name of a bucket. This bucket contains a lot of objects. If two objects are identical, then their hashcode is the same. You can only use the hashcode of things that were put in an equal override.<br><br>Objects put in a TreeSet have to be comparable.<br><br><br>Exceptions that are thrown by the libraries, that are supposed to be acknowledged.<br><br>Exceptions that should not be thrown, and if they are, there is something wrong with the logic of your code.<br><br>Long term support (LTS) - The last one is JAVA 21.<br>[¹]: Java virtual machine<br><img alt="Pasted image 20240625110314.png" src="takitechs/pasted-image-20240625110314.png">]]></description><link>takitechs/takitech-1-a-bit-of-everything.html</link><guid isPermaLink="false">Takitechs/Takitech 1 - a bit of everything.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Tue, 25 Jun 2024 09:03:16 GMT</pubDate><enclosure url="takitechs/pasted-image-20240625110314.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="takitechs/pasted-image-20240625110314.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Takitech 2 - persistence]]></title><description><![CDATA[ 
- <br><br>
-<br>OneToOne with its fetch type being eager
-<br>ManyToMany with its fetch type being lazy
-<br>OneToMany with its fetch type being lazy
-<br>ManyToOne with its fetch type being eager<br>
-Eager means that the data will be fetched immediately, when Lazy means there will be a proxy on the data to be fetched later.
-<br><br>JPA is Java persistence API. It's a tool that helps us persist our data through the JAVA language.<br>
-JPA is an interface that uses rules and specifications to persist your data.<br>
-You can't use JPA by itself as it is an interface, but you can use its implementation, which is hibernate.<br>Note
-You probably can't use non-relational databases with JPA lol
-<br><br>JDBC means Java database connectivity.<br><br>EntityManager is an interface from JPA that helps interact with persistence's context, with the object lifecycle, the CRUD operations, etc...<br><br>A transaction is a set of SQL operations following the ACID principle.<br><br>Lazy Loading creates a Proxy design pattern. Proxy means that the entity is created, but is an empty shell without any data in it.<br>
-The data is only fetched when explicitly asked for.<br><br><br><br>
-<br>Atomic: all operations are considered one and the same.
-<br>Coherence: you can either do everything or nothing: if the state of the operation becomes incoherent or false, you rollback everything.
-<br>Isolation: Two transactions cannot influence each other, they are independent.
-<br>Durability: As soon as the transaction is committed, it will be persisted.
-<br><br>
-<br>Transient: The entity has been created in java, but not yet pushed in the database
-<br>Persisted: The entity is present in the database.
-<br>Detached: The entity has been taken from the database, but isn't linked to the database through persistence's context. You use detached mode when you want to free transactions while doing a big operation on an entity. Then, you merge the entity when you're done doing the operation.
-<br>Removed: The entity is marked to be removed, but the change has not been yet persisted.
-<br><br>Hibernate is an object relational mapping (or ORM) and converts java objects into SQL entities. An alternative is EclipseLink.<br><br>Session is Hibernate's entityManager. The difference is that you have more tools in Session than in entityManager, but has less portability, meaning you have to change all of the code if you don't want to use Session anymore, where you only have to change libraries if you use EntityManager.<br><br>When doing a lazy loading, if you have an entity tied to a many entity, you do a query when you want to fetch every single attached entity.<br>
-A solution is to use a join fetch or eager loading. You'd prefer a join fetch because eager loading is applied to every query.]]></description><link>takitechs/takitech-2-persistence.html</link><guid isPermaLink="false">Takitechs/Takitech 2 - persistence.canvas</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Tue, 25 Jun 2024 10:14:11 GMT</pubDate></item><item><title><![CDATA[Takitech 3 - C4]]></title><description><![CDATA[ 
- The Old Way<br><br><br>Modelisation is done usually in UML, but this is falling out of fade quickly when the applications get bigger.<br>The main UML diagrams are:<br>
-<br>comportement
-
-<br>Sequences, state-transition, use-case
-
-
-<br>Organisation
-
-<br>Classes, packages
-
-
-<br>Infrastructure
-
-<br>Deployment
-
-
-<br><br>
-<br>BPMN 2.0: Process oriented
-<br>Archimate: to build UML efficiently, but you need to learn a lot to use it.
-<br><br>
-<br>Gives an overview of the application
-<br>The main system is a colored box, in the middle.
-<br>Interactions with other systems and users are displayed.
-<br>It's more important to focus on the users, roles, personas and other systems that are dealt with on inferior levels.
-<br><br>C4 appeared when we realized we were trying to put stuff together that wasn't meant to.<br>
-You can see it as a map that you get closer and closer to, the amount of information that you need is not the same depending on the zoom level of the map.<br>
-C4 contains 4 views, ranked from most zoomed out to zoomed in:<br>
-<br>Context
-<br>Container
-<br>Component
-<br>Classes
-<br><br>Regular UML class diagram.<br><br>Describes all the macroscopic components, like the systems users can interact with.<br><br>Describes how the application deploys, knowing the system requirements.<br><br>Container diagram is a zoom inside the colored box in the context diagram.<br>
-It focuses on the different systems inside the system, explaining all the different boxes that makes the bigger boxes.<br>
-Be sure to include:<br>
-<br>Spread of responsibilities inside all the different elements of the system.
-<br>Technology choices inside the application.
-<br><br>Describes the components inside a container.<br><br>A zoom on each building block.<br>
-It describes all the responsibilities inside the container diagrams.<br><br>It helps showing off the following aspects in a synthetic fashion quickly:<br>
-<br>Actors
-<br>System components
-<br>Technologies
-<br>Interactions between actors and outside systems
-<br><br>
-<br>There are no architecture elements in a C4 diagram, meaning there are no concepts of deployment.<br>
-There's also no separation between software and the hardware that contains it.
-<br>It doesn't explain the logic of the application very well.
-<br><br>
-<br>Templates available on Libre Office
-<br><a data-tooltip-position="top" aria-label="https://www.drawio.com/" data-href="https://www.drawio.com/" href="https://www.drawio.com/" class="internal-link" target="_self" rel="noopener">Draw.io</a>
-<br><a data-tooltip-position="top" aria-label="https://structurizr.com/" data-href="https://structurizr.com/" href="https://structurizr.com/" class="internal-link" target="_self" rel="noopener">Structurizr</a>, helps automatically build the diagrams thanks to a direct link with you application's metadata.
-]]></description><link>takitechs/takitech-3-c4.html</link><guid isPermaLink="false">Takitechs/Takitech 3 - C4.canvas</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Tue, 02 Jul 2024 09:59:24 GMT</pubDate></item><item><title><![CDATA[Welcome]]></title><description><![CDATA[ 
+<br>Here is a quick recap of the optional and required parts of a method declaration.<br>]]></description><link>ocp/chapter-5-methods.html</link><guid isPermaLink="false">OCP/CHAPTER 5 - METHODS.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Wed, 03 Jul 2024 14:27:24 GMT</pubDate></item><item><title><![CDATA[Welcome]]></title><description><![CDATA[ 
  <br><br>Welcome to your OCP CHEAT SHEET !<br>
 I have taken many, many notes from the OCP book, and tightened them into this (work in progress) little website.<br>I hope it will make the learning experience a bit more enjoyable and colorful!<br>You can navigate to the table of content on the right, or simply click one of the links below:<br>Note
 If the Chapter name does not have its qualifier yet, it means I haven't gotten to it yet. It'll be there eventually!
