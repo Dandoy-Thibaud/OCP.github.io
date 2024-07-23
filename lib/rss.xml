@@ -1,4 +1,128 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[OCP_vault]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib/media/favicon.png</url><title>OCP_vault</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Tue, 09 Jul 2024 10:03:56 GMT</lastBuildDate><atom:link href="lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Tue, 09 Jul 2024 10:03:56 GMT</pubDate><copyright><![CDATA[Thibaud DANDOY]]></copyright><ttl>60</ttl><dc:creator>Thibaud DANDOY</dc:creator><item><title><![CDATA[Introduction]]></title><description><![CDATA[ 
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[OCP_vault]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib/media/favicon.png</url><title>OCP_vault</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Tue, 23 Jul 2024 10:02:32 GMT</lastBuildDate><atom:link href="lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Tue, 23 Jul 2024 10:02:29 GMT</pubDate><copyright><![CDATA[Thibaud DANDOY]]></copyright><ttl>60</ttl><dc:creator>Thibaud DANDOY</dc:creator><item><title><![CDATA[Chapter 5]]></title><description><![CDATA[ 
+ <br><br><br><br>A method follows this nomenclature:<br>public final void example(int a) throws ExampleException {
+	//Body
+}
+Copy<br>The declaration above has the following components:<br>
+<br>public is the access modifier.
+<br>optional is an optional modifier.
+<br>void is the return type.
+<br>example is the method name.
+<br>(int a) is the List of parameters. They require parentheses (()).
+<br>throws ExampleException is an optional Exception.
+<br>To go further...
+If you need a reminder of what an access modifier, the types of return and the naming convention of methods and variables, head over to <a data-href="CHAPTER 1 - BUILDING BLOCKS" href="ocp/chapter-1-building-blocks.html" class="internal-link" target="_self" rel="noopener">CHAPTER 1 - BUILDING BLOCKS</a>.
+<br>Here is a quick recap of the optional and required parts of a method declaration.<br><br>Calling this method would simply be done by using the method signature,<br><br>An access modifier determines what classes a method can be accessed from.<br>
+<br>private means that the method can only be called within the same class.
+<br>Package access means that the method can only be called within the same package.
+
+<br>Be careful, as this option is the default and requires you to omit the keyword.
+
+
+<br>protected means that the method can only be called within the same package or subclass.
+<br>public means that the method can be called from anywhere.
+<br>To go further...
+We'll see more about other uses of access modifiers later in <a data-href="CHAPTER 7" href="ocp/chapter-7.html" class="internal-link" target="_self" rel="noopener">CHAPTER 7</a>.
+<br>For example:<br>public class example {
+	public void a() {}
+	default void b() {} // DOES NOT COMPILE
+	void public c() {} // DOES NOT COMPILE
+	void d() {}
+}
+Copy<br>Only the methods on line 2 and 5 will compile, because default is not a keyword, and public doesn't come after word.<br>Tricks ahead!
+The exam makers like sneaking in these kinds of tricks. Be careful with the order of elements!
+<br><br><br><br><br><br><br>]]></description><link>ocp/chapter-5-methods.html</link><guid isPermaLink="false">OCP/CHAPTER 5 - METHODS.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Wed, 10 Jul 2024 09:47:35 GMT</pubDate></item><item><title><![CDATA[Chapter 14]]></title><description><![CDATA[ 
+ <br><br>I/O means input/output, or how to manage system files outside of a java application. This chapter focuses on I/O and NIO.2, or non blocking I/O.<br>Good practice !
+It is good practice to use NIO.2 where you can, but in practice, both are still widely in use.
+<br><br><br>There are two important components in the file system: files and directories:<br>
+<br>A file is a storage device that holds data.
+<br>A directory is a location that contains files as well as other directories.
+<br>Note
+Java often treats directories as files, so much so that some methods work on both files and directories alike.
+<br>To interact with files, you need to connect with the file system.<br>Note
+The file system operates very differently depending on the operating system.
+Inexam
+However, you don't need to know the difference for the exam, just to know the how to interact with the Java API.
+
+<br>The root directory is a special directory in that it is the topmost directory in the file system. All files and directories will directly inherit from it.<br>
+<br>On Windows, it is denoted with a drive letter such as C:\
+<br>On Linux, it is denoted with a single forward slash such as /.
+<br>A path is a representation of a file or directory within the file system. Each file system defines its own path separator character that is used between directories entries.<br>
+The value to the left of a separator is the parent of the value to the right of the separator.<br>For example:<br>/user/home/example.txt
+Copy<br>This means that the file example.txt is inside the home directory, which is inside the user directory.<br>Required Knowledge
+As previously stated, different operating systems use different path separator characters.<br>
+Java offers a system property to retrieve the local separator character for the current environment:
+System.out.println(System.getProperty("file.separator"));
+Copy
+<br>There are two different kinds of paths that can be used for pinpointing a file: a absolute path and an relative path:<br>
+<br>The absolute path of a file is the path that starts at the root directory and finishes at the file.
+<br>The relative path of a file is the path that starts at the current working directory and finishes at the file.
+<br>For the following file system:<br>C:
+├─ App
+│  ├─ Animals
+│  │  ├─ Bear.java
+│  │  └─ Bear.class
+│  └─ Employees
+│     └─ java.exe
+└─ Zoo
+   └─ info.txt
+Copy<br>
+<br>The absolute path for Bear.java is C:\App\Animals\Bear.java
+<br>The relative path for Bear.java:
+
+<br>When the working directory is Animals is Bear.java
+<br>When the working directory is Employees is ..\Animals\Bear.java
+<br>When the working directory is Zoo is ..\App\Animals\Bear.java
+
+
+<br>Required Knowledge
+Determining if a path is relative or absolute is system dependent.
+Inexam
+We will adopt the following conventions to match the exam questions:
+
+<br>If a path starts with a forward slash, it is absolute, with / as the root directory, such as /example/img.jpg
+<br>If a path starts with a drive letter (c:,d:, etc...), it is absolute, with the drive letter as the root directory, such as C:/example/img.jpg
+<br>Otherwise, it is a relative path, such as example/img.jpg
+
+
+]]></description><link>ocp/chapter-14-io.html</link><guid isPermaLink="false">OCP/CHAPTER 14 - IO.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Fri, 19 Jul 2024 12:11:00 GMT</pubDate></item><item><title><![CDATA[Backend]]></title><description><![CDATA[ 
+ <br><br><br>Définition: Language orienté objet.<br>
+Exécuté sur une JVM[¹] qui peut être tournée sur n'importe quelle machine.<br>
+La gestion de la mémoire est gérée par la JVM, dans la memory heap.<br>
+JVM's configuration is done with Xmx and Xms.<br><br><br>
+<br>Set
+
+<br><a data-tooltip-position="top" aria-label="https://www.w3schools.com/java/java_hashset.asp" rel="noopener" class="external-link" href="https://www.w3schools.com/java/java_hashset.asp" target="_blank">HashSet</a>
+<br><a data-tooltip-position="top" aria-label="https://www.baeldung.com/java-tree-set" rel="noopener" class="external-link" href="https://www.baeldung.com/java-tree-set" target="_blank">TreeSet</a>
+
+
+<br>List
+
+<br><a data-tooltip-position="top" aria-label="https://www.w3schools.com/java/java_arraylist.asp" rel="noopener" class="external-link" href="https://www.w3schools.com/java/java_arraylist.asp" target="_blank">ArrayList</a>
+<br><a data-tooltip-position="top" aria-label="https://www.w3schools.com/java/java_linkedlist.asp" rel="noopener" class="external-link" href="https://www.w3schools.com/java/java_linkedlist.asp" target="_blank">LinkedList</a>
+
+
+<br>Queue
+<br><br>HashMap + TreeMap<br><br>Streams are a data flow. There are two types of operations: intermediary and terminal.<br><br>By default, checks the reference of an object. The common override of an equals is by checking the contents of the object.<br><br>Hashcode is a integer code that is the name of a bucket. This bucket contains a lot of objects. If two objects are identical, then their hashcode is the same. You can only use the hashcode of things that were put in an equal override.<br><br>Objects put in a TreeSet have to be comparable.<br><br><br>Exceptions that are thrown by the libraries, that are supposed to be acknowledged.<br><br>Exceptions that should not be thrown, and if they are, there is something wrong with the logic of your code.<br><br>Long term support (LTS) - The last one is JAVA 21.<br>[¹]: Java virtual machine<br><img alt="Pasted image 20240625110314.png" src="takitechs/pasted-image-20240625110314.png">]]></description><link>takitechs/takitech-1-a-bit-of-everything.html</link><guid isPermaLink="false">Takitechs/Takitech 1 - A bit of everything.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Tue, 25 Jun 2024 09:03:16 GMT</pubDate><enclosure url="takitechs/pasted-image-20240625110314.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="takitechs/pasted-image-20240625110314.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Welcome]]></title><description><![CDATA[ 
+ <br><br>Welcome to your OCP CHEAT SHEET !<br>
+I have taken many, many notes from the OCP book, and tightened them into this (work in progress) little website.<br>I hope it will make the learning experience a bit more enjoyable and colorful!<br>You can navigate to the table of content on the right, or simply click one of the links below:<br>Note
+If the Chapter name does not have its qualifier yet, it means I haven't gotten to it yet. It'll be there eventually!
+<br>
+<br><a data-href="CHAPTER 1 - BUILDING BLOCKS" href="ocp/chapter-1-building-blocks.html" class="internal-link" target="_self" rel="noopener">CHAPTER 1 - BUILDING BLOCKS</a>
+<br><a data-href="CHAPTER 2 - JAVA OPERATORS" href="ocp/chapter-2-java-operators.html" class="internal-link" target="_self" rel="noopener">CHAPTER 2 - JAVA OPERATORS</a>
+<br><a data-href="CHAPTER 3 - MAKING DECISIONS" href="ocp/chapter-3-making-decisions.html" class="internal-link" target="_self" rel="noopener">CHAPTER 3 - MAKING DECISIONS</a>
+<br><a data-href="CHAPTER 4 - CORE APIS" href="ocp/chapter-4-core-apis.html" class="internal-link" target="_self" rel="noopener">CHAPTER 4 - CORE APIS</a>
+<br><a data-href="CHAPTER 5 - METHODS" href="ocp/chapter-5-methods.html" class="internal-link" target="_self" rel="noopener">CHAPTER 5 - METHODS</a>
+<br><a data-href="CHAPTER 6" href="ocp/chapter-6.html" class="internal-link" target="_self" rel="noopener">CHAPTER 6</a>
+<br><a data-href="CHAPTER 7" href="ocp/chapter-7.html" class="internal-link" target="_self" rel="noopener">CHAPTER 7</a>
+<br><a data-href="CHAPTER 8" href="ocp/chapter-8.html" class="internal-link" target="_self" rel="noopener">CHAPTER 8</a>
+<br><a data-href="CHAPTER 9" href="ocp/chapter-9.html" class="internal-link" target="_self" rel="noopener">CHAPTER 9</a>
+<br><a data-href="CHAPTER 10" href="ocp/chapter-10.html" class="internal-link" target="_self" rel="noopener">CHAPTER 10</a>
+<br><a data-href="CHAPTER 11" href="ocp/chapter-11.html" class="internal-link" target="_self" rel="noopener">CHAPTER 11</a>
+<br><a data-href="CHAPTER 12" href="ocp/chapter-12.html" class="internal-link" target="_self" rel="noopener">CHAPTER 12</a>
+<br><a data-href="CHAPTER 13" href="ocp/chapter-13.html" class="internal-link" target="_self" rel="noopener">CHAPTER 13</a>
+<br><a data-href="CHAPTER 14 - IO" href="ocp/chapter-14-io.html" class="internal-link" target="_self" rel="noopener">CHAPTER 14 - IO</a>
+<br><a data-href="CHAPTER 15" href="ocp/chapter-15.html" class="internal-link" target="_self" rel="noopener">CHAPTER 15</a>
+<br>]]></description><link>index.html</link><guid isPermaLink="false">index.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Mon, 15 Jul 2024 11:26:08 GMT</pubDate></item><item><title><![CDATA[Introduction]]></title><description><![CDATA[ 
  <br><br><br>
 <br>The exam does give negative points: check everything !
 <br>Out of scope material means that we don't need to understand it, everything is implicit or given to us.
@@ -1824,40 +1948,7 @@ Copy<br>Java switched automatically the time from 02:30 a.m to 03:30 a.m to make
 <br>Be able to determine the output of a code using arrays. See more in <a data-href="#Understanding arrays" href="about:blank#Understanding_arrays" class="internal-link" target="_self" rel="noopener">Understanding arrays</a>.
 <br>Identify the return types of Math methods. See more in <a data-href="#Calculating with *Math API*" href="about:blank#Calculating_with_*Math_API*" class="internal-link" target="_self" rel="noopener">Calculating with *Math API*</a>.
 <br>Recognize invalid uses of dates and times. See more in <a data-href="#Working with dates and times" href="about:blank#Working_with_dates_and_times" class="internal-link" target="_self" rel="noopener">Working with dates and times</a>.
-<br>]]></description><link>ocp/chapter-4-core-apis.html</link><guid isPermaLink="false">OCP/CHAPTER 4 - CORE APIS.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Wed, 03 Jul 2024 14:13:03 GMT</pubDate><enclosure url="blob:app://obsidian.md/05e427d2-b375-40a9-9cbc-d2dd71af91a8" length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="blob:app://obsidian.md/05e427d2-b375-40a9-9cbc-d2dd71af91a8"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Chapter 5]]></title><description><![CDATA[ 
- <br><br><br><br>A method follows this nomenclature:<br>public final void example(int a) throws ExampleException {
-	//Body
-}
-Copy<br>The declaration above has the following components:<br>
-<br>public is the access modifier.
-<br>optional is an optional modifier.
-<br>void is the return type.
-<br>example is the method name.
-<br>(int a) is the List of parameters. They require parentheses (()).
-<br>throws ExampleException is an optional Exception.
-<br>To go further...
-If you need a reminder of what an access modifier, the types of return and the naming convention of methods and variables, head over to <a data-href="CHAPTER 1 - BUILDING BLOCKS" href="ocp/chapter-1-building-blocks.html" class="internal-link" target="_self" rel="noopener">CHAPTER 1 - BUILDING BLOCKS</a>.
-<br>Here is a quick recap of the optional and required parts of a method declaration.<br>]]></description><link>ocp/chapter-5-methods.html</link><guid isPermaLink="false">OCP/CHAPTER 5 - METHODS.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Wed, 03 Jul 2024 14:27:24 GMT</pubDate></item><item><title><![CDATA[Welcome]]></title><description><![CDATA[ 
- <br><br>Welcome to your OCP CHEAT SHEET !<br>
-I have taken many, many notes from the OCP book, and tightened them into this (work in progress) little website.<br>I hope it will make the learning experience a bit more enjoyable and colorful!<br>You can navigate to the table of content on the right, or simply click one of the links below:<br>Note
-If the Chapter name does not have its qualifier yet, it means I haven't gotten to it yet. It'll be there eventually!
-<br>
-<br><a data-href="CHAPTER 1 - BUILDING BLOCKS" href="ocp/chapter-1-building-blocks.html" class="internal-link" target="_self" rel="noopener">CHAPTER 1 - BUILDING BLOCKS</a>
-<br><a data-href="CHAPTER 2 - JAVA OPERATORS" href="ocp/chapter-2-java-operators.html" class="internal-link" target="_self" rel="noopener">CHAPTER 2 - JAVA OPERATORS</a>
-<br><a data-href="CHAPTER 3 - MAKING DECISIONS" href="ocp/chapter-3-making-decisions.html" class="internal-link" target="_self" rel="noopener">CHAPTER 3 - MAKING DECISIONS</a>
-<br><a data-href="CHAPTER 4 - CORE APIS" href="ocp/chapter-4-core-apis.html" class="internal-link" target="_self" rel="noopener">CHAPTER 4 - CORE APIS</a>
-<br><a data-href="CHAPTER 5 - METHODS" href="ocp/chapter-5-methods.html" class="internal-link" target="_self" rel="noopener">CHAPTER 5 - METHODS</a>
-<br><a data-href="CHAPTER 6" href="ocp/chapter-6.html" class="internal-link" target="_self" rel="noopener">CHAPTER 6</a>
-<br><a data-href="CHAPTER 7" href="ocp/chapter-7.html" class="internal-link" target="_self" rel="noopener">CHAPTER 7</a>
-<br><a data-href="CHAPTER 8" href="ocp/chapter-8.html" class="internal-link" target="_self" rel="noopener">CHAPTER 8</a>
-<br><a data-href="CHAPTER 9" href="ocp/chapter-9.html" class="internal-link" target="_self" rel="noopener">CHAPTER 9</a>
-<br><a data-href="CHAPTER 10" href="ocp/chapter-10.html" class="internal-link" target="_self" rel="noopener">CHAPTER 10</a>
-<br><a data-href="CHAPTER 11" href="ocp/chapter-11.html" class="internal-link" target="_self" rel="noopener">CHAPTER 11</a>
-<br><a data-href="CHAPTER 12" href="ocp/chapter-12.html" class="internal-link" target="_self" rel="noopener">CHAPTER 12</a>
-<br><a data-href="CHAPTER 13" href="ocp/chapter-13.html" class="internal-link" target="_self" rel="noopener">CHAPTER 13</a>
-<br><a data-href="CHAPTER 14" href="ocp/chapter-14.html" class="internal-link" target="_self" rel="noopener">CHAPTER 14</a>
-<br><a data-href="CHAPTER 15" href="ocp/chapter-15.html" class="internal-link" target="_self" rel="noopener">CHAPTER 15</a>
-<br>]]></description><link>index.html</link><guid isPermaLink="false">index.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Wed, 03 Jul 2024 14:13:03 GMT</pubDate></item><item><title><![CDATA[Chapter 2]]></title><description><![CDATA[ 
+<br>]]></description><link>ocp/chapter-4-core-apis.html</link><guid isPermaLink="false">OCP/CHAPTER 4 - CORE APIS.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Wed, 03 Jul 2024 14:13:03 GMT</pubDate><enclosure url="blob:app://obsidian.md/05e427d2-b375-40a9-9cbc-d2dd71af91a8" length="0" type="false"/><content:encoded>&lt;figure&gt;&lt;img src="blob:app://obsidian.md/05e427d2-b375-40a9-9cbc-d2dd71af91a8"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Chapter 2]]></title><description><![CDATA[ 
  <br><br><br><br>In the following snippet, there are three names you should know:<br>var c = a + b;
 Copy<br>There are:<br>
 <br>Operands, which are a and b.
@@ -2121,6 +2212,5 @@ Both expressions return int or String, but the first one is in a println stateme
  ]]></description><link>ocp/chapter-10.html</link><guid isPermaLink="false">OCP/CHAPTER 10.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Tue, 21 May 2024 11:05:39 GMT</pubDate></item><item><title><![CDATA[CHAPTER 11]]></title><description><![CDATA[ 
  ]]></description><link>ocp/chapter-11.html</link><guid isPermaLink="false">OCP/CHAPTER 11.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Tue, 14 May 2024 07:22:38 GMT</pubDate></item><item><title><![CDATA[CHAPTER 12]]></title><description><![CDATA[ 
  ]]></description><link>ocp/chapter-12.html</link><guid isPermaLink="false">OCP/CHAPTER 12.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Sat, 27 Apr 2024 13:50:13 GMT</pubDate></item><item><title><![CDATA[CHAPTER 13]]></title><description><![CDATA[ 
- ]]></description><link>ocp/chapter-13.html</link><guid isPermaLink="false">OCP/CHAPTER 13.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Mon, 20 May 2024 14:43:30 GMT</pubDate></item><item><title><![CDATA[CHAPTER 14]]></title><description><![CDATA[ 
- ]]></description><link>ocp/chapter-14.html</link><guid isPermaLink="false">OCP/CHAPTER 14.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Tue, 21 May 2024 11:05:44 GMT</pubDate></item><item><title><![CDATA[CHAPTER 15]]></title><description><![CDATA[ 
+ ]]></description><link>ocp/chapter-13.html</link><guid isPermaLink="false">OCP/CHAPTER 13.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Mon, 20 May 2024 14:43:30 GMT</pubDate></item><item><title><![CDATA[CHAPTER 15]]></title><description><![CDATA[ 
  ]]></description><link>ocp/chapter-15.html</link><guid isPermaLink="false">OCP/CHAPTER 15.md</guid><dc:creator><![CDATA[Thibaud DANDOY]]></dc:creator><pubDate>Tue, 21 May 2024 11:05:50 GMT</pubDate></item></channel></rss>
