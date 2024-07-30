@@ -1,6 +1,6 @@
 {
   "vaultName": "OCP_vault",
-  "lastExport": 1721728949298,
+  "lastExport": 1722343247127,
   "pluginVersion": "1.8.01",
   "validBodyClasses": "publish css-settings-manager theme-dark show-inline-title show-ribbon code-styler code-styler-style-inline code-styler-gutter-highlight",
   "useCustomHeadContent": false,
@@ -26,9 +26,8 @@
     "Takitechs/Takitech 3 - C4.canvas",
     "Takitechs/Takitech 4 - Spring Data JPA.canvas",
     "Takitechs/Takitech 5 - Spring.canvas",
+    "Takitechs/Takitech 6 - Rest.canvas",
     "index.md",
-    "takitechs/pasted-image-20240625110314.png",
-    "lib/scripts/graph-wasm.wasm",
     "lib/fonts/94f2f163d4b698242fef.otf",
     "lib/fonts/72505e6a122c6acd5471.woff2",
     "lib/fonts/2d5198822ab091ce4305.woff2",
@@ -44,25 +43,31 @@
     "lib/fonts/4bb6ac751d1c5478ff3a.woff2",
     "lib/media/874d8b8e340f75575caa.svg",
     "lib/media/3d6c1bdc4d87cde4de67.svg",
-    "lib/html/file-tree.html",
-    "lib/scripts/webpage.js",
-    "lib/scripts/graph-view.js",
-    "lib/scripts/graph-wasm.js",
-    "lib/scripts/graph-render-worker.js",
-    "lib/scripts/tinycolor.js",
-    "lib/scripts/pixi.js",
-    "lib/scripts/minisearch.js",
-    "lib/media/favicon.png",
-    "lib/scripts/graph-data.js",
-    "lib/styles/obsidian.css",
-    "lib/styles/other-plugins.css",
-    "lib/styles/theme.css",
-    "lib/styles/global-variable-styles.css",
-    "lib/styles/supported-plugins.css",
-    "lib/styles/main-styles.css"
+    "lib/fonts/MathJax_Zero.woff",
+    "lib/fonts/MathJax_Main-Regular.woff",
+    "lib/fonts/MathJax_Main-Bold.woff",
+    "lib/fonts/MathJax_Math-Italic.woff",
+    "lib/fonts/MathJax_Main-Italic.woff",
+    "lib/fonts/MathJax_Math-BoldItalic.woff",
+    "lib/fonts/MathJax_Size1-Regular.woff",
+    "lib/fonts/MathJax_Size2-Regular.woff",
+    "lib/fonts/MathJax_Size3-Regular.woff",
+    "lib/fonts/MathJax_Size4-Regular.woff",
+    "lib/fonts/MathJax_AMS-Regular.woff",
+    "lib/fonts/MathJax_Calligraphic-Regular.woff",
+    "lib/fonts/MathJax_Calligraphic-Bold.woff",
+    "lib/fonts/MathJax_Fraktur-Regular.woff",
+    "lib/fonts/MathJax_Fraktur-Bold.woff",
+    "lib/fonts/MathJax_SansSerif-Regular.woff",
+    "lib/fonts/MathJax_SansSerif-Bold.woff",
+    "lib/fonts/MathJax_SansSerif-Italic.woff",
+    "lib/fonts/MathJax_Script-Regular.woff",
+    "lib/fonts/MathJax_Typewriter-Regular.woff",
+    "lib/fonts/MathJax_Vector-Regular.woff",
+    "lib/fonts/MathJax_Vector-Bold.woff",
+    "takitechs/pasted-image-20240625110314.png"
   ],
   "mainDependencies": [
-    "lib/scripts/graph-wasm.wasm",
     "lib/fonts/94f2f163d4b698242fef.otf",
     "lib/fonts/72505e6a122c6acd5471.woff2",
     "lib/fonts/2d5198822ab091ce4305.woff2",
@@ -78,104 +83,110 @@
     "lib/fonts/4bb6ac751d1c5478ff3a.woff2",
     "lib/media/874d8b8e340f75575caa.svg",
     "lib/media/3d6c1bdc4d87cde4de67.svg",
-    "lib/html/file-tree.html",
-    "lib/scripts/webpage.js",
-    "lib/scripts/graph-view.js",
-    "lib/scripts/graph-wasm.js",
-    "lib/scripts/graph-render-worker.js",
-    "lib/scripts/tinycolor.js",
-    "lib/scripts/pixi.js",
-    "lib/scripts/minisearch.js",
-    "lib/media/favicon.png",
-    "lib/scripts/graph-data.js",
-    "lib/styles/obsidian.css",
-    "lib/styles/other-plugins.css",
-    "lib/styles/theme.css",
-    "lib/styles/global-variable-styles.css",
-    "lib/styles/supported-plugins.css",
-    "lib/styles/main-styles.css"
+    "lib/fonts/MathJax_Zero.woff",
+    "lib/fonts/MathJax_Main-Regular.woff",
+    "lib/fonts/MathJax_Main-Bold.woff",
+    "lib/fonts/MathJax_Math-Italic.woff",
+    "lib/fonts/MathJax_Main-Italic.woff",
+    "lib/fonts/MathJax_Math-BoldItalic.woff",
+    "lib/fonts/MathJax_Size1-Regular.woff",
+    "lib/fonts/MathJax_Size2-Regular.woff",
+    "lib/fonts/MathJax_Size3-Regular.woff",
+    "lib/fonts/MathJax_Size4-Regular.woff",
+    "lib/fonts/MathJax_AMS-Regular.woff",
+    "lib/fonts/MathJax_Calligraphic-Regular.woff",
+    "lib/fonts/MathJax_Calligraphic-Bold.woff",
+    "lib/fonts/MathJax_Fraktur-Regular.woff",
+    "lib/fonts/MathJax_Fraktur-Bold.woff",
+    "lib/fonts/MathJax_SansSerif-Regular.woff",
+    "lib/fonts/MathJax_SansSerif-Bold.woff",
+    "lib/fonts/MathJax_SansSerif-Italic.woff",
+    "lib/fonts/MathJax_Script-Regular.woff",
+    "lib/fonts/MathJax_Typewriter-Regular.woff",
+    "lib/fonts/MathJax_Vector-Regular.woff",
+    "lib/fonts/MathJax_Vector-Bold.woff"
   ],
   "fileInfo": {
     "OCP/CHAPTER 1 - BUILDING BLOCKS.md": {
-      "modifiedTime": 1720515562526,
+      "modifiedTime": 1722343247127,
       "sourceSize": 19765,
-      "exportedPath": "ocp/chapter-1-building-blocks.html",
+      "exportedPath": "OCP/CHAPTER 1 - BUILDING BLOCKS.html",
       "dependencies": []
     },
     "OCP/CHAPTER 2 - JAVA OPERATORS.md": {
-      "modifiedTime": 1716895419777,
+      "modifiedTime": 1722343247127,
       "sourceSize": 26880,
-      "exportedPath": "ocp/chapter-2-java-operators.html",
+      "exportedPath": "OCP/CHAPTER 2 - JAVA OPERATORS.html",
       "dependencies": []
     },
     "OCP/CHAPTER 3 - MAKING DECISIONS.md": {
-      "modifiedTime": 1720515562526,
+      "modifiedTime": 1722343247127,
       "sourceSize": 34705,
-      "exportedPath": "ocp/chapter-3-making-decisions.html",
+      "exportedPath": "OCP/CHAPTER 3 - MAKING DECISIONS.html",
       "dependencies": []
     },
     "OCP/CHAPTER 4 - CORE APIS.md": {
-      "modifiedTime": 1720515562526,
+      "modifiedTime": 1722343247127,
       "sourceSize": 85321,
-      "exportedPath": "ocp/chapter-4-core-apis.html",
+      "exportedPath": "OCP/CHAPTER 4 - CORE APIS.html",
       "dependencies": []
     },
     "OCP/CHAPTER 6.md": {
-      "modifiedTime": 1716895419777,
+      "modifiedTime": 1722343247127,
       "sourceSize": 0,
-      "exportedPath": "ocp/chapter-6.html",
+      "exportedPath": "OCP/CHAPTER 6.html",
       "dependencies": []
     },
     "OCP/CHAPTER 7.md": {
-      "modifiedTime": 1716895419777,
+      "modifiedTime": 1722343247127,
       "sourceSize": 0,
-      "exportedPath": "ocp/chapter-7.html",
+      "exportedPath": "OCP/CHAPTER 7.html",
       "dependencies": []
     },
     "OCP/CHAPTER 8.md": {
-      "modifiedTime": 1716895419777,
+      "modifiedTime": 1722343247127,
       "sourceSize": 0,
-      "exportedPath": "ocp/chapter-8.html",
+      "exportedPath": "OCP/CHAPTER 8.html",
       "dependencies": []
     },
     "OCP/CHAPTER 9.md": {
-      "modifiedTime": 1716895419777,
+      "modifiedTime": 1722343247127,
       "sourceSize": 0,
-      "exportedPath": "ocp/chapter-9.html",
+      "exportedPath": "OCP/CHAPTER 9.html",
       "dependencies": []
     },
     "OCP/CHAPTER 10.md": {
-      "modifiedTime": 1716895419777,
+      "modifiedTime": 1722343247127,
       "sourceSize": 0,
-      "exportedPath": "ocp/chapter-10.html",
+      "exportedPath": "OCP/CHAPTER 10.html",
       "dependencies": []
     },
     "OCP/CHAPTER 11.md": {
-      "modifiedTime": 1716895419777,
+      "modifiedTime": 1722343247127,
       "sourceSize": 0,
-      "exportedPath": "ocp/chapter-11.html",
+      "exportedPath": "OCP/CHAPTER 11.html",
       "dependencies": []
     },
     "OCP/CHAPTER 12.md": {
-      "modifiedTime": 1716895419777,
+      "modifiedTime": 1722343247127,
       "sourceSize": 0,
-      "exportedPath": "ocp/chapter-12.html",
+      "exportedPath": "OCP/CHAPTER 12.html",
       "dependencies": []
     },
     "OCP/CHAPTER 13.md": {
-      "modifiedTime": 1716895419777,
+      "modifiedTime": 1722343247127,
       "sourceSize": 0,
-      "exportedPath": "ocp/chapter-13.html",
+      "exportedPath": "OCP/CHAPTER 13.html",
       "dependencies": []
     },
     "OCP/CHAPTER 15.md": {
-      "modifiedTime": 1716895419777,
+      "modifiedTime": 1722343247127,
       "sourceSize": 0,
-      "exportedPath": "ocp/chapter-15.html",
+      "exportedPath": "OCP/CHAPTER 15.html",
       "dependencies": []
     },
     "index.md": {
-      "modifiedTime": 1721728949298,
+      "modifiedTime": 1722343247127,
       "sourceSize": 824,
       "exportedPath": "index.html",
       "dependencies": []
@@ -187,85 +198,85 @@
       "dependencies": []
     },
     "lib/fonts/94f2f163d4b698242fef.otf": {
-      "modifiedTime": 1721728949298,
+      "modifiedTime": 1722343247127,
       "sourceSize": 66800,
       "exportedPath": "lib/fonts/94f2f163d4b698242fef.otf",
       "dependencies": []
     },
     "lib/fonts/72505e6a122c6acd5471.woff2": {
-      "modifiedTime": 1721728949298,
+      "modifiedTime": 1722343247127,
       "sourceSize": 104232,
       "exportedPath": "lib/fonts/72505e6a122c6acd5471.woff2",
       "dependencies": []
     },
     "lib/fonts/2d5198822ab091ce4305.woff2": {
-      "modifiedTime": 1721728949298,
+      "modifiedTime": 1722343247127,
       "sourceSize": 104332,
       "exportedPath": "lib/fonts/2d5198822ab091ce4305.woff2",
       "dependencies": []
     },
     "lib/fonts/c8ba52b05a9ef10f4758.woff2": {
-      "modifiedTime": 1721728949298,
+      "modifiedTime": 1722343247127,
       "sourceSize": 98868,
       "exportedPath": "lib/fonts/c8ba52b05a9ef10f4758.woff2",
       "dependencies": []
     },
     "lib/fonts/cb10ffd7684cd9836a05.woff2": {
-      "modifiedTime": 1721728949298,
+      "modifiedTime": 1722343247127,
       "sourceSize": 106876,
       "exportedPath": "lib/fonts/cb10ffd7684cd9836a05.woff2",
       "dependencies": []
     },
     "lib/fonts/b5f0f109bc88052d4000.woff2": {
-      "modifiedTime": 1721728949298,
+      "modifiedTime": 1722343247127,
       "sourceSize": 105804,
       "exportedPath": "lib/fonts/b5f0f109bc88052d4000.woff2",
       "dependencies": []
     },
     "lib/fonts/cbe0ae49c52c920fd563.woff2": {
-      "modifiedTime": 1721728949298,
+      "modifiedTime": 1722343247127,
       "sourceSize": 106108,
       "exportedPath": "lib/fonts/cbe0ae49c52c920fd563.woff2",
       "dependencies": []
     },
     "lib/fonts/535a6cf662596b3bd6a6.woff2": {
-      "modifiedTime": 1721728949298,
+      "modifiedTime": 1722343247127,
       "sourceSize": 111708,
       "exportedPath": "lib/fonts/535a6cf662596b3bd6a6.woff2",
       "dependencies": []
     },
     "lib/fonts/70cc7ff27245e82ad414.ttf": {
-      "modifiedTime": 1721728949298,
+      "modifiedTime": 1722343247127,
       "sourceSize": 192740,
       "exportedPath": "lib/fonts/70cc7ff27245e82ad414.ttf",
       "dependencies": []
     },
     "lib/fonts/454577c22304619db035.ttf": {
-      "modifiedTime": 1721728949298,
+      "modifiedTime": 1722343247127,
       "sourceSize": 161376,
       "exportedPath": "lib/fonts/454577c22304619db035.ttf",
       "dependencies": []
     },
     "lib/fonts/52ac8f3034507f1d9e53.ttf": {
-      "modifiedTime": 1721728949298,
+      "modifiedTime": 1722343247127,
       "sourceSize": 191568,
       "exportedPath": "lib/fonts/52ac8f3034507f1d9e53.ttf",
       "dependencies": []
     },
     "lib/fonts/05b618077343fbbd92b7.ttf": {
-      "modifiedTime": 1721728949298,
+      "modifiedTime": 1722343247127,
       "sourceSize": 155288,
       "exportedPath": "lib/fonts/05b618077343fbbd92b7.ttf",
       "dependencies": []
     },
     "lib/fonts/4bb6ac751d1c5478ff3a.woff2": {
-      "modifiedTime": 1721728949298,
+      "modifiedTime": 1722343247127,
       "sourceSize": 7876,
       "exportedPath": "lib/fonts/4bb6ac751d1c5478ff3a.woff2",
       "dependencies": []
     },
     "lib/media/874d8b8e340f75575caa.svg": {
-      "modifiedTime": 1721728949298,
+      "modifiedTime": 1722343247127,
       "sourceSize": 317,
       "exportedPath": "lib/media/874d8b8e340f75575caa.svg",
       "dependencies": []
@@ -499,9 +510,9 @@
       "dependencies": []
     },
     "OCP/CHAPTER 5 - METHODS.md": {
-      "modifiedTime": 1721728949298,
+      "modifiedTime": 1722343247127,
       "sourceSize": 3082,
-      "exportedPath": "ocp/chapter-5-methods.html",
+      "exportedPath": "OCP/CHAPTER 5 - METHODS.html",
       "dependencies": []
     },
     "takitechs/pasted-image-20240625110314.png": {
@@ -511,47 +522,183 @@
       "dependencies": []
     },
     "lib/media/3d6c1bdc4d87cde4de67.svg": {
-      "modifiedTime": 1721728949298,
+      "modifiedTime": 1722343247127,
       "sourceSize": 279,
       "exportedPath": "lib/media/3d6c1bdc4d87cde4de67.svg",
       "dependencies": []
     },
     "OCP/CHAPTER 14 - IO.md": {
-      "modifiedTime": 1721728949298,
-      "sourceSize": 3526,
-      "exportedPath": "ocp/chapter-14-io.html",
+      "modifiedTime": 1722343247127,
+      "sourceSize": 6799,
+      "exportedPath": "OCP/CHAPTER 14 - IO.html",
       "dependencies": []
     },
     "Takitechs/Takitech 1 - A bit of everything.md": {
-      "modifiedTime": 1721728949298,
+      "modifiedTime": 1722343247127,
       "sourceSize": 1551,
-      "exportedPath": "takitechs/takitech-1-a-bit-of-everything.html",
-      "dependencies": [
-        "takitechs/pasted-image-20240625110314.png"
-      ]
+      "exportedPath": "Takitechs/Takitech 1 - A bit of everything.html",
+      "dependencies": []
     },
     "Takitechs/Takitech 2 - Persistence.canvas": {
-      "modifiedTime": 1721728949298,
+      "modifiedTime": 1722343247127,
       "sourceSize": 6164,
-      "exportedPath": "takitechs/takitech-2-persistence.html",
+      "exportedPath": "Takitechs/Takitech 2 - Persistence.html",
       "dependencies": []
     },
     "Takitechs/Takitech 3 - C4.canvas": {
-      "modifiedTime": 1721728949298,
+      "modifiedTime": 1722343247127,
       "sourceSize": 6075,
-      "exportedPath": "takitechs/takitech-3-c4.html",
+      "exportedPath": "Takitechs/Takitech 3 - C4.html",
       "dependencies": []
     },
     "Takitechs/Takitech 4 - Spring Data JPA.canvas": {
-      "modifiedTime": 1721728949298,
+      "modifiedTime": 1722343247127,
       "sourceSize": 7545,
-      "exportedPath": "takitechs/takitech-4-spring-data-jpa.html",
+      "exportedPath": "Takitechs/Takitech 4 - Spring Data JPA.html",
       "dependencies": []
     },
     "Takitechs/Takitech 5 - Spring.canvas": {
-      "modifiedTime": 1721728949298,
+      "modifiedTime": 1722343247127,
       "sourceSize": 6448,
-      "exportedPath": "takitechs/takitech-5-spring.html",
+      "exportedPath": "Takitechs/Takitech 5 - Spring.html",
+      "dependencies": []
+    },
+    "Takitechs/Takitech 6 - Rest.canvas": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 8467,
+      "exportedPath": "Takitechs/Takitech 6 - Rest.html",
+      "dependencies": []
+    },
+    "lib/fonts/MathJax_Zero.woff": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 1368,
+      "exportedPath": "lib/fonts/MathJax_Zero.woff",
+      "dependencies": []
+    },
+    "lib/fonts/MathJax_Main-Regular.woff": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 34160,
+      "exportedPath": "lib/fonts/MathJax_Main-Regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/MathJax_Main-Bold.woff": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 34464,
+      "exportedPath": "lib/fonts/MathJax_Main-Bold.woff",
+      "dependencies": []
+    },
+    "lib/fonts/MathJax_Math-Italic.woff": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 19360,
+      "exportedPath": "lib/fonts/MathJax_Math-Italic.woff",
+      "dependencies": []
+    },
+    "lib/fonts/MathJax_Main-Italic.woff": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 20832,
+      "exportedPath": "lib/fonts/MathJax_Main-Italic.woff",
+      "dependencies": []
+    },
+    "lib/fonts/MathJax_Math-BoldItalic.woff": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 19776,
+      "exportedPath": "lib/fonts/MathJax_Math-BoldItalic.woff",
+      "dependencies": []
+    },
+    "lib/fonts/MathJax_Size1-Regular.woff": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 5792,
+      "exportedPath": "lib/fonts/MathJax_Size1-Regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/MathJax_Size2-Regular.woff": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 5464,
+      "exportedPath": "lib/fonts/MathJax_Size2-Regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/MathJax_Size3-Regular.woff": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 3244,
+      "exportedPath": "lib/fonts/MathJax_Size3-Regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/MathJax_Size4-Regular.woff": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 5148,
+      "exportedPath": "lib/fonts/MathJax_Size4-Regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/MathJax_AMS-Regular.woff": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 40808,
+      "exportedPath": "lib/fonts/MathJax_AMS-Regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/MathJax_Calligraphic-Regular.woff": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 9600,
+      "exportedPath": "lib/fonts/MathJax_Calligraphic-Regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/MathJax_Calligraphic-Bold.woff": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 9908,
+      "exportedPath": "lib/fonts/MathJax_Calligraphic-Bold.woff",
+      "dependencies": []
+    },
+    "lib/fonts/MathJax_Fraktur-Regular.woff": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 21480,
+      "exportedPath": "lib/fonts/MathJax_Fraktur-Regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/MathJax_Fraktur-Bold.woff": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 22340,
+      "exportedPath": "lib/fonts/MathJax_Fraktur-Bold.woff",
+      "dependencies": []
+    },
+    "lib/fonts/MathJax_SansSerif-Regular.woff": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 12660,
+      "exportedPath": "lib/fonts/MathJax_SansSerif-Regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/MathJax_SansSerif-Bold.woff": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 15944,
+      "exportedPath": "lib/fonts/MathJax_SansSerif-Bold.woff",
+      "dependencies": []
+    },
+    "lib/fonts/MathJax_SansSerif-Italic.woff": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 14628,
+      "exportedPath": "lib/fonts/MathJax_SansSerif-Italic.woff",
+      "dependencies": []
+    },
+    "lib/fonts/MathJax_Script-Regular.woff": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 11852,
+      "exportedPath": "lib/fonts/MathJax_Script-Regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/MathJax_Typewriter-Regular.woff": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 17604,
+      "exportedPath": "lib/fonts/MathJax_Typewriter-Regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/MathJax_Vector-Regular.woff": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 1136,
+      "exportedPath": "lib/fonts/MathJax_Vector-Regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/MathJax_Vector-Bold.woff": {
+      "modifiedTime": 1722343247127,
+      "sourceSize": 1116,
+      "exportedPath": "lib/fonts/MathJax_Vector-Bold.woff",
       "dependencies": []
     }
   }
